@@ -208,7 +208,7 @@ public class Registraduria implements TransformarDate {
 	}
 	
 	
-	
+	//hola
 	
 
 }
