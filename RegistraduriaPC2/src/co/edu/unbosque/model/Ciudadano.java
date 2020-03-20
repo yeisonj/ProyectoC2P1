@@ -25,7 +25,7 @@ public class Ciudadano implements Serializable {
 	private Date fechaExpedicionC;
 	private String puestoVotacion;
 	
-	
+	//prueba github
 	//Constructor de la clase Ciudadano
 	
 	public Ciudadano(String numeroCedula, String apellidos, String nombres, String lugarDeNacimiento, String sexo,
