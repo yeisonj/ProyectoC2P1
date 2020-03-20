@@ -123,30 +123,6 @@ public class Registraduria implements TransformarDate {
 	
 	
 	
-	public static void main(String [] args)throws IOException {
-		
-		
-		
-		
-		Registraduria r = new Registraduria();
-	
-		r.cargarListaPuestosDeVotacion();
-		
-		Ciudadano ciu = new Ciudadano("12345", "Moncaleano", "Sebastian", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		Ciudadano ciu1 = new Ciudadano("123456", "Moncaleanoao", "Sebastianao", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		Ciudadano ciu2 = new Ciudadano("123456", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		r.agregarCiudadano(ciu);
-		r.agregarCiudadano(ciu1);
-		r.agregarCiudadano(ciu2);
-		r.guardarTabla();
-		System.out.println(r.puestosDeVotacion.get(9));
-		r.listarP();
-		//r.eliminarCiudadano("12345");
-		//r.listarP();
-		
-		
-		
-	}
 	
 
 }
