@@ -113,6 +113,8 @@ public class Registraduria implements TransformarDate {
 		
 	}
 	
+	
+	
 	public String mostrarInformacionPuesto(String puesto) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -126,6 +128,10 @@ public class Registraduria implements TransformarDate {
 		return Integer.toString(p);
 	}
 	
+	
+	
+	
+	
 	public String mostrarInformacionMunicipio(String municipio) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -138,6 +144,8 @@ public class Registraduria implements TransformarDate {
 		
 		return Integer.toString(p);
 	}
+	
+	
 	
 	public String[] mostrarCiudadanosInscritos(String puesto) {
 		int p=0;
@@ -155,6 +163,9 @@ public class Registraduria implements TransformarDate {
 			
 			return ciudinscritos;
 	}
+	
+	
+	
 	
 	
 	
@@ -178,6 +189,7 @@ public class Registraduria implements TransformarDate {
 			return null;
 			
 	}
+	
 	
 	public String ciudadanosInscritosDepartamento(String municipio, int posicion) {
 		String ciudadano="";
