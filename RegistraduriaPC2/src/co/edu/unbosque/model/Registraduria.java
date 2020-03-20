@@ -1,11 +1,11 @@
-/* Clase que modela una Registraduría donde se hará el manejo de datos de inscripción de cédulas para votación
+/* Clase que modela una Registradurï¿½a donde se harï¿½ el manejo de datos de inscripciï¿½n de cï¿½dulas para votaciï¿½n
  */
 
 /**
- * <h1>Modela la Registraduría en su apartado de inscripcion de cédulas para votación</h1>
-* Se encarga de modelar todos los atributos y metodos de la registraduría en cédulas para votación
+ * <h1>Modela la Registradurï¿½a en su apartado de inscripcion de cï¿½dulas para votaciï¿½n</h1>
+* Se encarga de modelar todos los atributos y metodos de la registradurï¿½a en cï¿½dulas para votaciï¿½n
 * @version 1.0
-* @author Jeisson Jossa, Sebastián Moncaleano, Moisés Salcedo, Diego Torres | Universidad El Bosque
+* @author Jeisson Jossa, Sebastiï¿½n Moncaleano, Moisï¿½s Salcedo, Diego Torres | Universidad El Bosque
  */
 
 package co.edu.unbosque.model;
@@ -54,12 +54,12 @@ public class Registraduria implements TransformarDate {
 	}
 	
 	/**
-	* Este método agrega un ciudadano a un puesto de votación
-	* <b>pre</b> La lista de ciudadanos está inicializada (no es
+	* Este mï¿½todo agrega un ciudadano a un puesto de votaciï¿½n
+	* <b>pre</b> La lista de ciudadanos estï¿½ inicializada (no es
 	null). <br>
 	* <b>post</b> Se ha registrado un nuevo ciudadano con los
 	datos dados <br>
-	* @param cedula Es la cédula del nuevo cidadano. cedula != null,
+	* @param cedula Es la cï¿½dula del nuevo cidadano. cedula != null,
 	cedula != " "
 	*/
 	public void agregarCiudadano(Ciudadano ciudadanoAInscribir) {
@@ -78,7 +78,7 @@ public class Registraduria implements TransformarDate {
 			BufferedReader br = new BufferedReader(fr);
 			//lectura de la primera linea del archivo
 			String lineaLeida = br.readLine();
-			//ciclo que lee y recorre cada una de las lineas del archivo que se está leyendo
+			//ciclo que lee y recorre cada una de las lineas del archivo que se estï¿½ leyendo
 			
 			
 			while(lineaLeida!=null) {
@@ -97,7 +97,7 @@ public class Registraduria implements TransformarDate {
 	
 	public void eliminarCiudadano(String numeroCedula) {
 		for(int j= 0;j < cedulasInscritas.size(); j++)  {
-			String cc = cedulasInscritas.get(j).getNumeroCedula();
+			String cc = cedulasInscritas.get(j).getNumerocedula();
 			if(numeroCedula.equalsIgnoreCase(cc)) {
 				cedulasInscritas.remove(j);	
 			}
@@ -113,6 +113,92 @@ public class Registraduria implements TransformarDate {
 		
 	}
 	
+	public String mostrarInformacionPuesto(String puesto) {
+		int p=0;
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
+		
+			if(aux==puesto) {
+				p++;
+			}
+		}
+		
+		return Integer.toString(p);
+	}
+	
+	public String mostrarInformacionMunicipio(String municipio) {
+		int p=0;
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
+		
+			if(aux==municipio) {
+				p++;
+			}
+		}
+		
+		return Integer.toString(p);
+	}
+	
+	public String[] mostrarCiudadanosInscritos(String puesto) {
+		int p=0;
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionPuesto(puesto))];
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
+		
+			if(aux==puesto) {
+			String auxc= cedulasInscritas.get(i).getNombre1()+cedulasInscritas.get(i).getNombre2()+cedulasInscritas.get(i).getApellido1()+cedulasInscritas.get(i).getApellido2()+cedulasInscritas.get(i).getNumerocedula();
+			ciudinscritos[p]=auxc;
+			p++;
+			}
+			
+		}
+			
+			return ciudinscritos;
+	}
+	
+	
+	
+	
+	public String ciudadanosInscritosMunicipio(String municipio, int posicion) {
+		String ciudadano="";
+		
+			String [] puesto= cedulasInscritas.get(posicion).getPuestovotacionasignado().split(";");
+			
+			
+			
+			if(puesto[1].equalsIgnoreCase(municipio)) {
+				
+				String name = cedulasInscritas.get(posicion).getNombre1()+cedulasInscritas.get(posicion).getNombre2();
+				String sname = cedulasInscritas.get(posicion).getApellido1()+cedulasInscritas.get(posicion).getApellido2();
+				//AsÃ­ con todos los atributos del ciudadano, menos el puesto de votacion
+				ciudadano = name + " " + sname+" "+ cedulasInscritas.get(posicion).getNumerocedula();
+				return ciudadano;
+			}
+			
+			return null;
+			
+	}
+	
+	public String ciudadanosInscritosDepartamento(String municipio, int posicion) {
+		String ciudadano="";
+		
+			String [] puesto= cedulasInscritas.get(posicion).getPuestovotacionasignado().split(";");
+			
+			
+			
+			if(puesto[0].equalsIgnoreCase(municipio)) {
+				
+				String name = cedulasInscritas.get(posicion).getNombre1()+cedulasInscritas.get(posicion).getNombre2();
+				String sname = cedulasInscritas.get(posicion).getApellido1()+cedulasInscritas.get(posicion).getApellido2();
+				//AsÃ­ con todos los atributos del ciudadano, menos el puesto de votacion
+				ciudadano = name + " " + sname+" "+ cedulasInscritas.get(posicion).getNumerocedula();
+				return ciudadano;
+			}
+			
+			return null;
+			
+	}
+	
 	
 
 	@Override
@@ -123,30 +209,6 @@ public class Registraduria implements TransformarDate {
 	
 	
 	
-	public static void main(String [] args)throws IOException {
-		
-		
-		
-		
-		Registraduria r = new Registraduria();
-	
-		r.cargarListaPuestosDeVotacion();
-		
-		Ciudadano ciu = new Ciudadano("12345", "Moncaleano", "Sebastian", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		Ciudadano ciu1 = new Ciudadano("123456", "Moncaleanoao", "Sebastianao", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		Ciudadano ciu2 = new Ciudadano("123456", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
-		r.agregarCiudadano(ciu);
-		r.agregarCiudadano(ciu1);
-		r.agregarCiudadano(ciu2);
-		r.guardarTabla();
-		System.out.println(r.puestosDeVotacion.get(9));
-		r.listarP();
-		//r.eliminarCiudadano("12345");
-		//r.listarP();
-		
-		
-		
-	}
 	
 
 }

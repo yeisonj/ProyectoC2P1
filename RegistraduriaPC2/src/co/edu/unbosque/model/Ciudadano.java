@@ -1,11 +1,11 @@
-/* Clase que modela un ciudadano que va se va a registrar en un puesto de votación
+/* Clase que modela un ciudadano que va se va a registrar en un puesto de votaciï¿½n
  */
 
 /**
  * <h1>Modela un ciudadano</h1>
-* Se encarga de modelar todos los atributos de un ciudadano que se registra en un puesto de votación
+* Se encarga de modelar todos los atributos de un ciudadano que se registra en un puesto de votaciï¿½n
 * @version 1.0
-* @author Jeisson Jossa, Sebastián Moncaleano, Moisés Salcedo, Diego Torres | Universidad El Bosque
+* @author Jeisson Jossa, Sebastiï¿½n Moncaleano, Moisï¿½s Salcedo, Diego Torres | Universidad El Bosque
  */
 
 package co.edu.unbosque.model;
@@ -15,99 +15,132 @@ import java.util.Date;
 
 public class Ciudadano implements Serializable {
 	
-	private String numeroCedula;
-	private String apellidos;
-	private String nombres;
-	private String lugarDeNacimiento;
-	private String sexo;
-	private String lugarDeExpedicionC;
-	private Date fechaNacimiento;
-	private Date fechaExpedicionC;
-	private String puestoVotacion;
+	private String numerocedula;
+	private String nombre1;
+	private String nombre2; 
+	private String apellido1;
+	private String apellido2;
+	private String lugardenacimiento;
+	private String genero;
+	private String lugarexpedicioncedula;
+	private Date fechanacimiento;
+	private Date fechaexpedicion;
+	private String puestovotacionasignado;
 	
-	
-	//Constructor de la clase Ciudadano
-	
-	public Ciudadano(String numeroCedula, String apellidos, String nombres, String lugarDeNacimiento, String sexo,
-			String lugarDeExpedicionC, Date fechaNacimiento, Date fechaExpedicionC, String puestoVotacion) {
+	public Ciudadano(String numerocedula, String nombre1, String nombre2, String apellido1, String apellido2,
+			String lugardenacimiento, String genero, String lugarexpedicioncedula, Date fechanacimiento,
+			Date fechaexpedicion, String puestovotacionasignado) {
 		super();
-		this.numeroCedula = numeroCedula;
-		this.apellidos = apellidos;
-		this.nombres = nombres;
-		this.lugarDeNacimiento = lugarDeNacimiento;
-		this.sexo = sexo;
-		this.lugarDeExpedicionC = lugarDeExpedicionC;
-		this.fechaNacimiento = fechaNacimiento;
-		this.fechaExpedicionC = fechaExpedicionC;
-		this.puestoVotacion = puestoVotacion;
-	}
-	
-	//Getters y setter de los atributos de la clase Ciudadano
-	
-	public String getNumeroCedula() {
-		return numeroCedula;
-	}
-	public void setNumeroCedula(String numeroCedula) {
-		this.numeroCedula = numeroCedula;
-	}
-	public String getApellidos() {
-		return apellidos;
-	}
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-	public String getNombres() {
-		return nombres;
-	}
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
-	}
-	public String getLugarDeNacimiento() {
-		return lugarDeNacimiento;
-	}
-	public void setLugarDeNacimiento(String lugarDeNacimiento) {
-		this.lugarDeNacimiento = lugarDeNacimiento;
-	}
-	public String getSexo() {
-		return sexo;
-	}
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-	public String getLugarDeExpedicionC() {
-		return lugarDeExpedicionC;
-	}
-	public void setLugarDeExpedicionC(String lugarDeExpedicionC) {
-		this.lugarDeExpedicionC = lugarDeExpedicionC;
-	}
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-	public Date getFechaExpedicionC() {
-		return fechaExpedicionC;
-	}
-	public void setFechaExpedicionC(Date fechaExpedicionC) {
-		this.fechaExpedicionC = fechaExpedicionC;
-	}
-	public String getPuestoVotacion() {
-		return puestoVotacion;
-	}
-	public void setPuestoVotacion(String puestoVotacion) {
-		this.puestoVotacion = puestoVotacion;
+		this.numerocedula = numerocedula;
+		this.nombre1 = nombre1;
+		this.nombre2 = nombre2;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.lugardenacimiento = lugardenacimiento;
+		this.genero = genero;
+		this.lugarexpedicioncedula = lugarexpedicioncedula;
+		this.fechanacimiento = fechanacimiento;
+		this.fechaexpedicion = fechaexpedicion;
+		this.puestovotacionasignado = puestovotacionasignado;
 	}
 
+	public String getNumerocedula() {
+		return numerocedula;
+	}
+
+	public void setNumerocedula(String numerocedula) {
+		this.numerocedula = numerocedula;
+	}
+
+	public String getNombre1() {
+		return nombre1;
+	}
+
+	public void setNombre1(String nombre1) {
+		this.nombre1 = nombre1;
+	}
+
+	public String getNombre2() {
+		return nombre2;
+	}
+
+	public void setNombre2(String nombre2) {
+		this.nombre2 = nombre2;
+	}
+
+	public String getApellido1() {
+		return apellido1;
+	}
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+	public String getLugardenacimiento() {
+		return lugardenacimiento;
+	}
+
+	public void setLugardenacimiento(String lugardenacimiento) {
+		this.lugardenacimiento = lugardenacimiento;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getLugarexpedicioncedula() {
+		return lugarexpedicioncedula;
+	}
+
+	public void setLugarexpedicioncedula(String lugarexpedicioncedula) {
+		this.lugarexpedicioncedula = lugarexpedicioncedula;
+	}
+
+	public Date getFechanacimiento() {
+		return fechanacimiento;
+	}
+
+	public void setFechanacimiento(Date fechanacimiento) {
+		this.fechanacimiento = fechanacimiento;
+	}
+
+	public Date getFechaexpedicion() {
+		return fechaexpedicion;
+	}
+
+	public void setFechaexpedicion(Date fechaexpedicion) {
+		this.fechaexpedicion = fechaexpedicion;
+	}
+
+	public String getPuestovotacionasignado() {
+		return puestovotacionasignado;
+	}
+
+	public void setPuestovotacionasignado(String puestovotacionasignado) {
+		this.puestovotacionasignado = puestovotacionasignado;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return numeroCedula + ";" + apellidos + ";" + nombres
-				+ ";" + lugarDeNacimiento + ";" + sexo + ";"
-				+ lugarDeExpedicionC + ";" + fechaNacimiento + ";" + fechaExpedicionC
-				+ ";" + puestoVotacion;
+		return "numerocedula= " + numerocedula + ", nombre1= " + nombre1 + ", nombre2= " + nombre2
+				+ ", apellido1= " + apellido1 + ", apellido2= " + apellido2 + ", lugardenacimiento= " + lugardenacimiento
+				+ ", genero= " + genero + ", lugarexpedicioncedula= " + lugarexpedicioncedula + ", fechanacimiento= "
+				+ fechanacimiento + ", fechaexpedicion= " + fechaexpedicion + ", puestovotacionasignado= "
+				+ puestovotacionasignado;
 	}
 	
 	
-	
-
 }
