@@ -21,7 +21,7 @@ public class AplRegistraduria {
 		Registraduria registraduria=new Registraduria();
 		Vista vista = new Vista();
 		Controller controller = new Controller(vista,registraduria);
-
+//branches
 	}
 
 }
