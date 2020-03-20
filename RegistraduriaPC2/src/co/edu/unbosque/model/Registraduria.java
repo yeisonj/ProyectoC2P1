@@ -196,6 +196,7 @@ public class Registraduria implements TransformarDate {
 		
 			String [] puesto= cedulasInscritas.get(posicion).getPuestovotacionasignado().split(";");
 			
+		
 			
 			
 			if(puesto[0].equalsIgnoreCase(municipio)) {
