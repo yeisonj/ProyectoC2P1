@@ -9,272 +9,107 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
-
 public class PanelEstadisticas extends JPanel {
 
-	private JLabel fondo;
-	private ImageIcon imagenFondo;
-	private JLabel rango1;
-	private JLabel rango2;
-	private JLabel rango3;
-	private JLabel rango4;
-	private JLabel rango5;
-	private JLabel rango6;
-	private JLabel porcHombres;
-	private JLabel porcMujeres;
-	private JLabel numInscritos;
-	
-	private JComboBox<String> departamentos;
-	private JComboBox<String> municipios;
-	private JComboBox<String> puestovotacion;
-	
-	
-	private JButton mostrar;
-	private JButton volver;
-	private JButton graficas;
-	
-	
-	
-	public PanelEstadisticas()
-	{
-		
-		panelDeControl();
-		estadisticas();
+	private JLabel fondo = new JLabel();
+	private ImageIcon imagenFondo = new ImageIcon("Resources/panelestadisticas.png");
+	private ImageIcon imagenMostrar = new ImageIcon("Resources/botonmostrar.png");
+	private ImageIcon imagenGraficas = new ImageIcon("Resources/botonvergraficas.png");
+	public JLabel rango18a25 = new JLabel("0");
+	public JLabel rango26a29 = new JLabel("0");
+	public JLabel rango30a37 = new JLabel("0");
+	public JLabel rango38a49 = new JLabel("0");
+	public JLabel rango50a66 = new JLabel("0");
+	public JLabel rango67 = new JLabel("0");
+	public JLabel porcHombres = new JLabel("0");
+	public JLabel porcMujeres = new JLabel("0");
+	public JLabel numInscritos = new JLabel("0");
+
+	public JComboBox<String> departamentos = new JComboBox<String>();
+	public JComboBox<String> municipios = new JComboBox<String>();
+	public JComboBox<String> puestovotacion = new JComboBox<String>();
+	public JButton bMostrarEst = new JButton();
+	public JButton bGraficas = new JButton();
+
+	public PanelEstadisticas() {
+		setBounds(0, 0, 800, 600);
+		setLayout(null);
+		setVisible(true);
+		inicializarComponentes();
+
 	}
-	
-	public void panelDeControl()
-	{
-		fondo = new JLabel();
-		fondo.setBounds(0,0,800,600);
-		imagenFondo = new ImageIcon("Resources/panelestadisticas.png");
+
+	public void inicializarComponentes() {
+
+		bMostrarEst.setBounds(584, 165, 160, 35);
+		bMostrarEst.setIcon(imagenMostrar);
+     	bGraficas.setBounds(492, 479, 190, 35);
+		bGraficas.setIcon(imagenGraficas);
+
+		departamentos.setBounds(40, 165, 140, 35);
+		departamentos.addItem("TODOS");
+
+		municipios.setBounds(190, 165, 140, 35);
+		municipios.addItem("SELECCIONE");
+
+		puestovotacion.setBounds(340, 165, 230, 35);
+		puestovotacion.addItem("SELECCIONE PUESTO");
+
+		porcHombres.setBounds(255, 264, 20, 20);
+		porcHombres.setForeground(Color.RED);
+		porcHombres.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		porcMujeres.setBounds(583, 265, 20, 20);
+		porcMujeres.setForeground(Color.RED);
+		porcMujeres.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		numInscritos.setBounds(300, 308, 20, 20);
+		numInscritos.setForeground(Color.DARK_GRAY);
+		numInscritos.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango18a25.setBounds(250, 345, 20, 20);
+		rango18a25.setForeground(Color.BLUE);
+		rango18a25.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango26a29.setBounds(250, 393, 20, 20);
+		rango26a29.setForeground(Color.BLUE);
+		rango26a29.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango30a37.setBounds(250, 440, 20, 20);
+		rango30a37.setForeground(Color.BLUE);
+		rango30a37.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango38a49.setBounds(600, 345, 20, 20);
+		rango38a49.setForeground(Color.BLUE);
+		rango38a49.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango50a66.setBounds(600, 393, 20, 20);
+		rango50a66.setForeground(Color.BLUE);
+		rango50a66.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		rango67.setBounds(600, 440, 20, 20);
+		rango67.setForeground(Color.BLUE);
+		rango67.setFont(new Font("helvetica", Font.BOLD, 22));
+
+		fondo.setBounds(0, 0, 800, 600);
 		fondo.setIcon(imagenFondo);
 		fondo.setLayout(null);
 		
-		
-		mostrar = new JButton();
-		mostrar.setBounds(584,165,160,35);
-		imagenFondo = new ImageIcon("Resources/botonmostrar.png");
-		mostrar.setIcon(imagenFondo);
-		
-		graficas = new JButton();
-		graficas.setBounds(492,479,190,35);
-		imagenFondo = new ImageIcon("Resources/botonvergraficas.png");
-		graficas.setIcon(imagenFondo);
-		
-		volver = new JButton();
-		volver.setBounds(586,550,160,35);
-		imagenFondo = new ImageIcon("Resources/botonvolver.png");
-		volver.setIcon(imagenFondo);
-		
-		departamentos = new JComboBox<String>();
-		departamentos.setBounds(40,165,140,35);
-		departamentos.addItem("TODOS");
-		
-		municipios = new JComboBox<String>();
-		municipios.setBounds(190,165,140,35);
-		municipios.addItem("SELECCIONE");
-		
-		puestovotacion = new JComboBox<String>();
-		puestovotacion.setBounds(340,165,230,35);
-		puestovotacion.addItem("SELECCIONE PUESTO");
-		
-		
 		add(fondo);
-		fondo.add(mostrar);
-		fondo.add(graficas);
-		fondo.add(volver);
+		fondo.add(porcHombres);
+		fondo.add(porcMujeres);
+		fondo.add(numInscritos);
+		fondo.add(rango18a25);
+		fondo.add(rango26a29);
+		fondo.add(rango30a37);
+		fondo.add(rango38a49);
+		fondo.add(rango50a66);
+		fondo.add(rango67);
+		fondo.add(bMostrarEst);
+		fondo.add(bGraficas);
 		fondo.add(departamentos);
 		fondo.add(municipios);
 		fondo.add(puestovotacion);
 	}
-	
-	public void estadisticas()
-	{
-		
-		porcHombres = new JLabel("0");
-		porcHombres.setBounds(255,264,20,20);
-		porcHombres.setForeground(Color.RED);
-		porcHombres.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		porcMujeres = new JLabel("0");
-		porcMujeres.setBounds(583,265,20,20);
-		porcMujeres.setForeground(Color.RED);
-		porcMujeres.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		numInscritos = new JLabel("0");
-		numInscritos.setBounds(300,308,20,20);
-		numInscritos.setForeground(Color.DARK_GRAY);
-		numInscritos.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango1 = new JLabel("0");
-		rango1.setBounds(250,345,20,20);
-		rango1.setForeground(Color.BLUE);
-		rango1.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango2 = new JLabel("0");
-		rango2.setBounds(250,393,20,20);
-		rango2.setForeground(Color.BLUE);
-		rango2.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango3 = new JLabel("0");
-		rango3.setBounds(250,440,20,20);
-		rango3.setForeground(Color.BLUE);
-		rango3.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango4 = new JLabel("0");
-		rango4.setBounds(600,345,20,20);
-		rango4.setForeground(Color.BLUE);
-		rango4.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango5 = new JLabel("0");
-		rango5.setBounds(600,393,20,20);
-		rango5.setForeground(Color.BLUE);
-		rango5.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		rango6 = new JLabel("0");
-		rango6.setBounds(600,440,20,20);
-		rango6.setForeground(Color.BLUE);
-		rango6.setFont(new Font("helvetica",Font.BOLD,22));
-		
-		
-	
-		
-		
-		fondo.add(porcHombres);
-		fondo.add(porcMujeres);	
-		fondo.add(numInscritos);
-		fondo.add(rango1);
-		fondo.add(rango2);	
-		fondo.add(rango3);
-		fondo.add(rango4);
-		fondo.add(rango5);	
-		fondo.add(rango6);
-	
-	}
 
-	public JLabel getRango1() {
-		return rango1;
-	}
-
-	public void setRango1(JLabel rango1) {
-		this.rango1 = rango1;
-	}
-
-	public JLabel getRango2() {
-		return rango2;
-	}
-
-	public void setRango2(JLabel rango2) {
-		this.rango2 = rango2;
-	}
-
-	public JLabel getRango3() {
-		return rango3;
-	}
-
-	public void setRango3(JLabel rango3) {
-		this.rango3 = rango3;
-	}
-
-	public JLabel getRango4() {
-		return rango4;
-	}
-
-	public void setRango4(JLabel rango4) {
-		this.rango4 = rango4;
-	}
-
-	public JLabel getRango5() {
-		return rango5;
-	}
-
-	public void setRango5(JLabel rango5) {
-		this.rango5 = rango5;
-	}
-
-	public JLabel getRango6() {
-		return rango6;
-	}
-
-	public void setRango6(JLabel rango6) {
-		this.rango6 = rango6;
-	}
-
-	public JLabel getPorcHombres() {
-		return porcHombres;
-	}
-
-	public void setPorcHombres(JLabel porcHombres) {
-		this.porcHombres = porcHombres;
-	}
-
-	public JLabel getPorcMujeres() {
-		return porcMujeres;
-	}
-
-	public void setPorcMujeres(JLabel porcMujeres) {
-		this.porcMujeres = porcMujeres;
-	}
-
-	public JLabel getNumInscritos() {
-		return numInscritos;
-	}
-
-	public void setNumInscritos(JLabel numInscritos) {
-		this.numInscritos = numInscritos;
-	}
-
-	public JComboBox<String> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(JComboBox<String> departamentos) {
-		this.departamentos = departamentos;
-	}
-
-	public JComboBox<String> getMunicipios() {
-		return municipios;
-	}
-
-	public void setMunicipios(JComboBox<String> municipios) {
-		this.municipios = municipios;
-	}
-
-	public JComboBox<String> getPuestovotacion() {
-		return puestovotacion;
-	}
-
-	public void setPuestovotacion(JComboBox<String> puestovotacion) {
-		this.puestovotacion = puestovotacion;
-	}
-
-	public JButton getMostrar() {
-		return mostrar;
-	}
-
-	public void setMostrar(JButton mostrar) {
-		this.mostrar = mostrar;
-	}
-
-	public JButton getVolver() {
-		return volver;
-	}
-
-	public void setVolver(JButton volver) {
-		this.volver = volver;
-	}
-
-	public JButton getGraficas() {
-		return graficas;
-	}
-
-	public void setGraficas(JButton graficas) {
-		this.graficas = graficas;
-	}
-	
-	
-	
-	
-	
 }

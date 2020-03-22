@@ -20,15 +20,8 @@ public class AplRegistraduria {
 		}
 		
 		Registraduria registraduria=new Registraduria();
-		View v = new View();
-		v.setSize(800,640);
-		v.setTitle("INSCRIPCIÓN DE CÉDULAS");
-		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		v.setLayout(null);
-		v.setLocationRelativeTo(null);
-		v.setResizable(false);
-		v.setVisible(true);
-		Controller controller = new Controller(v,registraduria);
+		View view = new View();
+		Controller controller = new Controller(view,registraduria);
 
 //branches
 	}

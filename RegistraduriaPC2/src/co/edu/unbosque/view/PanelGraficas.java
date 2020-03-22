@@ -18,33 +18,29 @@ public class PanelGraficas extends JPanel{
 
 	
 	private JLabel fondo;
-	private ImageIcon imagenFondo;
-	private JButton volver;
+	private ImageIcon imagenFondo = new ImageIcon("Resources/panelgraficas.png");
+	
 	
 	
 	
 	public PanelGraficas()
 	{
-		panelDeControl();
+		setBounds(0,0,800,600);
+		setLayout(null);
+		setVisible(true);
+		inicializarComponentes();
 		graficasTorta();
 		graficasBarras();
 	}
 	
-	public void panelDeControl()
+	public void inicializarComponentes()
 	{
 		fondo = new JLabel();
 		fondo.setBounds(0,0,800,600);
-		imagenFondo = new ImageIcon("Resources/panelgraficas.png");
 		fondo.setIcon(imagenFondo);
-		fondo.setLayout(null);
-		
-		volver = new JButton();
-		volver.setBounds(586,550,160,35);
-		imagenFondo = new ImageIcon("Resources/botonvolver.png");
-		volver.setIcon(imagenFondo);
-		
+		fondo.setLayout(null);	
 		add(fondo);
-		fondo.add(volver);
+		
 	}
 	
 	
@@ -124,13 +120,6 @@ public class PanelGraficas extends JPanel{
 			    fondo.add(barras2);
 	}
 
-	public JButton getVolver() {
-		return volver;
-	}
-
-	public void setVolver(JButton volver) {
-		this.volver = volver;
-	}
 	
 	
 	
