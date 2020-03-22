@@ -1,10 +1,11 @@
 package co.edu.unbosque.controller;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import co.edu.unbosque.model.Registraduria;
-import co.edu.unbosque.view.Vista;
+import co.edu.unbosque.view.View;
 
 public class AplRegistraduria {
 
@@ -19,8 +20,16 @@ public class AplRegistraduria {
 		}
 		
 		Registraduria registraduria=new Registraduria();
-		Vista vista = new Vista();
-		Controller controller = new Controller(vista,registraduria);
+		View v = new View();
+		v.setSize(800,640);
+		v.setTitle("INSCRIPCIÓN DE CÉDULAS");
+		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		v.setLayout(null);
+		v.setLocationRelativeTo(null);
+		v.setResizable(false);
+		v.setVisible(true);
+		Controller controller = new Controller(v,registraduria);
+
 //branches
 	}
 
