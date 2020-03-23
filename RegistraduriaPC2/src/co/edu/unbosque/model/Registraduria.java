@@ -135,9 +135,22 @@ public class Registraduria implements TransformarDate {
 	public String mostrarInformacionMunicipio(String municipio) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
-			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
+			String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
 		
-			if(aux==municipio) {
+			if(aux[1]==municipio) {
+				p++;
+			}
+		}
+		
+		return Integer.toString(p);
+	}
+	
+	public String mostrarInformacionDepartamento(String departamento) {
+		int p=0;
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+		
+			if(aux[0]==departamento) {
 				p++;
 			}
 		}
@@ -147,14 +160,31 @@ public class Registraduria implements TransformarDate {
 	
 	
 	
-	public String[] mostrarCiudadanosInscritos(String puesto) {
+	public String[] mostrarCiudadanosInscritosPuesto(String puesto) {
 		int p=0;
 		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionPuesto(puesto))];
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
 		
 			if(aux==puesto) {
-			String auxc= cedulasInscritas.get(i).getNombre1()+cedulasInscritas.get(i).getNombre2()+cedulasInscritas.get(i).getApellido1()+cedulasInscritas.get(i).getApellido2()+cedulasInscritas.get(i).getNumerocedula();
+			String auxc= cedulasInscritas.get(i).getNombre1()+" "+cedulasInscritas.get(i).getNombre2()+" "+cedulasInscritas.get(i).getApellido1()+" "+cedulasInscritas.get(i).getApellido2()+" "+cedulasInscritas.get(i).getNumerocedula();
+			ciudinscritos[p]=auxc;
+			p++;
+			}
+			
+		}
+			
+			return ciudinscritos;
+	}
+	
+	public String[] mostrarCiudadanosInscritosMunicipio(String municipio) {
+		int p=0;
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionMunicipio(municipio))];
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+		
+			if(aux[1]==municipio) {
+			String auxc= cedulasInscritas.get(i).getNombre1()+" "+cedulasInscritas.get(i).getNombre2()+" "+cedulasInscritas.get(i).getApellido1()+" "+cedulasInscritas.get(i).getApellido2()+" "+cedulasInscritas.get(i).getNumerocedula();
 			ciudinscritos[p]=auxc;
 			p++;
 			}
@@ -167,50 +197,27 @@ public class Registraduria implements TransformarDate {
 	
 	
 	
-	
-	
-	
-	public String ciudadanosInscritosMunicipio(String municipio, int posicion) {
-		String ciudadano="";
+	public String[] mostrarCiudadanosInscritosDepartamento(String departamento) {
+		int p=0;
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionDepartamento(departamento))];
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
 		
-			String [] puesto= cedulasInscritas.get(posicion).getPuestovotacionasignado().split(";");
-			
-			
-			
-			if(puesto[1].equalsIgnoreCase(municipio)) {
-				
-				String name = cedulasInscritas.get(posicion).getNombre1()+cedulasInscritas.get(posicion).getNombre2();
-				String sname = cedulasInscritas.get(posicion).getApellido1()+cedulasInscritas.get(posicion).getApellido2();
-				//Así con todos los atributos del ciudadano, menos el puesto de votacion
-				ciudadano = name + " " + sname+" "+ cedulasInscritas.get(posicion).getNumerocedula();
-				return ciudadano;
+			if(aux[0]==departamento) {
+			String auxc= cedulasInscritas.get(i).getNombre1()+" "+cedulasInscritas.get(i).getNombre2()+" "+cedulasInscritas.get(i).getApellido1()+" "+cedulasInscritas.get(i).getApellido2()+" "+cedulasInscritas.get(i).getNumerocedula();
+			ciudinscritos[p]=auxc;
+			p++;
 			}
 			
-			return null;
+		}
 			
+			return ciudinscritos;
 	}
 	
+
 	
-	public String ciudadanosInscritosDepartamento(String municipio, int posicion) {
-		String ciudadano="";
-		
-			String [] puesto= cedulasInscritas.get(posicion).getPuestovotacionasignado().split(";");
-			
-		
-			
-			
-			if(puesto[0].equalsIgnoreCase(municipio)) {
-				
-				String name = cedulasInscritas.get(posicion).getNombre1()+cedulasInscritas.get(posicion).getNombre2();
-				String sname = cedulasInscritas.get(posicion).getApellido1()+cedulasInscritas.get(posicion).getApellido2();
-				//Así con todos los atributos del ciudadano, menos el puesto de votacion
-				ciudadano = name + " " + sname+" "+ cedulasInscritas.get(posicion).getNumerocedula();
-				return ciudadano;
-			}
-			
-			return null;
-			
-	}
+	
+
 	
 	
 
@@ -221,7 +228,7 @@ public class Registraduria implements TransformarDate {
 	}
 	
 	
-	//hola
+
 	
 
 }
