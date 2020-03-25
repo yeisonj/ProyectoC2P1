@@ -140,6 +140,7 @@ public static void main(String [] args)throws IOException {
 		System.out.println(r.cedulasInscritas.size());
 		
 		System.out.println(ciu.transformarDate());
+		
 
 		
 		
