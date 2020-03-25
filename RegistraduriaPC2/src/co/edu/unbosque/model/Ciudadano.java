@@ -11,9 +11,12 @@
 package co.edu.unbosque.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
-public class Ciudadano implements Serializable {
+public class Ciudadano implements TransformarDate, Serializable {
 	
 	private String numeroCedula;
 	private String apellidos;
@@ -24,7 +27,6 @@ public class Ciudadano implements Serializable {
 	private Date fechaNacimiento;
 	private Date fechaExpedicionC;
 	private String puestoVotacion;
-	
 	//prueba github
 	//Constructor de la clase Ciudadano
 	
@@ -40,6 +42,7 @@ public class Ciudadano implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 		this.fechaExpedicionC = fechaExpedicionC;
 		this.puestoVotacion = puestoVotacion;
+
 	}
 	
 	//Getters y setter de los atributos de la clase Ciudadano
@@ -106,7 +109,19 @@ public class Ciudadano implements Serializable {
 				+ lugarDeExpedicionC + ";" + fechaNacimiento + ";" + fechaExpedicionC
 				+ ";" + puestoVotacion;
 	}
+
+	@Override
+	public int transformarDate() {
+		LocalDate 			fechaNac 	= this.fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+		LocalDate 			ahora 		= LocalDate.now();
+		Period 				periodo 	= Period.between(fechaNac, ahora);
+		return periodo.getYears();
+		
+	}
+
+
 	
+
 	
 	
 

@@ -16,10 +16,9 @@ public interface TransformarDate {
 	
 	/***
 	 * Este método convierte un dato Date en un entero
-	 * <b>pre</b> Se espera que el dato que llegue sea de tipo Date (no es null). <br>
 	 * <b>post</b> Se ha convertido el dato de tipo Date en un entero <br>
 	 * @return un numero entero (dec)
 	 */
-	int transformarDate(Date f);
+	int transformarDate();
 
 }

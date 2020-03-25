@@ -29,7 +29,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-public class Registraduria implements TransformarDate {
+public class Registraduria {
 	
 	private final File ARCHIVO_USUARIOS = new File("./CedulasInscritas.csv");
 	private final File ARCHIVO_PUESTOS_VOTACION = new File("./Puestos_de_votacion.csv");
@@ -116,14 +116,37 @@ public class Registraduria implements TransformarDate {
 		
 	}
 	
-	@Override
-	public int transformarDate(Date f) {
-		LocalDate 			fechaNac 	= f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
-		LocalDate 			ahora 		= LocalDate.now();
-		Period 				periodo 	= Period.between(fechaNac, ahora);
+public static void main(String [] args)throws IOException {
 		
-		return periodo.getYears();
+		
+		
+		
+		Registraduria r = new Registraduria();
+		
+		Date d1 = new Date("11/12/1994");
+		
+		Ciudadano ciu = new Ciudadano("12345", "Moncaleano", "Sebastian", "Cali, Valle", "Masculino", "Cali, valle", d1, null, "Cali");
+		Ciudadano ciu1 = new Ciudadano("123456", "Moncaleanoao", "Sebastianao", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
+		Ciudadano ciu2 = new Ciudadano("123456", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, "Cali");
+		Ciudadano ciu3 = new Ciudadano("123456", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, "BOGOTA");
+		r.agregarCiudadano(ciu);
+		r.agregarCiudadano(ciu1);
+		r.agregarCiudadano(ciu2);
+		r.agregarCiudadano(ciu3);
+		r.listarP();
+		System.out.println(r.cedulasInscritas.size());
+		r.eliminarCiudadano("12345");
+	
+		System.out.println(r.cedulasInscritas.size());
+		
+		System.out.println(ciu.transformarDate());
+
+		
+		
+		
+		
 	}
+	
 	
 
 	
