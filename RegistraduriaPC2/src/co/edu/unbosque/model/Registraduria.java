@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -117,8 +120,11 @@ public class Registraduria implements TransformarDate {
 
 	@Override
 	public int transformarDate(Date f) {
-		// TODO Auto-generated method stub
-		return 0;
+		LocalDate 			fechaNac 	= f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+		LocalDate 			ahora 		= LocalDate.now();
+		Period 				periodo 	= Period.between(fechaNac, ahora);
+		
+		return periodo.getYears();
 	}
 	
 	
