@@ -116,8 +116,6 @@ public class Registraduria implements TransformarDate {
 		
 	}
 	
-	
-
 	@Override
 	public int transformarDate(Date f) {
 		LocalDate 			fechaNac 	= f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
@@ -126,6 +124,8 @@ public class Registraduria implements TransformarDate {
 		
 		return periodo.getYears();
 	}
+	
+
 	
 	
 	
