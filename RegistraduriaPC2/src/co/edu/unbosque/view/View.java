@@ -15,6 +15,9 @@ public class View extends JFrame {
 	private Estadisticas pEstadisticas;
 	private Graficas pGraficas;
 	private Principal pPrincipal;
+	private AgregarModificarCiudadano pAgregarModificar;
+	private Ciudadano pCiudadano;
+	private ListarCiudadano lCiudadano;
 	
 	public View()
 	{
@@ -30,16 +33,19 @@ public class View extends JFrame {
 		
 		
 		pPuestoVotacion = new PuestoVotacion();
-		pPuestoVotacion.setLayout(null);
-		
+
 		pEstadisticas = new Estadisticas();
-		pEstadisticas.setLayout(null);
-		
+	
 		pGraficas = new Graficas();
-		pGraficas.setLayout(null);
+		
+		pAgregarModificar = new AgregarModificarCiudadano();
+		
+		pCiudadano = new Ciudadano();
+		
+		lCiudadano = new ListarCiudadano();
+		
 		
 		cambiarIcono();
-		
 		
 	}
 	
@@ -49,10 +55,13 @@ public class View extends JFrame {
 		ImageIcon icono = new ImageIcon("Resources/icono.png");
 		Image image = icono.getImage();
 		setIconImage(image);
-		pPrincipal.setIconImage(image);
 		pEstadisticas.setIconImage(image);
 		pGraficas.setIconImage(image);
 		pPuestoVotacion.setIconImage(image);
+		pCiudadano.setIconImage(image);
+		pPrincipal.setIconImage(image);
+		pAgregarModificar.setIconImage(image);
+		lCiudadano.setIconImage(image);
 	}
 
 
@@ -94,6 +103,32 @@ public class View extends JFrame {
 	public void setpPrincipal(Principal pPrincipal) {
 		this.pPrincipal = pPrincipal;
 	}
+
+
+	public AgregarModificarCiudadano getpAgregarModificar() {
+		return pAgregarModificar;
+	}
+
+
+	public void setpAgregarModificar(AgregarModificarCiudadano pAgregarModificar) {
+		this.pAgregarModificar = pAgregarModificar;
+	}
+
+
+	public Ciudadano getpCiudadano() {
+		return pCiudadano;
+	}
+
+
+	public void setpCiudadano(Ciudadano pCiudadano) {
+		this.pCiudadano = pCiudadano;
+	}
+
+
+	public ListarCiudadano getlCiudadano() {
+		return lCiudadano;
+	}
+
 
 	
 	

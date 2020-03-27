@@ -49,12 +49,13 @@ public class PuestoVotacion extends JFrame {
 		agregarpuesto.setBounds(586,218,160,35);
 		imagenes = new ImageIcon("Resources/botonagregarpvotacion.png");
 		agregarpuesto.setIcon(imagenes);
+		agregarpuesto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		eliminarpuesto = new JButton();
 		eliminarpuesto.setBounds(586,408,160,35);
 		imagenes = new ImageIcon("Resources/botoneliminarpvotacion.png");
 		eliminarpuesto.setIcon(imagenes);
-		
+		eliminarpuesto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 	
 		
 		departamentosadd = new JComboBox<String>();

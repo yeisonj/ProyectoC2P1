@@ -10,7 +10,12 @@ import co.edu.unbosque.view.View;
 public class AplRegistraduria {
 
 	public static void main(String[] args) {
-
+		
+		
+		Registraduria registraduria=new Registraduria();
+		View view = new View();
+		Controller controller = new Controller(view,registraduria);
+		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (UnsupportedLookAndFeelException e) {
@@ -19,9 +24,7 @@ public class AplRegistraduria {
 		} catch (IllegalAccessException e) {
 		}
 		
-		Registraduria registraduria=new Registraduria();
-		View view = new View();
-		Controller controller = new Controller(view,registraduria);
+		
 
 //branches
 	}

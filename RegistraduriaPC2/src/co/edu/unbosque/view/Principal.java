@@ -1,5 +1,7 @@
 package co.edu.unbosque.view;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,17 +34,20 @@ public class Principal extends JFrame {
 		bCiudadanos.setBounds(91,347,235,50);
 		imagenes = new ImageIcon("Resources/ciudadanos.png");
 		bCiudadanos.setIcon(imagenes);
-
+		bCiudadanos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+		
 		
 		bEstadisticas = new JButton();
 		bEstadisticas.setBounds(89,422,235,50);
 		imagenes = new ImageIcon("Resources/estadisticas.png");
 		bEstadisticas.setIcon(imagenes);
+		bEstadisticas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 	
 		bPuestoVotacion = new JButton();
 		bPuestoVotacion.setBounds(90,490,235,80);
 		imagenes = new ImageIcon("Resources/pvotacion.png");
 		bPuestoVotacion.setIcon(imagenes);
+		bPuestoVotacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		add(fondo);
 		fondo.add(bCiudadanos);

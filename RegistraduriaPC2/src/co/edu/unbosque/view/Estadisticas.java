@@ -64,12 +64,13 @@ public class Estadisticas extends JFrame {
 		mostrar.setBounds(584,165,160,35);
 		imagenes = new ImageIcon("Resources/botonmostrar.png");
 		mostrar.setIcon(imagenes);
+		mostrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		graficas = new JButton();
 		graficas.setBounds(492,479,190,35);
 		imagenes = new ImageIcon("Resources/botonvergraficas.png");
 		graficas.setIcon(imagenes);
-		
+		graficas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		departamentos = new JComboBox<String>();
 		departamentos.setBounds(40,165,140,35);
