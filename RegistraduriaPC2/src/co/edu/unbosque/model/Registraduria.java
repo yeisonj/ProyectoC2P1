@@ -33,6 +33,10 @@ public class Registraduria  {
 	private ArrayList <Ciudadano> cedulasInscritas = new ArrayList();
 	private ArrayList <String> puestosDeVotacion = new ArrayList();
 	
+	public Registraduria() {
+		cargarListaPuestosDeVotacion();
+	}
+	
 	
 	public void guardarTabla() {
 	
@@ -214,7 +218,13 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
-
+	
+	
+	public static void main (String[]args) {
+		Registraduria r = new Registraduria();
+			
+		
+	}
 	
 
 	
