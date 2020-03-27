@@ -8,37 +8,42 @@ import co.edu.unbosque.view.View;
 
 public class Controller implements ActionListener {
 
-	private View view = null;
+	private View view ;
 	private Registraduria registraduria = null;
 
-	public Controller(View vista, Registraduria registraduria) {
+	public Controller(View view, Registraduria registraduria) {
 		super();
-		this.view = vista;
+		this.view = view;
 		this.registraduria = registraduria;
 		actionListener(this);
 	}
 
 	public void actionListener(ActionListener escuchador) {
-		view.pView.bCiudadanos.addActionListener(escuchador);
-		view.pView.bEstadisticas.addActionListener(escuchador);
-		view.pView.bPuestovotacion.addActionListener(escuchador);
-		view.estadisticas.pEstadisticas.bGraficas.addActionListener(escuchador);
+		view.getpPrincipal().getbCiudadanos().addActionListener(escuchador);
+		view.getpPrincipal().getbEstadisticas().addActionListener(escuchador);
+		view.getpPrincipal().getbPuestoVotacion().addActionListener(escuchador);
+		
 	}
 
 	public void actionPerformed(ActionEvent evento) {
 
-		if (view.pView.bCiudadanos == evento.getSource()) {
-
+		if(evento.getSource() == view.getpPrincipal().getbCiudadanos())
+		{
+			
 		}
-		if (view.pView.bEstadisticas == evento.getSource()) {
-			view.estadisticas.setVisible(true);
+		
+		if(evento.getSource() == view.getpPrincipal().getbEstadisticas())
+		{
+			view.getpEstadisticas().setVisible(true);
 		}
-		if (view.pView.bPuestovotacion == evento.getSource()) {
-			view.puestovotacion.setVisible(true);
+		
+		if(evento.getSource() == view.getpPrincipal().getbPuestoVotacion())
+		{
+			view.getpPuestoVotacion().setVisible(true);
 		}
-		if(view.estadisticas.pEstadisticas.bGraficas== evento.getSource()) {
-			view.estadisticas.graficas.setVisible(true);
-		}
+		
+		
+		
 
 	}
 
