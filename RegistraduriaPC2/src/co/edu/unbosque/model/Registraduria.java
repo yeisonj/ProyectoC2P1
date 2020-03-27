@@ -98,6 +98,16 @@ public class Registraduria  {
 		
 	}
 	
+	public String mostrarInformacionCiudadano(String numeroCedula) {
+		String showCiu="";
+		for(int j= 0;j < cedulasInscritas.size(); j++)  {
+			String cc = cedulasInscritas.get(j).getNumerocedula();
+			if(numeroCedula.equalsIgnoreCase(cc)) {
+				showCiu = cedulasInscritas.get(j).toString();
+			}
+		}
+		return showCiu;
+	}
 	
 	public void eliminarCiudadano(String numeroCedula) {
 		for(int j= 0;j < cedulasInscritas.size(); j++)  {
@@ -283,8 +293,20 @@ public class Registraduria  {
 	
 	public static void main (String[]args) {
 		Registraduria r = new Registraduria();
+		Date d1 = new Date("11/12/1994");
+		Date d2 = new Date("12/11/2003");
+		Date d3 = new Date("11/12/1997");
 		
-			
+		Ciudadano ciu = new Ciudadano("12345", "Moncaleano", "Sebastian", "Cali, Valle", "Masculino", "Cali, valle", null, null, d1, d3, "Cali");
+		Ciudadano ciu1 = new Ciudadano("123456", "Moncaleanoao", "Sebastianao", "Cali, Valle", "Masculino", "Cali, valle", null, null, d2, d3, "Cali");
+		Ciudadano ciu2 = new Ciudadano("1234567", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, d3, d3, "Cali");
+		Ciudadano ciu3 = new Ciudadano("12345678", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, d3, d3, "BOGOTA");
+		r.agregarCiudadano(ciu);
+		r.agregarCiudadano(ciu1);
+		r.agregarCiudadano(ciu2);
+		r.agregarCiudadano(ciu3);
+		System .out.println(r.calcularEstadisticasDeEdad("1"));
+		System .out.println(r.mostrarInformacionCiudadano("123456"));
 		
 	}
 	
