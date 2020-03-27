@@ -26,7 +26,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-public class Registraduria implements TransformarDate {
+public class Registraduria  {
 	
 	private final File ARCHIVO_USUARIOS = new File("./CedulasInscritas.csv");
 	private final File ARCHIVO_PUESTOS_VOTACION = new File("./Puestos_de_votacion.csv");
@@ -215,18 +215,6 @@ public class Registraduria implements TransformarDate {
 	}
 	
 
-	
-	
-
-	
-	
-
-	@Override
-	public int transformarDate(Date f) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 	
 
 	
