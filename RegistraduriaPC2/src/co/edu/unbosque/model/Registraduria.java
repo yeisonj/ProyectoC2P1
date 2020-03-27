@@ -162,7 +162,68 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
-	
+	public int calcularEstadisticasDeEdad(String rango) {
+		int cant =0;
+		switch(rango) {
+		
+		case "1":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+					cant++;
+				}
+			}
+			break;
+			
+		case "2":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+					cant++;
+				}
+			}
+			break;
+			
+		case "3":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+					cant++;
+				}
+			}
+			break;
+			
+		case "4":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+					cant++;
+				}
+			}
+			break;
+			
+		case "5":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+					cant++;
+				}
+			}
+			break;
+			
+		case "6":
+			for(int i = 0; i < cedulasInscritas.size(); i++) {
+				if(cedulasInscritas.get(i).transformarDate() >= 67) {
+					cant++;
+				}
+			}
+			break;
+			
+		default:
+			JOptionPane.showMessageDialog(null, "Este rango de edad no se encentra entre las estadísticas");
+			break;
+		
+		
+		}
+		
+		return cant;
+
+	}
 	
 	public String[] mostrarCiudadanosInscritosPuesto(String puesto) {
 		int p=0;
@@ -222,6 +283,7 @@ public class Registraduria  {
 	
 	public static void main (String[]args) {
 		Registraduria r = new Registraduria();
+		
 			
 		
 	}
