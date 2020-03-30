@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,39 +24,22 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
-
+import co.edu.unbosque.model.persistence.*;
 import javax.swing.JOptionPane;
 
 public class Registraduria  {
 	
-	private final File ARCHIVO_USUARIOS = new File("./CedulasInscritas.csv");
-	private final File ARCHIVO_PUESTOS_VOTACION = new File("./Puestos_de_votacion.csv");
 	private ArrayList <Ciudadano> cedulasInscritas = new ArrayList();
 	private ArrayList <String> puestosDeVotacion = new ArrayList();
+	Archivo arc = new Archivo();
 	
 	public Registraduria() {
-		cargarListaPuestosDeVotacion();
+		
+		arc.cargarListaPuestosDeVotacion(puestosDeVotacion);
+		arc.cargarBaseDatos(cedulasInscritas);
 	}
 	
 	
-	public void guardarTabla() {
-	
-		try {
-			
-			ObjectOutputStream wr = new ObjectOutputStream(new FileOutputStream("./CedulasInscritas.csv"));
-			
-			
-			wr.writeObject(cedulasInscritas);
-			wr.close();
-			
-			ObjectInputStream re = new ObjectInputStream(new FileInputStream("./CedulasInscritas.csv"));
-			 cedulasInscritas =(ArrayList<Ciudadano>) re.readObject();
-			 re.close();
-			
-		}catch(Exception e) {
-			
-		}
-	}
 	
 	/**
 	* Este m�todo agrega un ciudadano a un puesto de votaci�n
@@ -69,34 +53,14 @@ public class Registraduria  {
 	public void agregarCiudadano(Ciudadano ciudadanoAInscribir) {
 		
 		cedulasInscritas.add(ciudadanoAInscribir);
+		arc.guardarBaseDatos(cedulasInscritas);
 		
 		
 		
 		
 	}
 	
-	
-	public void cargarListaPuestosDeVotacion() {
-		try {
-			FileReader fr = new FileReader(ARCHIVO_PUESTOS_VOTACION);
-			BufferedReader br = new BufferedReader(fr);
-			//lectura de la primera linea del archivo
-			String lineaLeida = br.readLine();
-			//ciclo que lee y recorre cada una de las lineas del archivo que se est� leyendo
-			
-			
-			while(lineaLeida!=null) {
-				
-				puestosDeVotacion.add(lineaLeida);
-				
-				lineaLeida = br.readLine();
-				}
-		}catch(IOException e) {
-			System.out.println("Hubo un error leyendo en el archivo");
-			System.out.println(e.getMessage());
-		}
-		
-	}
+
 	
 	public String mostrarInformacionCiudadano(String numeroCedula) {
 		String showCiu="";
@@ -116,6 +80,7 @@ public class Registraduria  {
 				cedulasInscritas.remove(j);	
 			}
 		}
+		arc.guardarBaseDatos(cedulasInscritas);
 	}
 	
 	public void listarP() {
@@ -289,6 +254,8 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
+
+	
 	
 	
 	public static void main (String[]args) {
@@ -307,7 +274,8 @@ public class Registraduria  {
 		r.agregarCiudadano(ciu3);
 		System .out.println(r.calcularEstadisticasDeEdad("1"));
 		System .out.println(r.mostrarInformacionCiudadano("123456"));
-		
+	
+
 	}
 	
 
