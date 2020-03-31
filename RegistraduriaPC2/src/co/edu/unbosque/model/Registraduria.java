@@ -190,7 +190,7 @@ public class Registraduria  {
 			break;
 			
 		default:
-			JOptionPane.showMessageDialog(null, "Este rango de edad no se encentra entre las estadísticas");
+			JOptionPane.showMessageDialog(null, "Este rango de edad no se encentra entre las estadï¿½sticas");
 			break;
 		
 		
@@ -254,7 +254,111 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
+	public String estadisticasGeneroPais() {
+		
+		int m=0, f=0;
+		double porcentajem, porcentajef;
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			String aux=cedulasInscritas.get(i).getGenero();
+		
+			if(aux.equalsIgnoreCase("Femenino")){
+			f+=1;
+			}else {
+			
+			m+=1;	
+			}
+			
+		}
 
+		porcentajef=(f/cedulasInscritas.size())*100;
+		porcentajem=100-porcentajef;
+		
+	return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	}
+	
+	
+	public String estadisticasGeneroDepartamento(String departamento) {
+		int m=0, f=0;
+		double porcentajem, porcentajef;
+		
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+			if(aux[0]==departamento) {
+				String auxg=cedulasInscritas.get(i).getGenero();
+			
+				if(auxg.equalsIgnoreCase("Femenino")) {
+					f+=1;
+				}else {
+			
+					m+=1;	
+				}
+			
+			}
+		
+		}
+		
+		porcentajef=(f/(f+m))*100;
+		porcentajem=100-porcentajef;
+		
+		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	}
+	
+	
+	
+	
+	
+	public String estadisticasGeneroMunicipio(String municipio) {
+		int m=0, f=0;
+		double porcentajem, porcentajef;
+		
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+			if(aux[1]==municipio) {
+				String auxg=cedulasInscritas.get(i).getGenero();
+			
+				if(auxg.equalsIgnoreCase("Femenino")) {
+					f+=1;
+				}else {
+			
+					m+=1;	
+				}
+			
+			}
+		
+		}
+		
+		porcentajef=(f/(f+m))*100;
+		porcentajem=100-porcentajef;
+		
+		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	}
+	
+	public String estadisticasGeneroPuesto(String puesto) {
+		int m=0, f=0;
+		double porcentajem, porcentajef;
+		
+		for (int i = 0; i < cedulasInscritas.size(); i++) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+			if(aux[2]==puesto) {
+				String auxg=cedulasInscritas.get(i).getGenero();
+			
+				if(auxg.equalsIgnoreCase("Femenino")) {
+					f+=1;
+				}else {
+			
+					m+=1;	
+				}
+			
+			}
+		
+		}
+		
+		porcentajef=(f/(f+m))*100;
+		porcentajem=100-porcentajef;
+		
+		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	}
+	
 	
 	
 	
