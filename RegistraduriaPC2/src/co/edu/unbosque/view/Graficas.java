@@ -44,7 +44,7 @@ public class Graficas extends JFrame{
 		imagenes = new ImageIcon("Resources/panelgraficas.png");
 		fondo.setIcon(imagenes);
 		fondo.setLayout(null);
-		add(fondo);
+		getContentPane().add(fondo);
 	}
 	
 	

@@ -11,10 +11,8 @@ public class AplRegistraduria {
 
 	public static void main(String[] args) {
 		
-		
-		Registraduria registraduria=new Registraduria();
-		View view = new View();
-		Controller controller = new Controller(view,registraduria);
+	
+		Controller controller = new Controller();
 		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -23,10 +21,7 @@ public class AplRegistraduria {
 		} catch (InstantiationException e) {
 		} catch (IllegalAccessException e) {
 		}
-		
-		
 
-//branches
 	}
 
 }

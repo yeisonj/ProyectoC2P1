@@ -47,13 +47,15 @@ public class Archivo {
 			String lineaLeida = br.readLine();
 			//ciclo que lee y recorre cada una de las lineas del archivo que se está leyendo
 			
-			
 			while(lineaLeida!=null) {
 				
 				puestosDeVotacion.add(lineaLeida);
 				
+				
 				lineaLeida = br.readLine();
+				
 				}
+			
 		}catch(IOException e) {
 			System.out.println("Hubo un error leyendo en el archivo");
 			System.out.println(e.getMessage());

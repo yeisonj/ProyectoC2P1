@@ -63,74 +63,39 @@ public class View extends JFrame {
 		pAgregarModificar.setIconImage(image);
 		lCiudadano.setIconImage(image);
 	}
+	
+	public void mostrarMensajes(String mensaje)
+	{
+		
+	}
 
 
 	public PuestoVotacion getpPuestoVotacion() {
 		return pPuestoVotacion;
 	}
-
-
-	public void setpPuestoVotacion(PuestoVotacion pPuestoVotacion) {
-		this.pPuestoVotacion = pPuestoVotacion;
-	}
-
-
+	
 	public Estadisticas getpEstadisticas() {
 		return pEstadisticas;
 	}
-
-
-	public void setpEstadisticas(Estadisticas pEstadisticas) {
-		this.pEstadisticas = pEstadisticas;
-	}
-
 
 	public Graficas getpGraficas() {
 		return pGraficas;
 	}
 
-
-	public void setpGraficas(Graficas pGraficas) {
-		this.pGraficas = pGraficas;
-	}
-
-
 	public Principal getpPrincipal() {
 		return pPrincipal;
 	}
-
-
-	public void setpPrincipal(Principal pPrincipal) {
-		this.pPrincipal = pPrincipal;
-	}
-
 
 	public AgregarModificarCiudadano getpAgregarModificar() {
 		return pAgregarModificar;
 	}
 
-
-	public void setpAgregarModificar(AgregarModificarCiudadano pAgregarModificar) {
-		this.pAgregarModificar = pAgregarModificar;
-	}
-
-
 	public Ciudadano getpCiudadano() {
 		return pCiudadano;
 	}
 
-
-	public void setpCiudadano(Ciudadano pCiudadano) {
-		this.pCiudadano = pCiudadano;
-	}
-
-
 	public ListarCiudadano getlCiudadano() {
 		return lCiudadano;
 	}
-
-
-	
-	
 	
 }

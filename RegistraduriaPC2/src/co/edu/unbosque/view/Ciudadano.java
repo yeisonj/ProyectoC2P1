@@ -60,7 +60,7 @@ public class Ciudadano extends JFrame{
 		mostrarInformacionCiudadano.setIcon(imagenes);
 		mostrarInformacionCiudadano.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
-		add(fondo);
+		getContentPane().add(fondo);
 		fondo.add(agregarCiudadano);
 		fondo.add(modificarCiudadano);
 		fondo.add(eliminarCiudadano);
@@ -71,34 +71,16 @@ public class Ciudadano extends JFrame{
 		return agregarCiudadano;
 	}
 
-	public void setAgregarCiudadano(JButton agregarCiudadano) {
-		this.agregarCiudadano = agregarCiudadano;
-	}
-
 	public JButton getModificarCiudadano() {
 		return modificarCiudadano;
-	}
-
-	public void setModificarCiudadano(JButton modificarCiudadano) {
-		this.modificarCiudadano = modificarCiudadano;
 	}
 
 	public JButton getEliminarCiudadano() {
 		return eliminarCiudadano;
 	}
 
-	public void setEliminarCiudadano(JButton eliminarCiudadano) {
-		this.eliminarCiudadano = eliminarCiudadano;
-	}
-
 	public JButton getMostrarInformacionCiudadano() {
 		return mostrarInformacionCiudadano;
 	}
-
-	public void setMostrarInformacionCiudadano(JButton mostrarInformacionCiudadano) {
-		this.mostrarInformacionCiudadano = mostrarInformacionCiudadano;
-	}
-	
-	
 	
 }

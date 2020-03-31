@@ -83,7 +83,7 @@ public class PuestoVotacion extends JFrame {
 		puestovotaciondelete.addItem("SELECCIONE PUESTO");
 		
 		
-		add(fondoPanel);
+		getContentPane().add(fondoPanel);
 		fondoPanel.add(agregarpuesto);
 		fondoPanel.add(eliminarpuesto);
 		fondoPanel.add(departamentosadd);
@@ -95,76 +95,42 @@ public class PuestoVotacion extends JFrame {
 		
 	}
 
+	public void reestablecerValores()
+		{
+			nuevopuesto.setText("");
+		}
 	
 	
-	
-
 	public JComboBox<String> getDepartamentosadd() {
 		return departamentosadd;
 	}
-
-	public void setDepartamentosadd(JComboBox<String> departamentosadd) {
-		this.departamentosadd = departamentosadd;
-	}
-
+	
 	public JComboBox<String> getMunicipiosadd() {
 		return municipiosadd;
 	}
-
-	public void setMunicipiosadd(JComboBox<String> municipiosadd) {
-		this.municipiosadd = municipiosadd;
-	}
-
+	
 	public JComboBox<String> getDepartamentosdelete() {
 		return departamentosdelete;
-	}
-
-	public void setDepartamentosdelete(JComboBox<String> departamentosdelete) {
-		this.departamentosdelete = departamentosdelete;
 	}
 
 	public JComboBox<String> getMunicipiosdelete() {
 		return municipiosdelete;
 	}
 
-	public void setMunicipiosdelete(JComboBox<String> municipiosdelete) {
-		this.municipiosdelete = municipiosdelete;
-	}
-
 	public JComboBox<String> getPuestovotaciondelete() {
 		return puestovotaciondelete;
-	}
-
-	public void setPuestovotaciondelete(JComboBox<String> puestovotaciondelete) {
-		this.puestovotaciondelete = puestovotaciondelete;
 	}
 
 	public JButton getAgregarpuesto() {
 		return agregarpuesto;
 	}
 
-	public void setAgregarpuesto(JButton agregarpuesto) {
-		this.agregarpuesto = agregarpuesto;
-	}
-
 	public JButton getEliminarpuesto() {
 		return eliminarpuesto;
-	}
-
-	public void setEliminarpuesto(JButton eliminarpuesto) {
-		this.eliminarpuesto = eliminarpuesto;
 	}
 
 	public JTextField getNuevopuesto() {
 		return nuevopuesto;
 	}
-
-	public void setNuevopuesto(JTextField nuevopuesto) {
-		this.nuevopuesto = nuevopuesto;
-	}
-
-	
-	
-	
 	
 }

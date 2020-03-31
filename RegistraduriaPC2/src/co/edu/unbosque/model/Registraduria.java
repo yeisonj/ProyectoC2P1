@@ -254,6 +254,31 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
+	public String[] mostrardepartamentos()
+	{
+		String[] prueba = new String[35];
+		int contador = 0;
+		String validar = "1";
+		
+		for(int i= 0; i<getPuestosDeVotacion().size(); i++)
+		{
+			String[] divisiones = getPuestosDeVotacion().get(i).split(";");
+			String departamentos = divisiones[0];
+			
+				if(!validar.contentEquals(departamentos))
+					{
+						if(contador<35)
+						{
+							prueba[contador] = departamentos;
+							contador ++;
+						}
+					}
+			validar = departamentos;
+			
+		}
+		return prueba;
+	}
+	
 	public String estadisticasGeneroPais() {
 		
 		int m=0, f=0;
@@ -380,6 +405,12 @@ public class Registraduria  {
 		System .out.println(r.mostrarInformacionCiudadano("123456"));
 	
 
+	}
+
+
+
+	public ArrayList<String> getPuestosDeVotacion() {
+		return puestosDeVotacion;
 	}
 	
 

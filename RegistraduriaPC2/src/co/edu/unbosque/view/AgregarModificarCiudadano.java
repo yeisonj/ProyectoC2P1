@@ -141,7 +141,7 @@ public class AgregarModificarCiudadano extends JFrame {
 		modificarCiudadano.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		
-		add(fondo);
+		getContentPane().add(fondo);
 		fondo.add(cedula);
 		fondo.add(fexpedicion);
 		fondo.add(lexpedicion);
@@ -246,20 +246,20 @@ public class AgregarModificarCiudadano extends JFrame {
 		return sexo.getText();
 	}
 
-	public String getDepartamentos() {
-		return (String) departamentos.getSelectedItem();
+	
+
+	public JComboBox<String> getDepartamentos() {
+		return departamentos;
+	}
+
+	public JComboBox<String> getMunicipios() {
+		return municipios;
 	}
 
 
-	public String getMunicipios() {
-		return (String) municipios.getSelectedItem();
+	public JComboBox<String> getPuestoVotacion() {
+		return puestoVotacion;
 	}
-
-
-	public String getPuestoVotacion() {
-		return (String) puestoVotacion.getSelectedItem();
-	}
-
 
 	public JButton getAgregarCiudadano() {
 		return agregarCiudadano;

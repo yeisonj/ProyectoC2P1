@@ -115,7 +115,7 @@ public class ListarCiudadano extends JFrame {
 		
 		
 		
-		add(fondo);
+		getContentPane().add(fondo);
 		fondo.add(cedula);
 		fondo.add(departamentos);
 		fondo.add(municipios);
@@ -141,16 +141,16 @@ public class ListarCiudadano extends JFrame {
 		return cedula.getText();
 	}
 
-	public String getDepartamentos() {
-		return (String) departamentos.getSelectedItem();
+	public JComboBox<String> getDepartamentos() {
+		return departamentos;
 	}
 
-	public String getMunicipios() {
-		return (String) municipios.getSelectedItem();
+	public JComboBox<String> getMunicipios() {
+		return municipios;
 	}
 
-	public String getPuestoVotacion() {
-		return (String) puestoVotacion.getSelectedItem();
+	public JComboBox<String> getPuestoVotacion() {
+		return puestoVotacion;
 	}
 
 	public JButton getValidarCedula() {
@@ -168,16 +168,5 @@ public class ListarCiudadano extends JFrame {
 	public String getInfogeneral() {
 		return infogeneral.getText();
 	}
-
-	public void setInfoCiudadano(String pinfoCiudadano) {
-		infoCiudadano.setText(pinfoCiudadano);
-	}
-
-	public void setInfogeneral(String pinfogeneral) {
-		infogeneral.setText(pinfogeneral);
-	}
-	
-	
-	
 	
 }

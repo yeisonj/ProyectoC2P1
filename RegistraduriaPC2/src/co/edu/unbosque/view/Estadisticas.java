@@ -132,7 +132,7 @@ public class Estadisticas extends JFrame {
 		
 	
 		
-		add(fondo);
+		getContentPane().add(fondo);
 		fondo.add(porcHombres);
 		fondo.add(porcMujeres);	
 		fondo.add(numInscritos);
@@ -164,123 +164,61 @@ public class Estadisticas extends JFrame {
 		municipios.setSelectedItem("SELECCIONE");
 		puestovotacion.setSelectedItem("SELECCIONE PUESTO");
 	}
-	
 	public JLabel getRango1() {
 		return rango1;
-	}
-
-	public void setRango1(JLabel rango1) {
-		this.rango1 = rango1;
 	}
 
 	public JLabel getRango2() {
 		return rango2;
 	}
 
-	public void setRango2(JLabel rango2) {
-		this.rango2 = rango2;
-	}
-
 	public JLabel getRango3() {
 		return rango3;
-	}
-
-	public void setRango3(JLabel rango3) {
-		this.rango3 = rango3;
 	}
 
 	public JLabel getRango4() {
 		return rango4;
 	}
 
-	public void setRango4(JLabel rango4) {
-		this.rango4 = rango4;
-	}
-
 	public JLabel getRango5() {
 		return rango5;
-	}
-
-	public void setRango5(JLabel rango5) {
-		this.rango5 = rango5;
 	}
 
 	public JLabel getRango6() {
 		return rango6;
 	}
 
-	public void setRango6(JLabel rango6) {
-		this.rango6 = rango6;
-	}
-
 	public JLabel getPorcHombres() {
 		return porcHombres;
-	}
-
-	public void setPorcHombres(JLabel porcHombres) {
-		this.porcHombres = porcHombres;
 	}
 
 	public JLabel getPorcMujeres() {
 		return porcMujeres;
 	}
 
-	public void setPorcMujeres(JLabel porcMujeres) {
-		this.porcMujeres = porcMujeres;
-	}
-
 	public JLabel getNumInscritos() {
 		return numInscritos;
 	}
 
-	public void setNumInscritos(JLabel numInscritos) {
-		this.numInscritos = numInscritos;
-	}
 
 	public JComboBox<String> getDepartamentos() {
 		return departamentos;
-	}
-
-	public void setDepartamentos(JComboBox<String> departamentos) {
-		this.departamentos = departamentos;
 	}
 
 	public JComboBox<String> getMunicipios() {
 		return municipios;
 	}
 
-	public void setMunicipios(JComboBox<String> municipios) {
-		this.municipios = municipios;
-	}
-
 	public JComboBox<String> getPuestovotacion() {
 		return puestovotacion;
-	}
-
-	public void setPuestovotacion(JComboBox<String> puestovotacion) {
-		this.puestovotacion = puestovotacion;
 	}
 
 	public JButton getMostrar() {
 		return mostrar;
 	}
 
-	public void setMostrar(JButton mostrar) {
-		this.mostrar = mostrar;
-	}
-
-	
-
 	public JButton getGraficas() {
 		return graficas;
 	}
-
-	public void setGraficas(JButton graficas) {
-		this.graficas = graficas;
-	}
-	
-	
-	
-	
 	
 }

@@ -49,7 +49,7 @@ public class Principal extends JFrame {
 		bPuestoVotacion.setIcon(imagenes);
 		bPuestoVotacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
-		add(fondo);
+		getContentPane().add(fondo);
 		fondo.add(bCiudadanos);
 		fondo.add(bEstadisticas);
 		fondo.add(bPuestoVotacion);
@@ -60,26 +60,13 @@ public class Principal extends JFrame {
 		return bPuestoVotacion;
 	}
 
-	public void setbPuestoVotacion(JButton bPuestoVotacion) {
-		this.bPuestoVotacion = bPuestoVotacion;
-	}
-
 	public JButton getbCiudadanos() {
 		return bCiudadanos;
-	}
-
-	public void setbCiudadanos(JButton bCiudadanos) {
-		this.bCiudadanos = bCiudadanos;
 	}
 
 	public JButton getbEstadisticas() {
 		return bEstadisticas;
 	}
-
-	public void setbEstadisticas(JButton bEstadisticas) {
-		this.bEstadisticas = bEstadisticas;
-	}
-	
 	
 	
 }
