@@ -2,9 +2,13 @@ package co.edu.unbosque.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import co.edu.unbosque.model.Ciudadano;
 import co.edu.unbosque.model.Registraduria;
 import co.edu.unbosque.view.View;
 
@@ -43,6 +47,7 @@ public class Controller implements ActionListener {
 			view.getpAgregarModificar().getModificarCiudadano().addActionListener(this);
 			view.getpAgregarModificar().getDepartamentos().addActionListener(this);
 			view.getpAgregarModificar().getMunicipios().addActionListener(this);
+			
 
 			//listeners Estadísticas
 			view.getpEstadisticas().getGraficas().addActionListener(this);
@@ -396,6 +401,71 @@ public class Controller implements ActionListener {
 						}	
 				}
 		}
+		
+		
+		
+		if(evento.getSource() == view.getpAgregarModificar().getAgregarCiudadano())
+		{
+			Ciudadano nuevo;
+			String numcedula = view.getpAgregarModificar().getCedula();
+			String nombre1 = view.getpAgregarModificar().getNombre1();
+			String nombre2 = view.getpAgregarModificar().getNombre2();
+			String apellido1 = view.getpAgregarModificar().getApellido1(); 
+			String apellido2 = view.getpAgregarModificar().getApellido2();
+			String lugardenacimiento = view.getpAgregarModificar().getlNacimiento();
+			String genero = view.getpAgregarModificar().getSexo();
+			String lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion();
+			String fechanacimiento = view.getpAgregarModificar().getfNacimiento();
+			String fechaexpedicion = view.getpAgregarModificar().getFexpedicion();
+			String puestovotacionasignado = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
+			boolean verificacion = true;
+			
+			for(int i = 0; i<registraduria.getCedulasInscritas().size();i++)
+			{
+					
+					if(registraduria.getCedulasInscritas().get(i).getNumerocedula().equalsIgnoreCase(numcedula))
+					{
+						verificacion = false;
+					}
+					
+			}
+			if(verificacion == true)
+			{
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				Date fechaNac = null;
+				Date fechaExp = null;
+				try {
+					fechaNac = formato.parse(fechanacimiento);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					fechaExp = formato.parse(fechaexpedicion);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				nuevo = new Ciudadano(numcedula,nombre1,nombre2,apellido1,apellido2,lugardenacimiento,
+						genero,lugarexpedicioncedula,fechaNac,fechaExp,puestovotacionasignado);
+				
+				registraduria.agregarCiudadano(nuevo);
+				view.mostrarMensajes("CREAR_TRUE");
+			}
+			else {
+				view.mostrarMensajes("CREAR_FALSE");
+			}
+			
+				
+					
+				
+			}
+	
+			
+			//new Ciudadano(String numerocedula, String nombre1, String nombre2, String apellido1, String apellido2,
+				//		String lugardenacimiento, String genero, String lugarexpedicioncedula, Date fechanacimiento,
+					//	Date fechaexpedicion, String puestovotacionasignado)
+		
 				
 									
 

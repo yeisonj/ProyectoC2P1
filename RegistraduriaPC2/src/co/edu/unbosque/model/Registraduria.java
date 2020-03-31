@@ -37,6 +37,7 @@ public class Registraduria  {
 		
 		arc.cargarListaPuestosDeVotacion(puestosDeVotacion);
 		arc.cargarBaseDatos(cedulasInscritas);
+		
 	}
 	
 	
@@ -52,12 +53,10 @@ public class Registraduria  {
 	*/
 	public void agregarCiudadano(Ciudadano ciudadanoAInscribir) {
 		
-		cedulasInscritas.add(ciudadanoAInscribir);
-		arc.guardarBaseDatos(cedulasInscritas);
 		
-		
-		
-		
+			cedulasInscritas.add(ciudadanoAInscribir);
+			arc.guardarBaseDatos(cedulasInscritas);
+			System.out.println(ciudadanoAInscribir.toString());
 	}
 	
 
@@ -387,7 +386,7 @@ public class Registraduria  {
 	
 	
 	
-	public static void main (String[]args) {
+	/**public static void main (String[]args) {
 		Registraduria r = new Registraduria();
 		Date d1 = new Date("11/12/1994");
 		Date d2 = new Date("12/11/2003");
@@ -405,15 +404,21 @@ public class Registraduria  {
 		System .out.println(r.mostrarInformacionCiudadano("123456"));
 	
 
-	}
+	}**/
 
 
 
 	public ArrayList<String> getPuestosDeVotacion() {
 		return puestosDeVotacion;
 	}
-	
 
+
+
+	public ArrayList<Ciudadano> getCedulasInscritas() {
+		return cedulasInscritas;
+	}
+	
+	
 	
 
 }

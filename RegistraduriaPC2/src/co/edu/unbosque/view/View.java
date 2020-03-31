@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class View extends JFrame {
@@ -66,7 +67,14 @@ public class View extends JFrame {
 	
 	public void mostrarMensajes(String mensaje)
 	{
-		
+		if(mensaje.equalsIgnoreCase("CREAR_TRUE"))
+		{
+			JOptionPane.showMessageDialog(null, "SE AGREGÓ AL CIUDADANO CORRECTAMENTE");
+		}
+		if(mensaje.equalsIgnoreCase("CREAR_FALSE"))
+		{
+			JOptionPane.showMessageDialog(null, "EL CIUDADANO YA EXISTE EN LA BASE DE DATOS");
+		}
 	}
 
 
