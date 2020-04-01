@@ -4,18 +4,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import co.edu.unbosque.model.Ciudadano;
 import co.edu.unbosque.model.Registraduria;
+import co.edu.unbosque.model.persistence.Archivo;
+import co.edu.unbosque.model.persistence.CiudadanoDAO;
 import co.edu.unbosque.view.View;
 
 public class Controller implements ActionListener {
 
 	private View view ;
 	private Registraduria registraduria;
+	private ArrayList<Ciudadano> cedulasInscritas;
+	private ArrayList<String> puestosDeVotacion;
+	private Archivo archivo;
+	private CiudadanoDAO ciudadanodao;
 	
 
 	public Controller() {
@@ -23,6 +30,12 @@ public class Controller implements ActionListener {
 		view = new View();
 		registraduria = new Registraduria();
 		setActionListener();
+		cedulasInscritas = new ArrayList<Ciudadano>();
+		puestosDeVotacion = new ArrayList<String>();
+		archivo = new Archivo();
+		ciudadanodao = new CiudadanoDAO(archivo);
+		cedulasInscritas = archivo.leerArchivo();
+		puestosDeVotacion = archivo.cargarListaPuestosDeVotacion();
 
 	}
 
@@ -78,9 +91,9 @@ public class Controller implements ActionListener {
 			view.getpCiudadano().setVisible(true);
 			//carga de combobox departamentos en frame AgregarCiudadano
 			String validaciondepartamentos = "1";
-			for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+			for(int i = 0; i<puestosDeVotacion.size(); i++)
 			{
-				String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+				String[] divisiones = puestosDeVotacion.get(i).split(";");
 				String departamentos = divisiones[0];
 				if(!validaciondepartamentos.equalsIgnoreCase(departamentos))
 					{
@@ -97,9 +110,9 @@ public class Controller implements ActionListener {
 			view.getpEstadisticas().reestablecerValores();
 			//carga de combobox departamentos en frame estadisticas
 			String validaciondepartamentos = "1";
-			for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+			for(int i = 0; i<puestosDeVotacion.size(); i++)
 			{
-				String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+				String[] divisiones = puestosDeVotacion.get(i).split(";");
 				String departamentos = divisiones[0];
 					if(!validaciondepartamentos.equalsIgnoreCase(departamentos))
 						{
@@ -116,9 +129,9 @@ public class Controller implements ActionListener {
 			view.getpPuestoVotacion().reestablecerValores();
 			//carga de combobox departamentos en frame puesto de votación
 			String validaciondepartamentos = "1";
-			for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+			for(int i = 0; i<puestosDeVotacion.size(); i++)
 			{
-				String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+				String[] divisiones = puestosDeVotacion.get(i).split(";");
 				String departamentos = divisiones[0];
 				if(!validaciondepartamentos.equalsIgnoreCase(departamentos))
 				{
@@ -176,9 +189,9 @@ public class Controller implements ActionListener {
 		{
 			view.getlCiudadano().setVisible(true);
 			String validaciondepartamentos = "1";
-			for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+			for(int i = 0; i<puestosDeVotacion.size(); i++)
 			{
-				String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+				String[] divisiones = puestosDeVotacion.get(i).split(";");
 				String departamentos = divisiones[0];
 					if(!validaciondepartamentos.equalsIgnoreCase(departamentos))
 					{
@@ -198,7 +211,7 @@ public class Controller implements ActionListener {
 		//agrega combobox y puesto de votación al frame estadisticas, se pone en un Try-Catch ya que es el primero
 		//Que inicializa y si no se pone arrojaría un null pointer Exception
 		
-		String[] depar = registraduria.mostrardepartamentos();
+		String[] depar = registraduria.mostrardepartamentos(puestosDeVotacion);
 		String validacionmunicipiosestadisticas ="1";
 		String validacionmunicipios1 ="1";
 		String validacionmunicipios2 = "1";
@@ -224,11 +237,11 @@ public class Controller implements ActionListener {
 					//ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME ESTADÍSTICAS
 					if(view.getpEstadisticas().getDepartamentos().getSelectedItem().equals(depar[k]))
 						{
-							for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+							for(int i = 0; i<puestosDeVotacion.size(); i++)
 								{
-									if(registraduria.getPuestosDeVotacion().get(i).contains(depar[k]))
+									if(puestosDeVotacion.get(i).contains(depar[k]))
 										{
-											String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+											String[] divisiones = puestosDeVotacion.get(i).split(";");
 											String municipios = divisiones[1];
 											String puesto1 = divisiones[2];
 											String puesto2 = divisiones[3];
@@ -279,11 +292,11 @@ public class Controller implements ActionListener {
 				//ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOSADD FRAME PUESTO VOTACION
 				if(view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().equals(depar[k]))
 					{			
-						for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+						for(int i = 0; i<puestosDeVotacion.size(); i++)
 							{
-								if(registraduria.getPuestosDeVotacion().get(i).contains(depar[k]))
+								if(puestosDeVotacion.get(i).contains(depar[k]))
 									{
-										String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+										String[] divisiones = puestosDeVotacion.get(i).split(";");
 										String municipios = divisiones[1];
 										if(!validacionmunicipios1.equalsIgnoreCase(municipios))
 										{
@@ -297,11 +310,11 @@ public class Controller implements ActionListener {
 				if(view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().equals(depar[k]))
 					{
 						
-						for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+						for(int i = 0; i<puestosDeVotacion.size(); i++)
 							{
-								if(registraduria.getPuestosDeVotacion().get(i).contains(depar[k]))
+								if(puestosDeVotacion.get(i).contains(depar[k]))
 									{
-										String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+										String[] divisiones = puestosDeVotacion.get(i).split(";");
 										String municipios = divisiones[1];
 										String puesto1 = divisiones[2];
 										String puesto2 = divisiones[3];
@@ -340,11 +353,11 @@ public class Controller implements ActionListener {
 				//ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME AGREGAR O MODIFICAR
 				if(view.getpAgregarModificar().getDepartamentos().getSelectedItem().equals(depar[k]))
 					{		
-						for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+						for(int i = 0; i<puestosDeVotacion.size(); i++)
 							{
-								if(registraduria.getPuestosDeVotacion().get(i).contains(depar[k]))
+								if(puestosDeVotacion.get(i).contains(depar[k]))
 									{
-										String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+										String[] divisiones = puestosDeVotacion.get(i).split(";");
 										String municipios = divisiones[1];
 										String puesto1 = divisiones[2];
 										String puesto2 = divisiones[3];
@@ -380,11 +393,11 @@ public class Controller implements ActionListener {
 			//ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME LISTAR CIUDADANOS
 			if(view.getlCiudadano().getDepartamentos().getSelectedItem().equals(depar[k]))
 				{			
-					for(int i = 0; i<registraduria.getPuestosDeVotacion().size(); i++)
+					for(int i = 0; i<puestosDeVotacion.size(); i++)
 						{
-							if(registraduria.getPuestosDeVotacion().get(i).contains(depar[k]))
+							if(puestosDeVotacion.get(i).contains(depar[k]))
 								{
-									String[] divisiones = registraduria.getPuestosDeVotacion().get(i).split(";");
+									String[] divisiones =puestosDeVotacion.get(i).split(";");
 									String municipios = divisiones[1];
 									String puesto1 = divisiones[2];
 									String puesto2 = divisiones[3];
@@ -420,10 +433,10 @@ public class Controller implements ActionListener {
 			String puestovotacionasignado = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
 			boolean verificacion = true;
 			
-			for(int i = 0; i<registraduria.getCedulasInscritas().size();i++)
+			for(int i = 0; i<cedulasInscritas.size();i++)
 			{
 					
-					if(registraduria.getCedulasInscritas().get(i).getNumerocedula().equalsIgnoreCase(numcedula))
+					if(cedulasInscritas.get(i).getNumerocedula().equalsIgnoreCase(numcedula))
 					{
 						verificacion = false;
 					}
@@ -449,7 +462,7 @@ public class Controller implements ActionListener {
 				nuevo = new Ciudadano(numcedula,nombre1,nombre2,apellido1,apellido2,lugardenacimiento,
 						genero,lugarexpedicioncedula,fechaNac,fechaExp,puestovotacionasignado);
 				
-				registraduria.agregarCiudadano(nuevo);
+				ciudadanodao.agregarCiudadano(numcedula, nuevo, cedulasInscritas);
 				view.mostrarMensajes("CREAR_TRUE");
 			}
 			else {

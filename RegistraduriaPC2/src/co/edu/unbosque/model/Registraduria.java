@@ -28,15 +28,9 @@ import co.edu.unbosque.model.persistence.*;
 import javax.swing.JOptionPane;
 
 public class Registraduria  {
-	
-	private ArrayList <Ciudadano> cedulasInscritas = new ArrayList();
-	private ArrayList <String> puestosDeVotacion = new ArrayList();
-	Archivo arc = new Archivo();
+
 	
 	public Registraduria() {
-		
-		arc.cargarListaPuestosDeVotacion(puestosDeVotacion);
-		arc.cargarBaseDatos(cedulasInscritas);
 		
 	}
 	
@@ -51,49 +45,12 @@ public class Registraduria  {
 	* @param cedula Es la c�dula del nuevo cidadano. cedula != null,
 	cedula != " "
 	*/
-	public void agregarCiudadano(Ciudadano ciudadanoAInscribir) {
-		
-		
-			cedulasInscritas.add(ciudadanoAInscribir);
-			arc.guardarBaseDatos(cedulasInscritas);
-			System.out.println(ciudadanoAInscribir.toString());
-	}
-	
 
 	
-	public String mostrarInformacionCiudadano(String numeroCedula) {
-		String showCiu="";
-		for(int j= 0;j < cedulasInscritas.size(); j++)  {
-			String cc = cedulasInscritas.get(j).getNumerocedula();
-			if(numeroCedula.equalsIgnoreCase(cc)) {
-				showCiu = cedulasInscritas.get(j).toString();
-			}
-		}
-		return showCiu;
-	}
-	
-	public void eliminarCiudadano(String numeroCedula) {
-		for(int j= 0;j < cedulasInscritas.size(); j++)  {
-			String cc = cedulasInscritas.get(j).getNumerocedula();
-			if(numeroCedula.equalsIgnoreCase(cc)) {
-				cedulasInscritas.remove(j);	
-			}
-		}
-		arc.guardarBaseDatos(cedulasInscritas);
-	}
-	
-	public void listarP() {
-		System.out.println("________");
-		for (int i=0; i<cedulasInscritas.size(); i++) {
-			System.out.println(cedulasInscritas.get(i));
-			
-		}
-		
-	}
 	
 	
 	
-	public String mostrarInformacionPuesto(String puesto) {
+	public String mostrarInformacionPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
@@ -110,7 +67,7 @@ public class Registraduria  {
 	
 	
 	
-	public String mostrarInformacionMunicipio(String municipio) {
+	public String mostrarInformacionMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
@@ -123,7 +80,7 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
-	public String mostrarInformacionDepartamento(String departamento) {
+	public String mostrarInformacionDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
@@ -136,7 +93,7 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
-	public int calcularEstadisticasDeEdad(String rango) {
+	public int calcularEstadisticasDeEdad(String rango, ArrayList <Ciudadano> cedulasInscritas) {
 		int cant =0;
 		switch(rango) {
 		
@@ -199,9 +156,9 @@ public class Registraduria  {
 
 	}
 	
-	public String[] mostrarCiudadanosInscritosPuesto(String puesto) {
+	public String[] mostrarCiudadanosInscritosPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
-		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionPuesto(puesto))];
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionPuesto(puesto, cedulasInscritas))];
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String aux=cedulasInscritas.get(i).getPuestovotacionasignado();
 		
@@ -216,9 +173,9 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
-	public String[] mostrarCiudadanosInscritosMunicipio(String municipio) {
+	public String[] mostrarCiudadanosInscritosMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
-		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionMunicipio(municipio))];
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionMunicipio(municipio, cedulasInscritas))];
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
 		
@@ -236,9 +193,9 @@ public class Registraduria  {
 	
 	
 	
-	public String[] mostrarCiudadanosInscritosDepartamento(String departamento) {
+	public String[] mostrarCiudadanosInscritosDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
-		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionDepartamento(departamento))];
+		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionDepartamento(departamento, cedulasInscritas))];
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
 		
@@ -253,15 +210,15 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
-	public String[] mostrardepartamentos()
+	public String[] mostrardepartamentos(ArrayList <String> puestosDeVotacion)
 	{
 		String[] prueba = new String[35];
 		int contador = 0;
 		String validar = "1";
 		
-		for(int i= 0; i<getPuestosDeVotacion().size(); i++)
+		for(int i= 0; i<puestosDeVotacion.size(); i++)
 		{
-			String[] divisiones = getPuestosDeVotacion().get(i).split(";");
+			String[] divisiones =puestosDeVotacion.get(i).split(";");
 			String departamentos = divisiones[0];
 			
 				if(!validar.contentEquals(departamentos))
@@ -278,7 +235,7 @@ public class Registraduria  {
 		return prueba;
 	}
 	
-	public String estadisticasGeneroPais() {
+	public String estadisticasGeneroPais(ArrayList <Ciudadano> cedulasInscritas) {
 		
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -301,7 +258,7 @@ public class Registraduria  {
 	}
 	
 	
-	public String estadisticasGeneroDepartamento(String departamento) {
+	public String estadisticasGeneroDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -331,7 +288,7 @@ public class Registraduria  {
 	
 	
 	
-	public String estadisticasGeneroMunicipio(String municipio) {
+	public String estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -357,7 +314,7 @@ public class Registraduria  {
 		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
 	}
 	
-	public String estadisticasGeneroPuesto(String puesto) {
+	public String estadisticasGeneroPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -406,18 +363,6 @@ public class Registraduria  {
 
 	}**/
 
-
-
-	public ArrayList<String> getPuestosDeVotacion() {
-		return puestosDeVotacion;
-	}
-
-
-
-	public ArrayList<Ciudadano> getCedulasInscritas() {
-		return cedulasInscritas;
-	}
-	
 	
 	
 
