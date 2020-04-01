@@ -93,13 +93,20 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
-	public int calcularEstadisticasDeEdad(String rango, ArrayList <Ciudadano> cedulasInscritas) {
+	public int calcularEstadisticasDeEdad(String localizacion, String vLocalizacion, String rango, ArrayList <Ciudadano> cedulasInscritas) {
 		int cant =0;
 		switch(rango) {
 		
 		case "1":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
 				}
 			}
@@ -107,7 +114,14 @@ public class Registraduria  {
 			
 		case "2":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion)& cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
 				}
 			}
@@ -115,7 +129,14 @@ public class Registraduria  {
 			
 		case "3":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
 				}
 			}
@@ -123,7 +144,14 @@ public class Registraduria  {
 			
 		case "4":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
 				}
 			}
@@ -131,7 +159,14 @@ public class Registraduria  {
 			
 		case "5":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66) {
 					cant++;
 				}
 			}
@@ -139,7 +174,14 @@ public class Registraduria  {
 			
 		case "6":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				if(cedulasInscritas.get(i).transformarDate() >= 67) {
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 67) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Departamento") & cedulasInscritas.get(i).transformarDate() >= 67) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
+					cant++;
+				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
 				}
 			}
