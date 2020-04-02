@@ -162,25 +162,66 @@ public class Controller implements ActionListener {
 		//ACCIÓN BOTÓN MODIFICAR CIUDADANO
 		if(evento.getSource() == view.getpCiudadano().getModificarCiudadano())
 		{
-			String opcion = JOptionPane.showInputDialog(null,"INGRESE EL NÚMERO DE CÉDULA DEL CIUDADANO");
+			Ciudadano ciudadanoamodificar;
+			String numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero,
+			lugarexpedicioncedula,puestovotacionasignado; 
+			Date fechanacimiento, fechaexpedicion;
 			
-			try{
-			if(opcion.equals(""))
-			{
-				JOptionPane.showMessageDialog(null,"NO HA INGRESADO NINGÚN DATO");
-			}
-			else {
-				view.getpAgregarModificar().ingresarValoresModificarCiudadano("1016071185","22/11/10","Bogotá","TORRES","JIMÉNEZ",
-					"DIEGO","FERNANDO", "19/11/1994","BOGOTÁ","MASCULINO","SELECCIONE","SELECCIONE","SELECCIONE PUESTO");
-				view.getpAgregarModificar().setVisible(true);
-				view.getpAgregarModificar().getModificarCiudadano().setVisible(true);
-				view.getpAgregarModificar().getAgregarCiudadano().setVisible(false);
-			}
-			}
-			catch(Exception e)
-			{
-				
-			}
+			
+			String modificar = view.mostrarMensajes("MODIFICAR");
+			//try
+			//{
+			ciudadanoamodificar = ciudadanodao.buscarCiudadano(modificar, cedulasInscritas);
+			
+			numcedula = ciudadanoamodificar.getNumerocedula();
+			nombre1 = ciudadanoamodificar.getNombre1();
+			nombre2 = ciudadanoamodificar.getNombre2();
+			apellido1 = ciudadanoamodificar.getApellido1();
+			apellido2 = ciudadanoamodificar.getApellido2();
+			lugardenacimiento = ciudadanoamodificar.getLugardenacimiento();
+			genero = ciudadanoamodificar.getGenero();
+			lugarexpedicioncedula = ciudadanoamodificar.getLugarexpedicioncedula();
+			fechanacimiento = ciudadanoamodificar.getFechanacimiento();
+			fechaexpedicion = ciudadanoamodificar.getFechaexpedicion();
+			puestovotacionasignado = ciudadanoamodificar.getPuestovotacionasignado();
+			
+			String[] comboboxes = puestovotacionasignado.split(";");
+			String departamentos = comboboxes[0];
+			String municipios = comboboxes[1];
+			String pdevotacion = comboboxes[2];
+			
+			System.out.println(departamentos);
+			System.out.println(municipios);
+			System.out.println(pdevotacion);
+			
+			String fechanac = String.valueOf(fechanacimiento);
+			String fechaexp = String.valueOf(fechaexpedicion);
+			
+			view.getpAgregarModificar().getCedula().setText(numcedula);
+			view.getpAgregarModificar().getCedula().setEnabled(false);
+			view.getpAgregarModificar().getNombre1().setText(nombre1);
+			view.getpAgregarModificar().getNombre2().setText(nombre2);
+			view.getpAgregarModificar().getApellido1().setText(apellido1);
+			view.getpAgregarModificar().getApellido2().setText(apellido2);
+			view.getpAgregarModificar().getlNacimiento().setText(lugardenacimiento);
+			view.getpAgregarModificar().getSexo().setText(genero);
+			view.getpAgregarModificar().getLexpedicion().setText(lugarexpedicioncedula);
+			view.getpAgregarModificar().getfNacimiento().setText(fechanac);
+			view.getpAgregarModificar().getFexpedicion().setText(fechaexp);
+			view.getpAgregarModificar().getDepartamentos().setSelectedItem(departamentos);
+			view.getpAgregarModificar().getMunicipios().setSelectedItem(municipios);
+			view.getpAgregarModificar().getPuestoVotacion().setSelectedItem(pdevotacion);
+			
+			view.getpAgregarModificar().setVisible(true);
+			view.getpAgregarModificar().getAgregarCiudadano().setVisible(false);
+			view.getpAgregarModificar().getModificarCiudadano().setVisible(true);
+			
+			//}
+			//catch(NullPointerException e)
+			//{
+			//	view.mostrarMensajes("NO_EXISTE");
+			//}
+			
 		}
 		
 		
@@ -420,19 +461,31 @@ public class Controller implements ActionListener {
 		if(evento.getSource() == view.getpAgregarModificar().getAgregarCiudadano())
 		{
 			Ciudadano nuevo;
-			String numcedula = view.getpAgregarModificar().getCedula();
-			String nombre1 = view.getpAgregarModificar().getNombre1();
-			String nombre2 = view.getpAgregarModificar().getNombre2();
-			String apellido1 = view.getpAgregarModificar().getApellido1(); 
-			String apellido2 = view.getpAgregarModificar().getApellido2();
-			String lugardenacimiento = view.getpAgregarModificar().getlNacimiento();
-			String genero = view.getpAgregarModificar().getSexo();
-			String lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion();
-			String fechanacimiento = view.getpAgregarModificar().getfNacimiento();
-			String fechaexpedicion = view.getpAgregarModificar().getFexpedicion();
-			String puestovotacionasignado = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
+			String numcedula = view.getpAgregarModificar().getCedula().getText();
+			String nombre1 = view.getpAgregarModificar().getNombre1().getText();
+			String nombre2 = view.getpAgregarModificar().getNombre2().getText();
+			String apellido1 = view.getpAgregarModificar().getApellido1().getText(); 
+			String apellido2 = view.getpAgregarModificar().getApellido2().getText();
+			String lugardenacimiento = view.getpAgregarModificar().getlNacimiento().getText();
+			String genero = view.getpAgregarModificar().getSexo().getText();
+			String lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion().getText();
+			String fechanacimiento = view.getpAgregarModificar().getfNacimiento().getText();
+			String fechaexpedicion = view.getpAgregarModificar().getFexpedicion().getText();
+			String departamento = (String) view.getpAgregarModificar().getDepartamentos().getSelectedItem();
+			String municipios = (String) view.getpAgregarModificar().getMunicipios().getSelectedItem();
+			String pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
+			String puestovotacionasignado = departamento+";"+municipios+";"+pvotacion;
 			boolean verificacion = true;
-			
+			if(numcedula.isEmpty()|| nombre1.isEmpty()|| nombre2.isEmpty()||
+					apellido1.isEmpty()|| apellido2.isEmpty()|| lugardenacimiento.isEmpty()||
+					genero.isEmpty()|| lugarexpedicioncedula.isEmpty()||fechaexpedicion.isEmpty()||
+					fechanacimiento.isEmpty()||puestovotacionasignado.isEmpty())
+			{
+				view.mostrarMensajes("DEBE_LLENAR_CAMPOS");
+		
+			}
+			else
+			{
 			for(int i = 0; i<cedulasInscritas.size();i++)
 			{
 					
@@ -469,16 +522,12 @@ public class Controller implements ActionListener {
 				view.mostrarMensajes("CREAR_FALSE");
 			}
 			
-				
+			}	
 					
 				
 			}
 	
 			
-			//new Ciudadano(String numerocedula, String nombre1, String nombre2, String apellido1, String apellido2,
-				//		String lugardenacimiento, String genero, String lugarexpedicioncedula, Date fechanacimiento,
-					//	Date fechaexpedicion, String puestovotacionasignado)
-		
 				
 									
 

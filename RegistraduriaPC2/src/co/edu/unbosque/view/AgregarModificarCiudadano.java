@@ -200,53 +200,48 @@ public class AgregarModificarCiudadano extends JFrame {
 		
 	}
 
-	public String getCedula() {
-		return cedula.getText();
-	}
-
-
-	public String getFexpedicion() {
-		return fexpedicion.getText();
-	}
-
-
-	public String getLexpedicion() {
-		return lexpedicion.getText();
-	}
-
-	public String getApellido1() {
-		return apellido1.getText();
-	}
-
-
-	public String getApellido2() {
-		return apellido2.getText();
-	}
-
-
-	public String getNombre1() {
-		return nombre1.getText();
-	}
-
-	public String getNombre2() {
-		return nombre2.getText();
-	}
-
-
-	public String getfNacimiento() {
-		return fNacimiento.getText();
-	}
-
-	public String getlNacimiento() {
-		return lNacimiento.getText();
-	}
-
-
-	public String getSexo() {
-		return sexo.getText();
-	}
-
 	
+
+	public JTextField getCedula() {
+		return cedula;
+	}
+	
+
+	public JTextField getFexpedicion() {
+		return fexpedicion;
+	}
+
+	public JTextField getLexpedicion() {
+		return lexpedicion;
+	}
+
+	public JTextField getApellido1() {
+		return apellido1;
+	}
+
+	public JTextField getApellido2() {
+		return apellido2;
+	}
+
+	public JTextField getNombre1() {
+		return nombre1;
+	}
+
+	public JTextField getNombre2() {
+		return nombre2;
+	}
+
+	public JTextField getfNacimiento() {
+		return fNacimiento;
+	}
+
+	public JTextField getlNacimiento() {
+		return lNacimiento;
+	}
+
+	public JTextField getSexo() {
+		return sexo;
+	}
 
 	public JComboBox<String> getDepartamentos() {
 		return departamentos;

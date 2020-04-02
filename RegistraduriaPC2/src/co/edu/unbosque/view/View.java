@@ -65,7 +65,7 @@ public class View extends JFrame {
 		lCiudadano.setIconImage(image);
 	}
 	
-	public void mostrarMensajes(String mensaje)
+	public String mostrarMensajes(String mensaje)
 	{
 		if(mensaje.equalsIgnoreCase("CREAR_TRUE"))
 		{
@@ -75,6 +75,22 @@ public class View extends JFrame {
 		{
 			JOptionPane.showMessageDialog(null, "EL CIUDADANO YA EXISTE EN LA BASE DE DATOS");
 		}
+		if(mensaje.equalsIgnoreCase("DEBE_LLENAR_CAMPOS"))
+		{
+			JOptionPane.showMessageDialog(null, "DEBE LLENAR TODOS LOS CAMPOS");
+		}
+		
+		if(mensaje.equalsIgnoreCase("MODIFICAR"))
+		{
+			String modificar = JOptionPane.showInputDialog("INGRESE EL NÚMERO DE CEDULA DEL CIUDADANO A MODIFICAR");
+			return modificar;
+		}
+		if(mensaje.equalsIgnoreCase("NO_EXISTE"))
+		{
+			JOptionPane.showMessageDialog(null,"EL CIUDADANO NO EXISTE EN LA BASE DE DATOS");
+		}
+		return null;
+		
 	}
 
 
