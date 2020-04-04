@@ -277,7 +277,7 @@ public class Registraduria  {
 		return prueba;
 	}
 	
-	public String estadisticasGeneroPais(ArrayList <Ciudadano> cedulasInscritas) {
+	public double[] estadisticasGeneroPais(ArrayList <Ciudadano> cedulasInscritas) {
 		
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -295,12 +295,15 @@ public class Registraduria  {
 
 		porcentajef=(f/cedulasInscritas.size())*100;
 		porcentajem=100-porcentajef;
+		double [] porcentajes= new double[2];
+		porcentajes[0]=porcentajef;
+		porcentajes[1]= porcentajem;
 		
-	return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	return porcentajes;
 	}
 	
 	
-	public String estadisticasGeneroDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
+	public double [] estadisticasGeneroDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -323,14 +326,18 @@ public class Registraduria  {
 		porcentajef=(f/(f+m))*100;
 		porcentajem=100-porcentajef;
 		
-		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+		double [] porcentajes= new double[2];
+		porcentajes[0]=porcentajef;
+		porcentajes[1]= porcentajem;
+		
+	return porcentajes;
 	}
 	
 	
 	
 	
 	
-	public String estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
+	public double [] estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -353,10 +360,14 @@ public class Registraduria  {
 		porcentajef=(f/(f+m))*100;
 		porcentajem=100-porcentajef;
 		
-		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+		double [] porcentajes= new double[2];
+		porcentajes[0]=porcentajef;
+		porcentajes[1]= porcentajem;
+		
+	return porcentajes;
 	}
 	
-	public String estadisticasGeneroPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
+	public double [] estadisticasGeneroPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
 		
@@ -378,8 +389,12 @@ public class Registraduria  {
 		
 		porcentajef=(f/(f+m))*100;
 		porcentajem=100-porcentajef;
+		double [] porcentajes= new double[2];
+		porcentajes[0]=porcentajef;
+		porcentajes[1]= porcentajem;
 		
-		return "El porcentaje de mujeres inscritas es: "+porcentajef+"% y el total de hombres inscritos es: "+porcentajem+"%";
+	return porcentajes;
+		
 	}
 	
 	
