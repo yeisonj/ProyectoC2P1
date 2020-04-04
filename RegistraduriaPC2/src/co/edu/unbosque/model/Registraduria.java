@@ -10,21 +10,8 @@
 
 package co.edu.unbosque.model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
-import java.util.Date;
-import co.edu.unbosque.model.persistence.*;
 import javax.swing.JOptionPane;
 
 public class Registraduria  {
@@ -62,11 +49,7 @@ public class Registraduria  {
 		
 		return Integer.toString(p);
 	}
-	
-	
-	
-	
-	
+		
 	public String mostrarInformacionMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -231,10 +214,7 @@ public class Registraduria  {
 			
 			return ciudinscritos;
 	}
-	
-	
-	
-	
+		
 	public String[] mostrarCiudadanosInscritosDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionDepartamento(departamento, cedulasInscritas))];
@@ -301,8 +281,7 @@ public class Registraduria  {
 		
 	return porcentajes;
 	}
-	
-	
+		
 	public double [] estadisticasGeneroDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -332,11 +311,7 @@ public class Registraduria  {
 		
 	return porcentajes;
 	}
-	
-	
-	
-	
-	
+		
 	public double [] estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -400,25 +375,7 @@ public class Registraduria  {
 	
 	
 	
-	/**public static void main (String[]args) {
-		Registraduria r = new Registraduria();
-		Date d1 = new Date("11/12/1994");
-		Date d2 = new Date("12/11/2003");
-		Date d3 = new Date("11/12/1997");
-		
-		Ciudadano ciu = new Ciudadano("12345", "Moncaleano", "Sebastian", "Cali, Valle", "Masculino", "Cali, valle", null, null, d1, d3, "Cali");
-		Ciudadano ciu1 = new Ciudadano("123456", "Moncaleanoao", "Sebastianao", "Cali, Valle", "Masculino", "Cali, valle", null, null, d2, d3, "Cali");
-		Ciudadano ciu2 = new Ciudadano("1234567", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, d3, d3, "Cali");
-		Ciudadano ciu3 = new Ciudadano("12345678", "Moncaleanoao", "JUAN", "Cali, Valle", "Masculino", "Cali, valle", null, null, d3, d3, "BOGOTA");
-		r.agregarCiudadano(ciu);
-		r.agregarCiudadano(ciu1);
-		r.agregarCiudadano(ciu2);
-		r.agregarCiudadano(ciu3);
-		System .out.println(r.calcularEstadisticasDeEdad("1"));
-		System .out.println(r.mostrarInformacionCiudadano("123456"));
 	
-
-	}**/
 
 	
 	

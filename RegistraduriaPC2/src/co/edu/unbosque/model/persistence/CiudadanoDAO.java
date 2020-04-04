@@ -41,16 +41,16 @@ public class CiudadanoDAO {
 		return encontrado;
 	}
 	
-	public void eliminarCiudadano(String numeroCedula, ArrayList <Ciudadano> cedulasInscritas) {
+	public void eliminarCiudadano(String cedula, ArrayList <Ciudadano> cedulasInscritas) {
 		try {
-			Ciudadano c = buscarCiudadano(numeroCedula, cedulasInscritas);
+			Ciudadano c = buscarCiudadano(cedula, cedulasInscritas);
 			cedulasInscritas.remove(c);
 			archivo.getArchivo().delete();
 			archivo.getArchivo().createNewFile();
 			archivo.escribirEnArchivo(cedulasInscritas);
 			
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		
 		}

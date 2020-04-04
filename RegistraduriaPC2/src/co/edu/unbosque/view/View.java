@@ -89,6 +89,16 @@ public class View extends JFrame {
 		{
 			JOptionPane.showMessageDialog(null,"EL CIUDADANO NO EXISTE EN LA BASE DE DATOS");
 		}
+		
+		if(mensaje.equalsIgnoreCase("ELIMINAR_TRUE"))
+		{		
+			JOptionPane.showMessageDialog(null,"SE HA ELIMINADO EL CIUDADANO");
+		}
+		if(mensaje.equalsIgnoreCase("ELIMINAR_FALSE"))
+		{		
+			JOptionPane.showMessageDialog(null,"EL CIUDADANO NO EXISTE");
+		}
+		
 		return null;
 		
 	}
