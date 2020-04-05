@@ -146,13 +146,13 @@ public class Controller implements ActionListener {
 		// ACCIÓN BOTÓN MODIFICAR CIUDADANO
 		if (evento.getSource() == view.getpCiudadano().getModificarCiudadano()) {
 			try {
-			Ciudadano ciudadanoamodificar;
-			String numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero, lugarexpedicioncedula,
-					puestovotacionasignado;
-			Date fechanacimiento, fechaexpedicion;
+				Ciudadano ciudadanoamodificar;
+				String numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero,
+						lugarexpedicioncedula, puestovotacionasignado;
+				Date fechanacimiento, fechaexpedicion;
 
-			String modificar = view.mostrarMensajes("MODIFICAR");
-			
+				String modificar = view.mostrarMensajes("MODIFICAR");
+
 				ciudadanoamodificar = ciudadanodao.buscarCiudadano(modificar, cedulasInscritas);
 
 				numcedula = ciudadanoamodificar.getNumerocedula();
@@ -216,16 +216,16 @@ public class Controller implements ActionListener {
 		// ACCIÓN BOTÓN ELIMINAR CIUDADANO
 		if (evento.getSource() == view.getpCiudadano().getEliminarCiudadano()) {
 			String cedula = JOptionPane.showInputDialog("DIGITE LA CEDULA DEL CIUDADANO QUE DESEA ELIMINAR.");
-			boolean existe=false;
-		for (int i = 0; i < cedulasInscritas.size(); i++) {
+			boolean existe = false;
+			for (int i = 0; i < cedulasInscritas.size(); i++) {
 				if (cedulasInscritas.get(i).getNumerocedula().equals(cedula)) {
 					existe = true;
-					}
+				}
 			}
-			if(existe==true) {
+			if (existe == true) {
 				ciudadanodao.eliminarCiudadano(cedula, cedulasInscritas);
 				view.mostrarMensajes("ELIMINAR_TRUE");
-			}else{
+			} else {
 				view.mostrarMensajes("ELIMINAR_FALSE");
 			}
 
@@ -328,50 +328,53 @@ public class Controller implements ActionListener {
 				}
 			}
 		}
-		if(evento.getSource() ==view.getpPuestoVotacion().getAgregarpuesto()) {
-			String departamento=view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().toString();
-			String municipio=view.getpPuestoVotacion().getMunicipiosadd().getSelectedItem().toString();
-			String nombrePuesto=view.getpPuestoVotacion().getNombrepuesto().getText();
-			String direccionPuesto=view.getpPuestoVotacion().getDireccionpuesto().getText();
-			boolean existe=false;
-			if(departamento.equals("SELECCIONE")||municipio.equals("SELECCIONE")||nombrePuesto.isEmpty()||direccionPuesto.isEmpty()) {
+		// ACCION AGREGAR PUESTO DE VOTACION
+		if (evento.getSource() == view.getpPuestoVotacion().getAgregarpuesto()) {
+			String departamento = view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().toString();
+			String municipio = view.getpPuestoVotacion().getMunicipiosadd().getSelectedItem().toString();
+			String nombrePuesto = view.getpPuestoVotacion().getNombrepuesto().getText();
+			String direccionPuesto = view.getpPuestoVotacion().getDireccionpuesto().getText();
+			boolean existe = false;
+			if (departamento.equals("SELECCIONE") || municipio.equals("SELECCIONE") || nombrePuesto.isEmpty()
+					|| direccionPuesto.isEmpty()) {
 				view.mostrarMensajes("AGREGARPUESTO_BLANCO");
-			}else if(existe==false){
-				for(int i=0;i<puestosDeVotacion.size();i++) {
-					if(puestosDeVotacion.get(i).equals(departamento+";"+municipio+";"+nombrePuesto+";"+direccionPuesto)) {
+			} else if (existe == false) {
+				for (int i = 0; i < puestosDeVotacion.size(); i++) {
+					if (puestosDeVotacion.get(i)
+							.equals(departamento + ";" + municipio + ";" + nombrePuesto + ";" + direccionPuesto)) {
 						view.mostrarMensajes("AGREGARPUESTO_FALSE");
-						i=puestosDeVotacion.size();
-						existe=true;
+						i = puestosDeVotacion.size();
+						existe = true;
 					}
-					}
-							
-			} else if(existe==false){
-				puestosDeVotacion.add(departamento+";"+municipio+";"+nombrePuesto+";"+direccionPuesto);
+				}
+
+			} else if (existe == false) {
+				puestosDeVotacion.add(departamento + ";" + municipio + ";" + nombrePuesto + ";" + direccionPuesto);
 				view.mostrarMensajes("AGREGARPUESTO_TRUE");
 			}
-			
+
 		}
-		
-		if(evento.getSource() ==view.getpPuestoVotacion().getEliminarpuesto()) {
-			String departamento=view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().toString();
-			String municipio=view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().toString();
-			String nombrePuesto=view.getpPuestoVotacion().getPuestovotaciondelete().getSelectedItem().toString();
+		// ACCION ELIMINAR PUESTO DE BOTACION
+		if (evento.getSource() == view.getpPuestoVotacion().getEliminarpuesto()) {
+			String departamento = view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().toString();
+			String municipio = view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().toString();
+			String nombrePuesto = view.getpPuestoVotacion().getPuestovotaciondelete().getSelectedItem().toString();
 			
-			if(departamento.equals("SELECCIONE")||municipio.equals("SELECCIONE")||nombrePuesto.isEmpty()) {
+			System.out.println(departamento + ";" + municipio + ";" + nombrePuesto);
+			if (departamento.equals("SELECCIONE") || municipio.equals("SELECCIONE") || nombrePuesto.isEmpty()) {
 				view.mostrarMensajes("ELIMINARPUESTO_BLANCO");
-			}else {
-				for(int i=0;i<puestosDeVotacion.size();i++) {
+			} else {
+				for (int i = 0; i < puestosDeVotacion.size(); i++) {
 					System.out.println(puestosDeVotacion.get(i));
-					if(puestosDeVotacion.get(i).contains(nombrePuesto)) {
+					if (puestosDeVotacion.get(i).equals(departamento + ";" + municipio + ";" + nombrePuesto+ ";")) {
 						view.mostrarMensajes("ELIMINARPUESTO_TRUE");
 						puestosDeVotacion.remove(i);
-						i=puestosDeVotacion.size();
+						i = puestosDeVotacion.size();
 					}
-					}
-							
-			} 
-			
-			
+				}
+
+			}
+
 		}
 
 		// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME AGREGAR O MODIFICAR
