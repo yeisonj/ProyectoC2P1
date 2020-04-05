@@ -328,6 +328,51 @@ public class Controller implements ActionListener {
 				}
 			}
 		}
+		if(evento.getSource() ==view.getpPuestoVotacion().getAgregarpuesto()) {
+			String departamento=view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().toString();
+			String municipio=view.getpPuestoVotacion().getMunicipiosadd().getSelectedItem().toString();
+			String nombrePuesto=view.getpPuestoVotacion().getNombrepuesto().getText();
+			String direccionPuesto=view.getpPuestoVotacion().getDireccionpuesto().getText();
+			boolean existe=false;
+			if(departamento.equals("SELECCIONE")||municipio.equals("SELECCIONE")||nombrePuesto.isEmpty()||direccionPuesto.isEmpty()) {
+				view.mostrarMensajes("AGREGARPUESTO_BLANCO");
+			}else if(existe==false){
+				for(int i=0;i<puestosDeVotacion.size();i++) {
+					if(puestosDeVotacion.get(i).equals(departamento+";"+municipio+";"+nombrePuesto+";"+direccionPuesto)) {
+						view.mostrarMensajes("AGREGARPUESTO_FALSE");
+						i=puestosDeVotacion.size();
+						existe=true;
+					}
+					}
+							
+			} else if(existe==false){
+				puestosDeVotacion.add(departamento+";"+municipio+";"+nombrePuesto+";"+direccionPuesto);
+				view.mostrarMensajes("AGREGARPUESTO_TRUE");
+			}
+			
+		}
+		
+		if(evento.getSource() ==view.getpPuestoVotacion().getEliminarpuesto()) {
+			String departamento=view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().toString();
+			String municipio=view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().toString();
+			String nombrePuesto=view.getpPuestoVotacion().getPuestovotaciondelete().getSelectedItem().toString();
+			
+			if(departamento.equals("SELECCIONE")||municipio.equals("SELECCIONE")||nombrePuesto.isEmpty()) {
+				view.mostrarMensajes("ELIMINARPUESTO_BLANCO");
+			}else {
+				for(int i=0;i<puestosDeVotacion.size();i++) {
+					System.out.println(puestosDeVotacion.get(i));
+					if(puestosDeVotacion.get(i).contentEquals(departamento+";"+municipio+";"+nombrePuesto)) {
+						view.mostrarMensajes("ELIMINARPUESTO_TRUE");
+						puestosDeVotacion.remove(i);
+						i=puestosDeVotacion.size();
+					}
+					}
+							
+			} 
+			
+			
+		}
 
 		// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME AGREGAR O MODIFICAR
 		if (evento.getSource() == view.getpAgregarModificar().getDepartamentos()) {

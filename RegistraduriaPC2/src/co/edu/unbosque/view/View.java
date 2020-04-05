@@ -98,6 +98,27 @@ public class View extends JFrame {
 		{		
 			JOptionPane.showMessageDialog(null,"EL CIUDADANO NO EXISTE");
 		}
+		if(mensaje.equalsIgnoreCase("AGREGARPUESTO_TRUE"))
+		{		
+			JOptionPane.showMessageDialog(null,"SE AGREGO EL PUESTO CORRECTAMENTE");
+		}
+		if(mensaje.equalsIgnoreCase("AGREGARPUESTO_FALSE"))
+		{		
+			JOptionPane.showMessageDialog(null,"EL PUESTO DE VOTACION YA EXISTE");
+		}
+		if(mensaje.equalsIgnoreCase("AGREGARPUESTO_BLANCO"))
+		{		
+			JOptionPane.showMessageDialog(null,"DEBE DIGITAR TODOS LOS CAMPOS");
+		}
+		if(mensaje.equalsIgnoreCase("ELIMINARPUESTO_BLANCO"))
+		{		
+			JOptionPane.showMessageDialog(null,"DEBE SELECCIONAR TODOS LOS CAMPOS");
+		}
+		
+		if(mensaje.equalsIgnoreCase("ELIMINARPUESTO_TRUE"))
+		{		
+			JOptionPane.showMessageDialog(null,"SE HA ELIMINADO EL PUESTO DE VOTACION");
+		}
 		
 		return null;
 		

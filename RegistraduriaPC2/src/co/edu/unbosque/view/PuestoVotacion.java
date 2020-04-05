@@ -18,7 +18,8 @@ public class PuestoVotacion extends JFrame {
 	private JComboBox<String> departamentosdelete;
 	private JComboBox<String> municipiosdelete;
 	private JComboBox<String> puestovotaciondelete;
-	private JTextField nuevopuesto;
+	private JTextField nombrePuesto;
+	private JTextField direccionPuesto;
 	private JButton agregarpuesto;
 	private JButton eliminarpuesto;
 	
@@ -66,8 +67,10 @@ public class PuestoVotacion extends JFrame {
 		municipiosadd.setBounds(190,218,140,35);
 		municipiosadd.addItem("SELECCIONE");
 		
-		nuevopuesto = new JTextField();
-		nuevopuesto.setBounds(340,218,230,35);
+		nombrePuesto = new JTextField();
+		nombrePuesto.setBounds(340,185,230,35);
+		direccionPuesto= new JTextField();
+		direccionPuesto.setBounds(340,250,230,35);
 		
 		
 		departamentosdelete = new JComboBox<String>();
@@ -88,7 +91,8 @@ public class PuestoVotacion extends JFrame {
 		fondoPanel.add(eliminarpuesto);
 		fondoPanel.add(departamentosadd);
 		fondoPanel.add(municipiosadd);
-		fondoPanel.add(nuevopuesto);
+		fondoPanel.add(nombrePuesto);
+		fondoPanel.add(direccionPuesto);
 		fondoPanel.add(departamentosdelete);
 		fondoPanel.add(municipiosdelete);
 		fondoPanel.add(puestovotaciondelete);
@@ -97,7 +101,7 @@ public class PuestoVotacion extends JFrame {
 
 	public void reestablecerValores()
 		{
-			nuevopuesto.setText("");
+			nombrePuesto.setText("");
 		}
 	
 	
@@ -129,8 +133,11 @@ public class PuestoVotacion extends JFrame {
 		return eliminarpuesto;
 	}
 
-	public JTextField getNuevopuesto() {
-		return nuevopuesto;
+	public JTextField getNombrepuesto() {
+		return nombrePuesto;
+	}
+	public JTextField getDireccionpuesto() {
+		return direccionPuesto;
 	}
 	
 }
