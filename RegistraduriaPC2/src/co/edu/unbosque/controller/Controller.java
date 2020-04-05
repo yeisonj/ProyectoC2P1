@@ -322,7 +322,7 @@ public class Controller implements ActionListener {
 						}
 						validacionmunicipios2 = municipios;
 						if (view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().equals(municipios)) {
-							view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 + puesto2);
+							view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 +";"+ puesto2);
 						}
 					}
 				}
@@ -360,12 +360,11 @@ public class Controller implements ActionListener {
 			String municipio = view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().toString();
 			String nombrePuesto = view.getpPuestoVotacion().getPuestovotaciondelete().getSelectedItem().toString();
 			
-			System.out.println(departamento + ";" + municipio + ";" + nombrePuesto);
 			if (departamento.equals("SELECCIONE") || municipio.equals("SELECCIONE") || nombrePuesto.isEmpty()) {
 				view.mostrarMensajes("ELIMINARPUESTO_BLANCO");
 			} else {
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
-					System.out.println(puestosDeVotacion.get(i));
+					//System.out.println(puestosDeVotacion.get(i));
 					if (puestosDeVotacion.get(i).equals(departamento + ";" + municipio + ";" + nombrePuesto+ ";")) {
 						view.mostrarMensajes("ELIMINARPUESTO_TRUE");
 						puestosDeVotacion.remove(i);
@@ -403,7 +402,7 @@ public class Controller implements ActionListener {
 						validacionmunicipiosAgregarCiudadano = municipios;
 
 						if (view.getpAgregarModificar().getMunicipios().getSelectedItem().equals(municipios)) {
-							view.getpAgregarModificar().getPuestoVotacion().addItem(puesto1 + puesto2);
+							view.getpAgregarModificar().getPuestoVotacion().addItem(puesto1 +";"+ puesto2);
 						}
 					}
 				}
