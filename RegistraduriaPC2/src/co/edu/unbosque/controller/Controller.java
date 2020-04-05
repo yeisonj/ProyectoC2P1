@@ -457,7 +457,7 @@ public class Controller implements ActionListener {
 			String pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
 			String puestovotacionasignado = departamento + ";" + municipios + ";" + pvotacion;
 			boolean verificacion = true;
-			if (numcedula.isEmpty() || nombre1.isEmpty() || nombre2.isEmpty() || apellido1.isEmpty()
+			if (numcedula.isEmpty() || nombre1.isEmpty() || apellido1.isEmpty()
 					|| apellido2.isEmpty() || lugardenacimiento.isEmpty() || genero.isEmpty()
 					|| lugarexpedicioncedula.isEmpty() || fechaexpedicion.isEmpty() || fechanacimiento.isEmpty()
 					|| puestovotacionasignado.isEmpty()) {
