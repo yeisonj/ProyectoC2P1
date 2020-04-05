@@ -362,7 +362,7 @@ public class Controller implements ActionListener {
 			}else {
 				for(int i=0;i<puestosDeVotacion.size();i++) {
 					System.out.println(puestosDeVotacion.get(i));
-					if(puestosDeVotacion.get(i).contentEquals(departamento+";"+municipio+";"+nombrePuesto)) {
+					if(puestosDeVotacion.get(i).contains(nombrePuesto)) {
 						view.mostrarMensajes("ELIMINARPUESTO_TRUE");
 						puestosDeVotacion.remove(i);
 						i=puestosDeVotacion.size();
