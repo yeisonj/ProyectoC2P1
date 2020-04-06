@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -23,14 +24,15 @@ public class ListarCiudadano extends JFrame {
 	private JComboBox<String> departamentos;
 	private JComboBox<String> municipios;
 	private JComboBox<String> puestoVotacion;
+	private JComboBox<String> localizacion;
 	
 	private JButton validarCedula;
 	private JButton validarinfogeneral;
 	
 	private JScrollPane scroll;
 	
-	private JTextArea infoCiudadano;
-	private JTextArea infogeneral;
+	private JTable infoCiudadano;
+	private JTable infoGeneral;
 	
 	public ListarCiudadano()
 	{
@@ -43,7 +45,6 @@ public class ListarCiudadano extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		inicializarComponentes();
-		reestablecerValores();
 		
 		
 	}
@@ -68,19 +69,45 @@ public class ListarCiudadano extends JFrame {
 		validarCedula.setIcon(imagenes);
 		validarCedula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
+		String[] cabezeraciudadano = {"CÉDULA","PRIMER APELLIDO","SEGUNDO APELLIDO","PRIMER NOMBRE","SEGUNDO NOMBRE",
+				"FECHA DE NACIMIENTO","LUGAR DE NACIMIENTO","FECHA DE EXPEDICIÓN CÉDULA","LUGAR DE EXPEDICIÓN CÉDULA","GÉNERO","PUESTO DE VOTACIÓN ASIGNADO"};
+		String[][] tablaciudadano = new String[1][11];
 		
-		infoCiudadano = new JTextArea();
-		infoCiudadano.setEnabled(false);
+		
+		
+		infoCiudadano = new JTable(tablaciudadano,cabezeraciudadano);
 		infoCiudadano.setBackground(Color.LIGHT_GRAY);
-		infoCiudadano.setPreferredSize(new Dimension(800,50));
+		infoCiudadano.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		infoCiudadano.getColumnModel().getColumn(0).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(1).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(2).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(3).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(4).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(5).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(6).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(7).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(8).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(9).setPreferredWidth(200);
+		infoCiudadano.getColumnModel().getColumn(10).setPreferredWidth(500);
+		
+		infoCiudadano.setPreferredSize(new Dimension(2500,50));
+		
 		
 		
 		scroll = new JScrollPane();
-		scroll.setBounds(40,190,720,50);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll.setBounds(40,190,720,60);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll.setViewportView(infoCiudadano);
 		scroll.getViewport().setView(infoCiudadano);
 		
+		
+		localizacion = new JComboBox<String>();
+		localizacion.setBounds(420,270,140,30);
+		localizacion.addItem("PAIS");
+		localizacion.addItem("DEPARTAMENTOS");
+		localizacion.addItem("MUNICIPIOS");
+		localizacion.addItem("PUESTOS DE VOTACIÓN");
 		
 		departamentos = new JComboBox<String>();
 		departamentos.setBounds(55,320,140,35);
@@ -100,18 +127,36 @@ public class ListarCiudadano extends JFrame {
 		validarinfogeneral.setIcon(imagenes);
 		validarinfogeneral.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
-		infogeneral = new JTextArea();
-		infogeneral.setEnabled(false);
-		infogeneral.setBackground(Color.LIGHT_GRAY);
-		infogeneral.setPreferredSize(new Dimension(800,500));
+		String[] cabezeraciudadanogeneral = {"CÉDULA","PRIMER APELLIDO","SEGUNDO APELLIDO","PRIMER NOMBRE","SEGUNDO NOMBRE",
+				"FECHA DE NACIMIENTO","LUGAR DE NACIMIENTO","FECHA DE EXPEDICIÓN CÉDULA","LUGAR DE EXPEDICIÓN CÉDULA", "GÉNERO","PUESTO DE VOTACIÓN ASIGNADO"};
+		String[][] tablaciudadanogeneral = new String[30][11];
+		
+		
+		
+		infoGeneral = new JTable(tablaciudadanogeneral,cabezeraciudadanogeneral);
+		infoGeneral.setBackground(Color.LIGHT_GRAY);
+		infoGeneral.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		infoGeneral.getColumnModel().getColumn(0).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(1).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(2).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(3).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(4).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(5).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(6).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(7).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(8).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(9).setPreferredWidth(200);
+		infoGeneral.getColumnModel().getColumn(10).setPreferredWidth(500);
+		
+		infoCiudadano.setPreferredSize(new Dimension(2500,50));
 		
 		
 		JScrollPane scroll2 = new JScrollPane();
 		scroll2.setBounds(40,370,720,200);
 		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll2.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scroll2.setViewportView(infogeneral);
-		scroll2.getViewport().setView(infogeneral);
+		scroll2.setViewportView(infoGeneral);
+		scroll2.getViewport().setView(infoGeneral);
 		
 		
 		
@@ -124,6 +169,7 @@ public class ListarCiudadano extends JFrame {
 		fondo.add(scroll2);
 		fondo.add(validarCedula);
 		fondo.add(validarinfogeneral);
+		fondo.add(localizacion);
 		
 		
 	}
@@ -133,12 +179,13 @@ public class ListarCiudadano extends JFrame {
 		departamentos.setSelectedItem("SELECCIONE");
 		municipios.setSelectedItem("SELECCIONE");
 		puestoVotacion.setSelectedItem("SELECCIONE PUESTO");
-		infoCiudadano.setText("");
-		infogeneral.setText("");
+		
 	}
 
-	public String getCedula() {
-		return cedula.getText();
+	
+
+	public JTextField getCedula() {
+		return cedula;
 	}
 
 	public JComboBox<String> getDepartamentos() {
@@ -161,12 +208,19 @@ public class ListarCiudadano extends JFrame {
 		return validarinfogeneral;
 	}
 
-	public String getInfoCiudadano() {
-		return infoCiudadano.getText();
+	public JTable getInfoCiudadano() {
+		return infoCiudadano;
 	}
 
-	public String getInfogeneral() {
-		return infogeneral.getText();
+	public JTable getInfoGeneral() {
+		return infoGeneral;
 	}
+
+	public JComboBox<String> getLocalizacion() {
+		return localizacion;
+	}
+
+	
+	
 	
 }

@@ -120,6 +120,10 @@ public class View extends JFrame {
 			JOptionPane.showMessageDialog(null,"SE HA ELIMINADO EL PUESTO DE VOTACION");
 		}
 		
+		if(mensaje.equalsIgnoreCase("SIN_ESTADISTICAS"))
+		{
+			JOptionPane.showMessageDialog(null,"NO HAY CIUDADANOS REGISTRADOS");
+		}
 		return null;
 		
 	}

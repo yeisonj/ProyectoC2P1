@@ -16,6 +16,7 @@ public class Estadisticas extends JFrame {
 	private ImageIcon imagenes;
 	private JLabel fondo;
 	
+	private JComboBox<String> localizacion;
 	private JComboBox<String> departamentos;
 	private JComboBox<String> municipios;
 	private JComboBox<String> puestovotacion;
@@ -72,6 +73,13 @@ public class Estadisticas extends JFrame {
 		graficas.setIcon(imagenes);
 		graficas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
+		localizacion = new JComboBox<String>();
+		localizacion.setBounds(40,80,140,35);
+		localizacion.addItem("PAIS");
+		localizacion.addItem("DEPARTAMENTOS");
+		localizacion.addItem("MUNICIPIOS");
+		localizacion.addItem("PUESTOS DE VOTACIÓN");
+		
 		departamentos = new JComboBox<String>();
 		departamentos.setBounds(40,165,140,35);
 		departamentos.addItem("TODOS");
@@ -85,12 +93,12 @@ public class Estadisticas extends JFrame {
 		puestovotacion.addItem("SELECCIONE PUESTO");
 		
 		porcHombres = new JLabel("0");
-		porcHombres.setBounds(255,264,20,20);
+		porcHombres.setBounds(255,264,50,20);
 		porcHombres.setForeground(Color.RED);
 		porcHombres.setFont(new Font("helvetica",Font.BOLD,22));
 		
 		porcMujeres = new JLabel("0");
-		porcMujeres.setBounds(583,265,20,20);
+		porcMujeres.setBounds(583,265,50,20);
 		porcMujeres.setForeground(Color.RED);
 		porcMujeres.setFont(new Font("helvetica",Font.BOLD,22));
 		
@@ -147,6 +155,7 @@ public class Estadisticas extends JFrame {
 		fondo.add(departamentos);
 		fondo.add(municipios);
 		fondo.add(puestovotacion);
+		fondo.add(localizacion);
 	}
 	
 	public void reestablecerValores()
@@ -161,8 +170,12 @@ public class Estadisticas extends JFrame {
 		rango5.setText("0");
 		rango6.setText("0");
 		departamentos.setSelectedItem("TODOS");
-		municipios.setSelectedItem("SELECCIONE");
-		puestovotacion.setSelectedItem("SELECCIONE PUESTO");
+		municipios.setSelectedItem("TODOS");
+		puestovotacion.setSelectedItem("TODOS");
+		departamentos.setVisible(false);
+		municipios.setVisible(false);
+		puestovotacion.setVisible(false);
+		localizacion.setSelectedItem("PAIS");
 	}
 	public JLabel getRango1() {
 		return rango1;
@@ -199,7 +212,10 @@ public class Estadisticas extends JFrame {
 	public JLabel getNumInscritos() {
 		return numInscritos;
 	}
-
+	
+	public JComboBox<String> getLocalizacion() {
+		return localizacion;
+	}
 
 	public JComboBox<String> getDepartamentos() {
 		return departamentos;
@@ -213,6 +229,8 @@ public class Estadisticas extends JFrame {
 		return puestovotacion;
 	}
 
+	
+	
 	public JButton getMostrar() {
 		return mostrar;
 	}

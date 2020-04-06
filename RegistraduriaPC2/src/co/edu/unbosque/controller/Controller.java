@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -63,6 +64,7 @@ public class Controller implements ActionListener {
 		view.getpEstadisticas().getMostrar().addActionListener(this);
 		view.getpEstadisticas().getDepartamentos().addActionListener(this);
 		view.getpEstadisticas().getMunicipios().addActionListener(this);
+		view.getpEstadisticas().getLocalizacion().addActionListener(this);
 
 		// listeners puestosdevotación
 		view.getpPuestoVotacion().getAgregarpuesto().addActionListener(this);
@@ -77,6 +79,8 @@ public class Controller implements ActionListener {
 		view.getlCiudadano().getValidarinfogeneral().addActionListener(this);
 		view.getlCiudadano().getDepartamentos().addActionListener(this);
 		view.getlCiudadano().getMunicipios().addActionListener(this);
+		view.getlCiudadano().getPuestoVotacion().addActionListener(this);
+		view.getlCiudadano().getLocalizacion().addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent evento) {
@@ -170,7 +174,9 @@ public class Controller implements ActionListener {
 				String[] comboboxes = puestovotacionasignado.split(";");
 				String departamentos = comboboxes[0];
 				String municipios = comboboxes[1];
-				String pdevotacion = comboboxes[2];
+				String pdevotacion1 = comboboxes[2];
+				String pdevotacion2 = comboboxes[3];
+				System.out.println(departamentos+municipios+pdevotacion1+pdevotacion2);
 
 				String fechanac = String.valueOf(fechanacimiento);
 				String fechaexp = String.valueOf(fechaexpedicion);
@@ -188,7 +194,7 @@ public class Controller implements ActionListener {
 				view.getpAgregarModificar().getFexpedicion().setText(fechaexp);
 				view.getpAgregarModificar().getDepartamentos().setSelectedItem(departamentos);
 				view.getpAgregarModificar().getMunicipios().setSelectedItem(municipios);
-				view.getpAgregarModificar().getPuestoVotacion().setSelectedItem(pdevotacion);
+				view.getpAgregarModificar().getPuestoVotacion().setSelectedItem(pdevotacion1+";"+pdevotacion2);
 				view.getpAgregarModificar().setVisible(true);
 				view.getpAgregarModificar().getAgregarCiudadano().setVisible(false);
 				view.getpAgregarModificar().getModificarCiudadano().setVisible(true);
@@ -254,25 +260,31 @@ public class Controller implements ActionListener {
 
 		for (int k = 0; k < 35; k++) {
 			try {
+				
 				// ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME ESTADÍSTICAS
 				if (view.getpEstadisticas().getDepartamentos().getSelectedItem().equals(depar[k])) {
 					for (int i = 0; i < puestosDeVotacion.size(); i++) {
-						if (puestosDeVotacion.get(i).contains(depar[k])) {
+						String[] Depar = puestosDeVotacion.get(i).split(";");
+						String cortar = Depar[0];
+						if (cortar.contains(depar[k])) {
 							String[] divisiones = puestosDeVotacion.get(i).split(";");
 							String municipios = divisiones[1];
 							String puesto1 = divisiones[2];
 							String puesto2 = divisiones[3];
+							
 							if (!validacionmunicipiosestadisticas.equalsIgnoreCase(municipios)) {
 								view.getpEstadisticas().getMunicipios().addItem(municipios);
 							}
+							
 							validacionmunicipiosestadisticas = municipios;
 
 							if (view.getpEstadisticas().getMunicipios().getSelectedItem().equals(municipios)) {
-								view.getpEstadisticas().getPuestovotacion().addItem(puesto1 + puesto2);
+								view.getpEstadisticas().getPuestovotacion().addItem(puesto1 +";"+ puesto2);
 							}
 						}
 					}
 				}
+				
 			} catch (Exception e) {
 
 			}
@@ -298,7 +310,9 @@ public class Controller implements ActionListener {
 			// ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOSADD FRAME PUESTO VOTACION
 			if (view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().equals(depar[k])) {
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
-					if (puestosDeVotacion.get(i).contains(depar[k])) {
+					String[] Depar = puestosDeVotacion.get(i).split(";");
+					String cortar = Depar[0];
+					if (cortar.contains(depar[k])) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String municipios = divisiones[1];
 						if (!validacionmunicipios1.equalsIgnoreCase(municipios)) {
@@ -312,7 +326,9 @@ public class Controller implements ActionListener {
 			if (view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().equals(depar[k])) {
 
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
-					if (puestosDeVotacion.get(i).contains(depar[k])) {
+					String[] Depar = puestosDeVotacion.get(i).split(";");
+					String cortar = Depar[0];
+					if (cortar.contains(depar[k])) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String municipios = divisiones[1];
 						String puesto1 = divisiones[2];
@@ -354,7 +370,7 @@ public class Controller implements ActionListener {
 			}
 
 		}
-		// ACCION ELIMINAR PUESTO DE BOTACION
+		// ACCION ELIMINAR PUESTO DE VOTACIÓN
 		if (evento.getSource() == view.getpPuestoVotacion().getEliminarpuesto()) {
 			String departamento = view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().toString();
 			String municipio = view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().toString();
@@ -391,7 +407,9 @@ public class Controller implements ActionListener {
 			// ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME AGREGAR O MODIFICAR
 			if (view.getpAgregarModificar().getDepartamentos().getSelectedItem().equals(depar[k])) {
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
-					if (puestosDeVotacion.get(i).contains(depar[k])) {
+					String[] Depar = puestosDeVotacion.get(i).split(";");
+					String cortar = Depar[0];
+					if (cortar.contains(depar[k])) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String municipios = divisiones[1];
 						String puesto1 = divisiones[2];
@@ -423,7 +441,9 @@ public class Controller implements ActionListener {
 			// ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOS FRAME LISTAR CIUDADANOS
 			if (view.getlCiudadano().getDepartamentos().getSelectedItem().equals(depar[k])) {
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
-					if (puestosDeVotacion.get(i).contains(depar[k])) {
+					String[] Depar = puestosDeVotacion.get(i).split(";");
+					String cortar = Depar[0];
+					if (cortar.contains(depar[k])) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String municipios = divisiones[1];
 						String puesto1 = divisiones[2];
@@ -433,7 +453,7 @@ public class Controller implements ActionListener {
 						}
 						validacionmunicipiosListarCiudadano = municipios;
 						if (view.getlCiudadano().getMunicipios().getSelectedItem().equals(municipios)) {
-							view.getlCiudadano().getPuestoVotacion().addItem(puesto1 + puesto2);
+							view.getlCiudadano().getPuestoVotacion().addItem(puesto1+";"+puesto2);
 						}
 					}
 				}
@@ -499,6 +519,448 @@ public class Controller implements ActionListener {
 			}
 
 		}
+		
+		
+		if(evento.getSource()==view.getpEstadisticas().getLocalizacion())
+		{
+			if(view.getpEstadisticas().getLocalizacion().getSelectedItem().equals("PAIS"))
+			{
+				view.getpEstadisticas().getDepartamentos().setVisible(false);
+				view.getpEstadisticas().getMunicipios().setVisible(false);
+				view.getpEstadisticas().getPuestovotacion().setVisible(false);
+			}
+			if(view.getpEstadisticas().getLocalizacion().getSelectedItem().equals("DEPARTAMENTOS"))
+			{
+				view.getpEstadisticas().getDepartamentos().setVisible(true);
+				view.getpEstadisticas().getMunicipios().setVisible(false);
+				view.getpEstadisticas().getPuestovotacion().setVisible(false);
+			}
+			if(view.getpEstadisticas().getLocalizacion().getSelectedItem().equals("MUNICIPIOS"))
+			{
+				view.getpEstadisticas().getDepartamentos().setVisible(true);
+				view.getpEstadisticas().getMunicipios().setVisible(true);
+				view.getpEstadisticas().getPuestovotacion().setVisible(false);
+			}
+			if(view.getpEstadisticas().getLocalizacion().getSelectedItem().equals("PUESTOS DE VOTACIÓN"))
+			{
+				view.getpEstadisticas().getDepartamentos().setVisible(true);
+				view.getpEstadisticas().getMunicipios().setVisible(true);
+				view.getpEstadisticas().getPuestovotacion().setVisible(true);
+			}
+			
+		}
+		
+		
+		
+		//AGREGA ESTADÍSTICAS AL PANEL DE ESTADÍSTICAS Y A LAS GRÁFICAS
+		if(evento.getSource()==view.getpEstadisticas().getMostrar())
+		{
+			
+			String localizacion = (String) view.getpEstadisticas().getLocalizacion().getSelectedItem();
+			
+			if(localizacion.equalsIgnoreCase("PAIS"))
+			{
+				int r1 = registraduria.calcularEstadisticasDeEdad(localizacion,"","1",cedulasInscritas);
+				int r2 = registraduria.calcularEstadisticasDeEdad(localizacion,"","2",cedulasInscritas);
+				int r3 = registraduria.calcularEstadisticasDeEdad(localizacion,"","3",cedulasInscritas);
+				int r4 = registraduria.calcularEstadisticasDeEdad(localizacion,"","4",cedulasInscritas);
+				int r5 = registraduria.calcularEstadisticasDeEdad(localizacion,"","5",cedulasInscritas);
+				int r6 = registraduria.calcularEstadisticasDeEdad(localizacion,"","6",cedulasInscritas);
+				
+				int t = r1+r2+r3+r4+r5+r6;
+				
+				if(t==0)
+				{
+					view.mostrarMensajes("SIN_ESTADISTICAS");
+				}
+				else {
+				String total = String.valueOf(t);
+				String rango1 = String.valueOf(r1);
+				String rango2 = String.valueOf(r2);
+				String rango3 = String.valueOf(r3);
+				String rango4 = String.valueOf(r4);
+				String rango5 = String.valueOf(r5);
+				String rango6 = String.valueOf(r6);
+				
+				view.getpEstadisticas().getNumInscritos().setText(total);
+				view.getpEstadisticas().getRango1().setText(rango1);
+				view.getpEstadisticas().getRango2().setText(rango2);
+				view.getpEstadisticas().getRango3().setText(rango3);
+				view.getpEstadisticas().getRango4().setText(rango4);
+				view.getpEstadisticas().getRango5().setText(rango5);
+				view.getpEstadisticas().getRango6().setText(rango6);
+				
+				double[] genero = registraduria.estadisticasGeneroPais(cedulasInscritas);
+				
+				double femenino = genero[0];
+				double masculino = genero[1];
+				
+				String masc = String.valueOf(masculino);
+				String fem = String.valueOf(femenino);
+				
+				view.getpEstadisticas().getPorcHombres().setText(masc);
+				view.getpEstadisticas().getPorcMujeres().setText(fem);
+				
+				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				}
+			}
+			
+			if(localizacion.equalsIgnoreCase("DEPARTAMENTOS"))
+			{
+				String departamento = (String) view.getpEstadisticas().getDepartamentos().getSelectedItem();
+				int r1 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"1",cedulasInscritas);
+				int r2 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"2",cedulasInscritas);
+				int r3 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"3",cedulasInscritas);
+				int r4 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"4",cedulasInscritas);
+				int r5 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"5",cedulasInscritas);
+				int r6 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"6",cedulasInscritas);
+				
+				int t = r1+r2+r3+r4+r5+r6;
+				if(t==0)
+				{
+					view.mostrarMensajes("SIN_ESTADISTICAS");
+				}
+				else {
+				String total = String.valueOf(t);
+				String rango1 = String.valueOf(r1);
+				String rango2 = String.valueOf(r2);
+				String rango3 = String.valueOf(r3);
+				String rango4 = String.valueOf(r4);
+				String rango5 = String.valueOf(r5);
+				String rango6 = String.valueOf(r6);
+				
+				view.getpEstadisticas().getNumInscritos().setText(total);
+				view.getpEstadisticas().getRango1().setText(rango1);
+				view.getpEstadisticas().getRango2().setText(rango2);
+				view.getpEstadisticas().getRango3().setText(rango3);
+				view.getpEstadisticas().getRango4().setText(rango4);
+				view.getpEstadisticas().getRango5().setText(rango5);
+				view.getpEstadisticas().getRango6().setText(rango6);
+				
+				double[] genero = registraduria.estadisticasGeneroDepartamento(departamento,cedulasInscritas);
+				double femenino = genero[0];
+				double masculino = genero[1];
+				
+				String masc = String.valueOf(masculino);
+				String fem = String.valueOf(femenino);
+				
+				view.getpEstadisticas().getPorcHombres().setText(masc);
+				view.getpEstadisticas().getPorcMujeres().setText(fem);
+				
+				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				}
+			}
+		
+			if(localizacion.equalsIgnoreCase("MUNICIPIOS"))
+			{
+				String municipios = (String) view.getpEstadisticas().getMunicipios().getSelectedItem();
+				int r1 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"1",cedulasInscritas);
+				int r2 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"2",cedulasInscritas);
+				int r3 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"3",cedulasInscritas);
+				int r4 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"4",cedulasInscritas);
+				int r5 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"5",cedulasInscritas);
+				int r6 = registraduria.calcularEstadisticasDeEdad(localizacion,municipios,"6",cedulasInscritas);
+				
+				int t = r1+r2+r3+r4+r5+r6;
+				
+				if(t==0)
+				{
+					view.mostrarMensajes("SIN_ESTADISTICAS");
+				}
+				else
+				{
+				String total = String.valueOf(t);
+				String rango1 = String.valueOf(r1);
+				String rango2 = String.valueOf(r2);
+				String rango3 = String.valueOf(r3);
+				String rango4 = String.valueOf(r4);
+				String rango5 = String.valueOf(r5);
+				String rango6 = String.valueOf(r6);
+				
+				view.getpEstadisticas().getNumInscritos().setText(total);
+				view.getpEstadisticas().getRango1().setText(rango1);
+				view.getpEstadisticas().getRango2().setText(rango2);
+				view.getpEstadisticas().getRango3().setText(rango3);
+				view.getpEstadisticas().getRango4().setText(rango4);
+				view.getpEstadisticas().getRango5().setText(rango5);
+				view.getpEstadisticas().getRango6().setText(rango6);
+				
+				double[] genero = registraduria.estadisticasGeneroMunicipio(municipios,cedulasInscritas);
+				double femenino = genero[0];
+				double masculino = genero[1];
+				
+				String masc = String.valueOf(masculino);
+				String fem = String.valueOf(femenino);
+				
+				view.getpEstadisticas().getPorcHombres().setText(masc);
+				view.getpEstadisticas().getPorcMujeres().setText(fem);
+				
+				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				}
+			}
+			if(localizacion.equalsIgnoreCase("PUESTOS DE VOTACIÓN"))
+			{
+				String pVotacion = (String) view.getpEstadisticas().getPuestovotacion().getSelectedItem();
+				int r1 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"1",cedulasInscritas);
+				int r2 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"2",cedulasInscritas);
+				int r3 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"3",cedulasInscritas);
+				int r4 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"4",cedulasInscritas);
+				int r5 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"5",cedulasInscritas);
+				int r6 = registraduria.calcularEstadisticasDeEdad(localizacion,pVotacion,"6",cedulasInscritas);
+				
+				int t = r1+r2+r3+r4+r5+r6;
+				
+				if(t==0)
+				{
+					view.mostrarMensajes("SIN_ESTADISTICAS");
+				}
+				else
+				{
+				String total = String.valueOf(t);
+				String rango1 = String.valueOf(r1);
+				String rango2 = String.valueOf(r2);
+				String rango3 = String.valueOf(r3);
+				String rango4 = String.valueOf(r4);
+				String rango5 = String.valueOf(r5);
+				String rango6 = String.valueOf(r6);
+				
+				view.getpEstadisticas().getNumInscritos().setText(total);
+				view.getpEstadisticas().getRango1().setText(rango1);
+				view.getpEstadisticas().getRango2().setText(rango2);
+				view.getpEstadisticas().getRango3().setText(rango3);
+				view.getpEstadisticas().getRango4().setText(rango4);
+				view.getpEstadisticas().getRango5().setText(rango5);
+				view.getpEstadisticas().getRango6().setText(rango6);
+				
+				double[] genero = registraduria.estadisticasGeneroPuesto(pVotacion,cedulasInscritas);
+				double femenino = genero[0];
+				double masculino = genero[1];
+				
+				String masc = String.valueOf(masculino);
+				String fem = String.valueOf(femenino);
+				
+				view.getpEstadisticas().getPorcHombres().setText(masc);
+				view.getpEstadisticas().getPorcMujeres().setText(fem);
+				
+				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				}
+			}
+		}
+		
+		
+		//AGREGA EL LISTADO DE CIUDADANO INDIVIDUALMENTE INSCRITOS AL PANEL LISTAR CIUDADANOS
+		if(evento.getSource()==view.getlCiudadano().getValidarCedula())
+		{
+			String validarcedula = view.getlCiudadano().getCedula().getText();
+			
+			Ciudadano ciudadano = ciudadanodao.buscarCiudadano(validarcedula, cedulasInscritas);
+			
+			if(ciudadano==null)
+			{
+				view.mostrarMensajes("NO_EXISTE");
+			}
+			else {
+			String cedula = ciudadano.getNumerocedula();
+			String nombre1 = ciudadano.getNombre1();
+			String nombre2 = ciudadano.getNombre2();
+			String apellido1 = ciudadano.getApellido1();
+			String apellido2 = ciudadano.getApellido2();
+			String lNacimiento = ciudadano.getLugardenacimiento();
+			String genero = ciudadano.getGenero();
+			String lexpedicion = ciudadano.getLugarexpedicioncedula();
+			Date fNacimiento = ciudadano.getFechanacimiento();
+			Date fExpedicion = ciudadano.getFechaexpedicion();
+			String pVotacion = ciudadano.getPuestovotacionasignado();
+			
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			String fechaNac = sdf.format(fNacimiento);
+			String fechaExp = sdf.format(fExpedicion);
+			
+			view.getlCiudadano().getInfoCiudadano().setValueAt(cedula.toUpperCase(), 0, 0);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(apellido1.toUpperCase(), 0, 1);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(apellido2.toUpperCase(), 0, 2);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(nombre1.toUpperCase(), 0, 3);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(nombre2.toUpperCase(), 0, 4);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(fechaNac.toUpperCase(), 0, 5);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(lNacimiento.toUpperCase(), 0, 6);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(fechaExp.toUpperCase(), 0, 7);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(lexpedicion.toUpperCase(), 0, 8);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(genero.toUpperCase(), 0, 9);
+			view.getlCiudadano().getInfoCiudadano().setValueAt(pVotacion.toUpperCase(), 0, 10);
+			}
+		}
+		
+		
+		
+		if(evento.getSource()==view.getlCiudadano().getLocalizacion())
+		{
+			if(view.getlCiudadano().getLocalizacion().getSelectedItem().equals("PAIS"))
+			{
+				view.getlCiudadano().getDepartamentos().setVisible(false);
+				view.getlCiudadano().getMunicipios().setVisible(false);
+				view.getlCiudadano().getPuestoVotacion().setVisible(false);
+				
+			}
+			if(view.getlCiudadano().getLocalizacion().getSelectedItem().equals("DEPARTAMENTOS"))
+			{
+				view.getlCiudadano().getDepartamentos().setVisible(true);
+				view.getlCiudadano().getMunicipios().setVisible(false);
+				view.getlCiudadano().getPuestoVotacion().setVisible(false);
+			}
+			if(view.getlCiudadano().getLocalizacion().getSelectedItem().equals("MUNICIPIOS"))
+			{
+				view.getlCiudadano().getDepartamentos().setVisible(true);
+				view.getlCiudadano().getMunicipios().setVisible(true);
+				view.getlCiudadano().getPuestoVotacion().setVisible(false);
+			}
+			if(view.getlCiudadano().getLocalizacion().getSelectedItem().equals("PUESTOS DE VOTACIÓN"))
+			{
+				view.getlCiudadano().getDepartamentos().setVisible(true);
+				view.getlCiudadano().getMunicipios().setVisible(true);
+				view.getlCiudadano().getPuestoVotacion().setVisible(true);
+			}
+		}
+		
+		
+		//AGREGA LA INFORMACIÓN GENERAL DE TODOS LOS INSCRITOS 
+		
+		if(evento.getSource()==view.getlCiudadano().getValidarinfogeneral())
+		{
+			String validacion = (String) view.getlCiudadano().getLocalizacion().getSelectedItem();
+			
+			if(validacion.equalsIgnoreCase("PAIS"))
+			{	
+				
+				
+				for(int i = 0; i<cedulasInscritas.size();i++)
+				{
+					Date fNacimiento = cedulasInscritas.get(i).getFechanacimiento();
+					Date fExpedicion = cedulasInscritas.get(i).getFechaexpedicion();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+					String fechaNac = sdf.format(fNacimiento);
+					String fechaExp = sdf.format(fExpedicion);
+					
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNumerocedula().toUpperCase(), i, 0);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido1().toUpperCase(), i, 1);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido2().toUpperCase(), i, 2);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre1().toUpperCase(), i, 3);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre2().toUpperCase(), i, 4);
+					view.getlCiudadano().getInfoGeneral().setValueAt(fechaNac.toUpperCase(), i, 5);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugardenacimiento().toUpperCase(), i, 6);
+					view.getlCiudadano().getInfoGeneral().setValueAt(fechaExp.toUpperCase(), i, 7);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugarexpedicioncedula().toUpperCase(), i, 8);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getGenero().toUpperCase(), i, 9);
+					view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getPuestovotacionasignado().toUpperCase(), i, 10);
+					
+				}
+			}
+			
+			if(validacion.equalsIgnoreCase("DEPARTAMENTOS"))
+			{
+				String validarDepartamento = (String) view.getlCiudadano().getDepartamentos().getSelectedItem();
+				int posicion = 0;
+				for(int i = 0; i<cedulasInscritas.size();i++)
+				{
+					String[] dividir = cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+					String departamento = dividir[0];
+					
+				if(departamento.equalsIgnoreCase(validarDepartamento))
+				{
+				Date fNacimiento = cedulasInscritas.get(i).getFechanacimiento();
+				Date fExpedicion = cedulasInscritas.get(i).getFechaexpedicion();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				String fechaNac = sdf.format(fNacimiento);
+				String fechaExp = sdf.format(fExpedicion);
+				
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNumerocedula().toUpperCase(),posicion, 0);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido1().toUpperCase(),posicion, 1);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido2().toUpperCase(),posicion, 2);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre1().toUpperCase(),posicion, 3);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre2().toUpperCase(),posicion, 4);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaNac.toUpperCase(),posicion, 5);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugardenacimiento().toUpperCase(),posicion, 6);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaExp.toUpperCase(),posicion, 7);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugarexpedicioncedula().toUpperCase(),posicion, 8);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getGenero().toUpperCase(),posicion, 9);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getPuestovotacionasignado().toUpperCase(),posicion, 10);
+				posicion++;
+					}
+				}
+			}
+			if(validacion.equalsIgnoreCase("MUNICIPIOS"))
+			{
+				String validarMunicipio = (String) view.getlCiudadano().getMunicipios().getSelectedItem();
+				int posicion = 0;
+				for(int i = 0; i<cedulasInscritas.size();i++)
+				{
+					String[] dividir = cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+					String municipios = dividir[1];
+					
+				if(municipios.equalsIgnoreCase(validarMunicipio))
+				{
+				Date fNacimiento = cedulasInscritas.get(i).getFechanacimiento();
+				Date fExpedicion = cedulasInscritas.get(i).getFechaexpedicion();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				String fechaNac = sdf.format(fNacimiento);
+				String fechaExp = sdf.format(fExpedicion);
+				
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNumerocedula().toUpperCase(),posicion, 0);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido1().toUpperCase(),posicion, 1);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido2().toUpperCase(),posicion, 2);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre1().toUpperCase(),posicion, 3);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre2().toUpperCase(),posicion, 4);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaNac.toUpperCase(),posicion, 5);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugardenacimiento().toUpperCase(),posicion, 6);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaExp.toUpperCase(),posicion, 7);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugarexpedicioncedula().toUpperCase(),posicion, 8);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getGenero().toUpperCase(),posicion, 9);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getPuestovotacionasignado().toUpperCase(),posicion, 10);
+				posicion++;
+					}
+				}
+			}
+			
+			if(validacion.equalsIgnoreCase("PUESTOS DE VOTACIÓN"))
+			{
+				String validarPuestoVotacion = (String) view.getlCiudadano().getPuestoVotacion().getSelectedItem();
+				int posicion = 0;
+				for(int i = 0; i<cedulasInscritas.size();i++)
+				{
+					String[] dividir = cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+					String puestodevotacion = dividir[2].concat(";"+dividir[3]);
+					
+				if(puestodevotacion.equalsIgnoreCase(validarPuestoVotacion))
+				{
+				Date fNacimiento = cedulasInscritas.get(i).getFechanacimiento();
+				Date fExpedicion = cedulasInscritas.get(i).getFechaexpedicion();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+				String fechaNac = sdf.format(fNacimiento);
+				String fechaExp = sdf.format(fExpedicion);
+				
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNumerocedula().toUpperCase(),posicion, 0);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido1().toUpperCase(),posicion, 1);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getApellido2().toUpperCase(),posicion, 2);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre1().toUpperCase(),posicion, 3);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getNombre2().toUpperCase(),posicion, 4);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaNac.toUpperCase(),posicion, 5);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugardenacimiento().toUpperCase(),posicion, 6);
+				view.getlCiudadano().getInfoGeneral().setValueAt(fechaExp.toUpperCase(),posicion, 7);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getLugarexpedicioncedula().toUpperCase(),posicion, 8);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getGenero().toUpperCase(),posicion, 9);
+				view.getlCiudadano().getInfoGeneral().setValueAt(cedulasInscritas.get(i).getPuestovotacionasignado().toUpperCase(),posicion, 10);
+				posicion++;
+					}
+				}
+			}
+			
+			
+		}
+		
 
 	}
 

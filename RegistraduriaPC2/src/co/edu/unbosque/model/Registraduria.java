@@ -82,14 +82,15 @@ public class Registraduria  {
 		
 		case "1":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+				
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
 				}
 			}
@@ -97,14 +98,14 @@ public class Registraduria  {
 			
 		case "2":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion)& cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion)& cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
 				}
 			}
@@ -112,14 +113,14 @@ public class Registraduria  {
 			
 		case "3":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
 				}
 			}
@@ -127,14 +128,14 @@ public class Registraduria  {
 			
 		case "4":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
 				}
 			}
@@ -142,14 +143,14 @@ public class Registraduria  {
 			
 		case "5":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66) {
 					cant++;
 				}
 			}
@@ -157,14 +158,14 @@ public class Registraduria  {
 			
 		case "6":
 			for(int i = 0; i < cedulasInscritas.size(); i++) {
-				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
+				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamento") & cedulasInscritas.get(i).transformarDate() >= 67) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Municipio") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
+				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puesto de votacion") & aux[2].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
 				}
 			}
@@ -263,17 +264,19 @@ public class Registraduria  {
 		double porcentajem, porcentajef;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 			String aux=cedulasInscritas.get(i).getGenero();
-		
+			System.out.println(aux);
 			if(aux.equalsIgnoreCase("Femenino")){
-			f+=1;
+			f++;
 			}else {
 			
-			m+=1;	
+			m++;	
 			}
 			
 		}
+		
+		
 
-		porcentajef=(f/cedulasInscritas.size())*100;
+		porcentajef=(f*100)/(f+m);
 		porcentajem=100-porcentajef;
 		double [] porcentajes= new double[2];
 		porcentajes[0]=porcentajef;
@@ -287,29 +290,37 @@ public class Registraduria  {
 		double porcentajem, porcentajef;
 		
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
-		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
-			if(aux[0]==departamento) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+			if(aux[0].equalsIgnoreCase(departamento)) 
+			{
 				String auxg=cedulasInscritas.get(i).getGenero();
 			
 				if(auxg.equalsIgnoreCase("Femenino")) {
-					f+=1;
+					f++;
 				}else {
 			
-					m+=1;	
+					m++;	
 				}
 			
 			}
 		
 		}
-		
-		porcentajef=(f/(f+m))*100;
+		try {
+		porcentajef=(f*100)/(f+m);
 		porcentajem=100-porcentajef;
+		
 		
 		double [] porcentajes= new double[2];
 		porcentajes[0]=porcentajef;
 		porcentajes[1]= porcentajem;
 		
 	return porcentajes;
+		}
+	catch(ArithmeticException e)
+	{
+		return null;
+	}
+	
 	}
 		
 	public double [] estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
@@ -317,8 +328,8 @@ public class Registraduria  {
 		double porcentajem, porcentajef;
 		
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
-		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
-			if(aux[1]==municipio) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+			if(aux[1].equalsIgnoreCase(municipio)) {
 				String auxg=cedulasInscritas.get(i).getGenero();
 			
 				if(auxg.equalsIgnoreCase("Femenino")) {
@@ -331,15 +342,20 @@ public class Registraduria  {
 			}
 		
 		}
-		
-		porcentajef=(f/(f+m))*100;
+		try {
+		porcentajef=(f*100)/(f+m);
 		porcentajem=100-porcentajef;
 		
 		double [] porcentajes= new double[2];
 		porcentajes[0]=porcentajef;
 		porcentajes[1]= porcentajem;
 		
-	return porcentajes;
+		return porcentajes;
+		}
+		catch(ArithmeticException e)
+		{
+			return null;
+		}
 	}
 	
 	public double [] estadisticasGeneroPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
@@ -347,8 +363,9 @@ public class Registraduria  {
 		double porcentajem, porcentajef;
 		
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
-		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(",");
-			if(aux[2]==puesto) {
+		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
+		String mun = aux[2].concat(aux[3]);
+			if(mun.equalsIgnoreCase(puesto)) {
 				String auxg=cedulasInscritas.get(i).getGenero();
 			
 				if(auxg.equalsIgnoreCase("Femenino")) {
@@ -361,14 +378,19 @@ public class Registraduria  {
 			}
 		
 		}
-		
-		porcentajef=(f/(f+m))*100;
+		try {
+		porcentajef=(f*100)/(f+m);
 		porcentajem=100-porcentajef;
 		double [] porcentajes= new double[2];
 		porcentajes[0]=porcentajef;
 		porcentajes[1]= porcentajem;
 		
-	return porcentajes;
+		return porcentajes;
+		}
+		catch(ArithmeticException e)
+		{
+			return null;
+		}
 		
 	}
 	
