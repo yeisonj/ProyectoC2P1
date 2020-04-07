@@ -204,16 +204,18 @@ public class Controller implements ActionListener {
 				fechanacimiento = ciudadanoamodificar.getFechanacimiento();
 				fechaexpedicion = ciudadanoamodificar.getFechaexpedicion();
 				puestovotacionasignado = ciudadanoamodificar.getPuestovotacionasignado();
-
+				System.out.println(fechanacimiento);
+				System.out.println(fechaexpedicion);
 				String[] comboboxes = puestovotacionasignado.split(";");
 				String departamentos = comboboxes[0];
 				String municipios = comboboxes[1];
 				String pdevotacion1 = comboboxes[2];
 				String pdevotacion2 = comboboxes[3];
 				
-
-				String fechanac = String.valueOf(fechanacimiento);
-				String fechaexp = String.valueOf(fechaexpedicion);
+				SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+				String fechanac = f.format(fechanacimiento);
+				String fechaexp = f.format(fechaexpedicion);
+				
 
 				view.getpAgregarModificar().getCedula().setText(numcedula);
 				view.getpAgregarModificar().getCedula().setEnabled(false);
