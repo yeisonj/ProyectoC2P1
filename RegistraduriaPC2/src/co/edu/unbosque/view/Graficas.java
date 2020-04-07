@@ -2,6 +2,9 @@ package co.edu.unbosque.view;
 
 
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +22,6 @@ public class Graficas extends JFrame{
 	private JLabel fondo;
 	private ChartPanel genero1;
 	private ChartPanel rango1;
-	private DefaultPieDataset p;
 	
 	
 	public Graficas()
@@ -48,11 +50,9 @@ public class Graficas extends JFrame{
 	}
 	
 	
-	public void graficasTorta(double femenino, double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
+	public void graficasTorta( double femenino, double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
 	{	
-		
-		p = new DefaultPieDataset();
-		p.addChangeListener(null);
+		DefaultPieDataset p = new DefaultPieDataset();
 		p.setValue("Hombres", masculino);
 		p.setValue("Mujeres", femenino);
 	
@@ -79,7 +79,6 @@ public class Graficas extends JFrame{
 		
 		fondo.add(genero1);
 		fondo.add(rango1);
-		
 		
 		
 	}
@@ -130,7 +129,9 @@ public class Graficas extends JFrame{
 			    
 			    fondo.add(barras);
 			    fondo.add(barras2);
+			
 	}
+	
 	
 	
 	
