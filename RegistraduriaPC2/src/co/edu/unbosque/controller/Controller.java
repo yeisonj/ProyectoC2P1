@@ -182,7 +182,7 @@ public class Controller implements ActionListener {
 				view.getpAgregarModificar().getApellido1().setText(apellido1);
 				view.getpAgregarModificar().getApellido2().setText(apellido2);
 				view.getpAgregarModificar().getlNacimiento().setText(lugardenacimiento);
-				view.getpAgregarModificar().getSexo().setText(genero);
+				view.getpAgregarModificar().getSexo().setSelectedItem(genero);
 				view.getpAgregarModificar().getLexpedicion().setText(lugarexpedicioncedula);
 				view.getpAgregarModificar().getfNacimiento().setText(fechanac);
 				view.getpAgregarModificar().getFexpedicion().setText(fechaexp);
@@ -448,7 +448,7 @@ public class Controller implements ActionListener {
 			String apellido1 = view.getpAgregarModificar().getApellido1().getText();
 			String apellido2 = view.getpAgregarModificar().getApellido2().getText();
 			String lugardenacimiento = view.getpAgregarModificar().getlNacimiento().getText();
-			String genero = view.getpAgregarModificar().getSexo().getText();
+			String genero = view.getpAgregarModificar().getSexo().getSelectedItem().toString();
 			String lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion().getText();
 			String fechanacimiento = view.getpAgregarModificar().getfNacimiento().getText();
 			String fechaexpedicion = view.getpAgregarModificar().getFexpedicion().getText();
@@ -457,7 +457,7 @@ public class Controller implements ActionListener {
 			String pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
 			String puestovotacionasignado = departamento + ";" + municipios + ";" + pvotacion;
 			boolean verificacion = true;
-			if (numcedula.isEmpty() || nombre1.isEmpty() || nombre2.isEmpty() || apellido1.isEmpty()
+			if (numcedula.isEmpty() || nombre1.isEmpty() || apellido1.isEmpty()
 					|| apellido2.isEmpty() || lugardenacimiento.isEmpty() || genero.isEmpty()
 					|| lugarexpedicioncedula.isEmpty() || fechaexpedicion.isEmpty() || fechanacimiento.isEmpty()
 					|| puestovotacionasignado.isEmpty()) {
