@@ -86,10 +86,16 @@ public class Graficas extends JFrame{
 	
 	public void graficasBarras(double femenino,double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
 	{
+		int total = r1+r2+r3+r4+r5+r6;
+		
+		int masc = (int) (masculino*total/100);
+		int fem = (int) (femenino*total/100);
+		
 	
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(masculino, "HOMBRES", "hombres");
-		dataset.addValue(femenino, "MUJERES", "mujeres");
+	
+		dataset.addValue(masc, "HOMBRES", "hombres");
+		dataset.addValue(fem, "MUJERES", "mujeres");
 		
 		
 		 JFreeChart chart=ChartFactory.createBarChart("",

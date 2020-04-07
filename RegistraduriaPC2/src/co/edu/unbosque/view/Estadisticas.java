@@ -93,12 +93,12 @@ public class Estadisticas extends JFrame {
 		puestovotacion.addItem("SELECCIONE PUESTO");
 		
 		porcHombres = new JLabel("0");
-		porcHombres.setBounds(255,264,50,20);
+		porcHombres.setBounds(255,264,70,20);
 		porcHombres.setForeground(Color.RED);
 		porcHombres.setFont(new Font("helvetica",Font.BOLD,22));
 		
 		porcMujeres = new JLabel("0");
-		porcMujeres.setBounds(583,265,50,20);
+		porcMujeres.setBounds(583,265,70,20);
 		porcMujeres.setForeground(Color.RED);
 		porcMujeres.setFont(new Font("helvetica",Font.BOLD,22));
 		

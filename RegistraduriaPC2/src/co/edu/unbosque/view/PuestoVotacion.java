@@ -70,13 +70,13 @@ public class PuestoVotacion extends JFrame {
 		municipiosadd.addItem("SELECCIONE");
 		
 		nombrePuesto = new JTextField();
-		nombrePuesto.setBounds(340,185,230,35);
+		nombrePuesto.setBounds(340,250,230,35);
 		nombrePuesto.setFont(new Font("helvetica",Font.PLAIN,17));
 		nombrePuesto.setHorizontalAlignment(JTextField.CENTER);
 		nombrePuesto.setToolTipText("Introduzca el nombre del Nuevo puesto de Votación");
 		
 		direccionPuesto= new JTextField();
-		direccionPuesto.setBounds(340,250,230,35);
+		direccionPuesto.setBounds(340,185,230,35);
 		direccionPuesto.setFont(new Font("helvetica",Font.PLAIN,17));
 		direccionPuesto.setHorizontalAlignment(JTextField.CENTER);
 		direccionPuesto.setToolTipText("Introduzca la dirección del Nuevo puesto de votación");

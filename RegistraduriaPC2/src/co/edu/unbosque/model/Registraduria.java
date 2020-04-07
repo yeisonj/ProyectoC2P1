@@ -258,6 +258,26 @@ public class Registraduria  {
 		return prueba;
 	}
 	
+	public ArrayList<String> mostrarmunicipios(ArrayList <String> puestosDeVotacion)
+	{
+		ArrayList<String> prueba = new ArrayList<String>();
+		String validar = "1";
+		
+		for(int i= 0; i<puestosDeVotacion.size(); i++)
+		{
+			String[] divisiones =puestosDeVotacion.get(i).split(";");
+			String municipios = divisiones[1];
+			
+				if(!validar.contentEquals(municipios))
+					{
+							prueba.add(municipios);	
+					}
+			validar = municipios;
+			
+		}
+		return prueba;
+	}
+	
 	public double[] estadisticasGeneroPais(ArrayList <Ciudadano> cedulasInscritas) {
 		
 		int m=0, f=0;
@@ -364,7 +384,7 @@ public class Registraduria  {
 		
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
 		String[] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
-		String mun = aux[2].concat(aux[3]);
+		String mun = aux[2].concat(";"+aux[3]);
 			if(mun.equalsIgnoreCase(puesto)) {
 				String auxg=cedulasInscritas.get(i).getGenero();
 			
