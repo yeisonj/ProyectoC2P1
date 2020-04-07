@@ -180,6 +180,33 @@ public class ListarCiudadano extends JFrame {
 		municipios.setSelectedItem("SELECCIONE");
 		puestoVotacion.setSelectedItem("SELECCIONE PUESTO");
 		
+		infoCiudadano.setValueAt("", 0, 0);
+		infoCiudadano.setValueAt("", 0, 1);
+		infoCiudadano.setValueAt("", 0, 2);
+		infoCiudadano.setValueAt("", 0, 3);
+		infoCiudadano.setValueAt("", 0, 4);
+		infoCiudadano.setValueAt("", 0, 5);
+		infoCiudadano.setValueAt("", 0, 6);
+		infoCiudadano.setValueAt("", 0, 7);
+		infoCiudadano.setValueAt("", 0, 8);
+		infoCiudadano.setValueAt("", 0, 9);
+		infoCiudadano.setValueAt("", 0, 10);
+		
+		for(int i=0;i<30;i++)
+		{
+			infoGeneral.setValueAt("", i, 0);
+			infoGeneral.setValueAt("", i, 1);
+			infoGeneral.setValueAt("", i, 2);
+			infoGeneral.setValueAt("", i, 3);
+			infoGeneral.setValueAt("", i, 4);
+			infoGeneral.setValueAt("", i, 5);
+			infoGeneral.setValueAt("", i, 6);
+			infoGeneral.setValueAt("", i, 7);
+			infoGeneral.setValueAt("", i, 8);
+			infoGeneral.setValueAt("", i, 9);
+			infoGeneral.setValueAt("", i, 10);
+		}
+		
 	}
 
 	

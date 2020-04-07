@@ -1,8 +1,13 @@
 package co.edu.unbosque.controller;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -120,6 +125,7 @@ public class Controller implements ActionListener {
 		if (evento.getSource() == view.getpPrincipal().getbPuestoVotacion()) {
 			view.getpPuestoVotacion().setVisible(true);
 			view.getpPuestoVotacion().reestablecerValores();
+			view.getpPuestoVotacion().getMunicipiosdelete().removeAllItems();
 			// carga de combobox departamentos en frame puesto de votación
 			String validaciondepartamentos = "1";
 			for (int i = 0; i < puestosDeVotacion.size(); i++) {
@@ -131,7 +137,6 @@ public class Controller implements ActionListener {
 				}
 				validaciondepartamentos = departamentos;
 			}
-
 		}
 
 		// ACCIÓN BOTÓN GRÁFICAS
@@ -188,7 +193,7 @@ public class Controller implements ActionListener {
 				view.getpAgregarModificar().getApellido1().setText(apellido1);
 				view.getpAgregarModificar().getApellido2().setText(apellido2);
 				view.getpAgregarModificar().getlNacimiento().setText(lugardenacimiento);
-				view.getpAgregarModificar().getSexo().setText(genero);
+				view.getpAgregarModificar().getSexo().setSelectedItem(genero);
 				view.getpAgregarModificar().getLexpedicion().setText(lugarexpedicioncedula);
 				view.getpAgregarModificar().getfNacimiento().setText(fechanac);
 				view.getpAgregarModificar().getFexpedicion().setText(fechaexp);
@@ -208,6 +213,7 @@ public class Controller implements ActionListener {
 		// ACCIÓN BOTÓN INFORMACIÓN
 		if (evento.getSource() == view.getpCiudadano().getMostrarInformacionCiudadano()) {
 			view.getlCiudadano().setVisible(true);
+			view.getlCiudadano().reestablecerValores();
 			String validaciondepartamentos = "1";
 			for (int i = 0; i < puestosDeVotacion.size(); i++) {
 				String[] divisiones = puestosDeVotacion.get(i).split(";");
@@ -290,7 +296,7 @@ public class Controller implements ActionListener {
 			}
 
 		}
-
+		
 		// ACCIÓN COMBOBOX DEPARTAMENTOSADD FRAME PUESTOVOTACIÓN
 		if (evento.getSource() == view.getpPuestoVotacion().getDepartamentosadd()) {
 			view.getpPuestoVotacion().getMunicipiosadd().removeAllItems();
@@ -302,8 +308,11 @@ public class Controller implements ActionListener {
 		// ACCIÓN COMBOBOX MUNICIPIOS DELETE FRAME PUESTO VOTACIÓN
 		if (evento.getSource() == view.getpPuestoVotacion().getMunicipiosdelete()) {
 			view.getpPuestoVotacion().getPuestovotaciondelete().removeAllItems();
+			System.out.println("este");
+			
 		}
-
+		
+		
 		// agrega combobox de puesto de votación al frame puestovotación
 
 		for (int k = 0; k < 35; k++) {
@@ -324,10 +333,11 @@ public class Controller implements ActionListener {
 			}
 			// ACCIÓN AL SELECCIONAR ITEM COMBOBOX DEPARTAMENTOSDELETE FRAME PUESTOVOTACIÓN
 			if (view.getpPuestoVotacion().getDepartamentosdelete().getSelectedItem().equals(depar[k])) {
-
+				view.getpPuestoVotacion().getPuestovotaciondelete().removeAllItems();
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
 					String[] Depar = puestosDeVotacion.get(i).split(";");
 					String cortar = Depar[0];
+					String cor = Depar[1];
 					if (cortar.contains(depar[k])) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String municipios = divisiones[1];
@@ -340,35 +350,41 @@ public class Controller implements ActionListener {
 						if (view.getpPuestoVotacion().getMunicipiosdelete().getSelectedItem().equals(municipios)) {
 							view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 +";"+ puesto2);
 						}
+						
 					}
+					
 				}
 			}
 		}
+		
+		
+		
 		// ACCION AGREGAR PUESTO DE VOTACION
 		if (evento.getSource() == view.getpPuestoVotacion().getAgregarpuesto()) {
-			String departamento = view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem().toString();
-			String municipio = view.getpPuestoVotacion().getMunicipiosadd().getSelectedItem().toString();
+			String departamento = (String) view.getpPuestoVotacion().getDepartamentosadd().getSelectedItem();
+			String municipio = (String) view.getpPuestoVotacion().getMunicipiosadd().getSelectedItem();
 			String nombrePuesto = view.getpPuestoVotacion().getNombrepuesto().getText();
 			String direccionPuesto = view.getpPuestoVotacion().getDireccionpuesto().getText();
-			boolean existe = false;
-			if (departamento.equals("SELECCIONE") || municipio.equals("SELECCIONE") || nombrePuesto.isEmpty()
+			boolean existe = true;
+			if (departamento.equals("SELECCIONE") || nombrePuesto.isEmpty()
 					|| direccionPuesto.isEmpty()) {
 				view.mostrarMensajes("AGREGARPUESTO_BLANCO");
-			} else if (existe == false) {
+			} else {
 				for (int i = 0; i < puestosDeVotacion.size(); i++) {
 					if (puestosDeVotacion.get(i)
-							.equals(departamento + ";" + municipio + ";" + nombrePuesto + ";" + direccionPuesto)) {
+							.equals(departamento + ";" + municipio + ";" + direccionPuesto + ";" +nombrePuesto )) {
 						view.mostrarMensajes("AGREGARPUESTO_FALSE");
 						i = puestosDeVotacion.size();
-						existe = true;
+						existe = false;
 					}
-				}
-
-			} else if (existe == false) {
-				puestosDeVotacion.add(departamento + ";" + municipio + ";" + nombrePuesto + ";" + direccionPuesto);
+					}
+			if(existe == true) {
+				puestosDeVotacion.add(departamento + ";" + municipio + ";" + direccionPuesto + ";" +nombrePuesto);
 				view.mostrarMensajes("AGREGARPUESTO_TRUE");
+			
+				}
+			
 			}
-
 		}
 		// ACCION ELIMINAR PUESTO DE VOTACIÓN
 		if (evento.getSource() == view.getpPuestoVotacion().getEliminarpuesto()) {
@@ -461,6 +477,7 @@ public class Controller implements ActionListener {
 		}
 
 		if (evento.getSource() == view.getpAgregarModificar().getAgregarCiudadano()) {
+			
 			Ciudadano nuevo;
 			String numcedula = view.getpAgregarModificar().getCedula().getText();
 			String nombre1 = view.getpAgregarModificar().getNombre1().getText();
@@ -468,7 +485,7 @@ public class Controller implements ActionListener {
 			String apellido1 = view.getpAgregarModificar().getApellido1().getText();
 			String apellido2 = view.getpAgregarModificar().getApellido2().getText();
 			String lugardenacimiento = view.getpAgregarModificar().getlNacimiento().getText();
-			String genero = view.getpAgregarModificar().getSexo().getText();
+			String genero = (String) view.getpAgregarModificar().getSexo().getSelectedItem();
 			String lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion().getText();
 			String fechanacimiento = view.getpAgregarModificar().getfNacimiento().getText();
 			String fechaexpedicion = view.getpAgregarModificar().getFexpedicion().getText();
@@ -477,13 +494,20 @@ public class Controller implements ActionListener {
 			String pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
 			String puestovotacionasignado = departamento + ";" + municipios + ";" + pvotacion;
 			boolean verificacion = true;
+			
 			if (numcedula.isEmpty() || nombre1.isEmpty() || apellido1.isEmpty()
 					|| apellido2.isEmpty() || lugardenacimiento.isEmpty() || genero.isEmpty()
 					|| lugarexpedicioncedula.isEmpty() || fechaexpedicion.isEmpty() || fechanacimiento.isEmpty()
-					|| puestovotacionasignado.isEmpty()) {
+					|| puestovotacionasignado.isEmpty())
+			{
 				view.mostrarMensajes("DEBE_LLENAR_CAMPOS");
-
-			} else {
+			} 
+			else {
+				if(!numcedula.matches("[0-9]*"))
+				{
+					view.mostrarMensajes("CEDULA_INVALIDA");
+				}
+				else {
 				for (int i = 0; i < cedulasInscritas.size(); i++) {
 
 					if (cedulasInscritas.get(i).getNumerocedula().equalsIgnoreCase(numcedula)) {
@@ -512,10 +536,12 @@ public class Controller implements ActionListener {
 
 					ciudadanodao.agregarCiudadano(numcedula, nuevo, cedulasInscritas);
 					view.mostrarMensajes("CREAR_TRUE");
+					view.getpAgregarModificar().setVisible(false);
 				} else {
 					view.mostrarMensajes("CREAR_FALSE");
 				}
 
+			}
 			}
 
 		}
@@ -758,7 +784,12 @@ public class Controller implements ActionListener {
 			String validarcedula = view.getlCiudadano().getCedula().getText();
 			
 			Ciudadano ciudadano = ciudadanodao.buscarCiudadano(validarcedula, cedulasInscritas);
-			
+			if(!validarcedula.matches("[0-9]*"))
+			{
+				view.mostrarMensajes("CEDULA_INVALIDA");
+			}
+			else
+			{
 			if(ciudadano==null)
 			{
 				view.mostrarMensajes("NO_EXISTE");
@@ -792,6 +823,7 @@ public class Controller implements ActionListener {
 			view.getlCiudadano().getInfoCiudadano().setValueAt(lexpedicion.toUpperCase(), 0, 8);
 			view.getlCiudadano().getInfoCiudadano().setValueAt(genero.toUpperCase(), 0, 9);
 			view.getlCiudadano().getInfoCiudadano().setValueAt(pVotacion.toUpperCase(), 0, 10);
+			}
 			}
 		}
 		

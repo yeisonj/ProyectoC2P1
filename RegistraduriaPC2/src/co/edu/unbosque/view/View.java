@@ -124,6 +124,11 @@ public class View extends JFrame {
 		{
 			JOptionPane.showMessageDialog(null,"NO HAY CIUDADANOS REGISTRADOS");
 		}
+		
+		if(mensaje.equalsIgnoreCase("CEDULA_INVALIDA"))
+		{
+			JOptionPane.showMessageDialog(null,"INGRESE UN NÚMERO DE CÉDULA VÁLIDO");
+		}
 		return null;
 		
 	}
