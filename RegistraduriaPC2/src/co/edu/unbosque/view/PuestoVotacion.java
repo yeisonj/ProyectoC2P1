@@ -2,6 +2,8 @@ package co.edu.unbosque.view;
 
 
 
+import java.awt.Font;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -68,9 +70,16 @@ public class PuestoVotacion extends JFrame {
 		municipiosadd.addItem("SELECCIONE");
 		
 		nombrePuesto = new JTextField();
-		nombrePuesto.setBounds(340,185,230,35);
+		nombrePuesto.setBounds(340,250,230,35);
+		nombrePuesto.setFont(new Font("helvetica",Font.PLAIN,17));
+		nombrePuesto.setHorizontalAlignment(JTextField.CENTER);
+		nombrePuesto.setToolTipText("Introduzca el nombre del Nuevo puesto de Votación");
+		
 		direccionPuesto= new JTextField();
-		direccionPuesto.setBounds(340,250,230,35);
+		direccionPuesto.setBounds(340,185,230,35);
+		direccionPuesto.setFont(new Font("helvetica",Font.PLAIN,17));
+		direccionPuesto.setHorizontalAlignment(JTextField.CENTER);
+		direccionPuesto.setToolTipText("Introduzca la dirección del Nuevo puesto de votación");
 		
 		
 		departamentosdelete = new JComboBox<String>();
@@ -95,13 +104,16 @@ public class PuestoVotacion extends JFrame {
 		fondoPanel.add(direccionPuesto);
 		fondoPanel.add(departamentosdelete);
 		fondoPanel.add(municipiosdelete);
-		fondoPanel.add(puestovotaciondelete);
+		fondoPanel.add(puestovotaciondelete); 
 		
 	}
 
 	public void reestablecerValores()
 		{
 			nombrePuesto.setText("");
+			direccionPuesto.setText("");
+			departamentosadd.setSelectedItem("SELECCIONE");
+			departamentosdelete.setSelectedItem("SELECCIONE");
 		}
 	
 	

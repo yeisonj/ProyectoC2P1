@@ -120,6 +120,15 @@ public class View extends JFrame {
 			JOptionPane.showMessageDialog(null,"SE HA ELIMINADO EL PUESTO DE VOTACION");
 		}
 		
+		if(mensaje.equalsIgnoreCase("SIN_ESTADISTICAS"))
+		{
+			JOptionPane.showMessageDialog(null,"NO HAY CIUDADANOS REGISTRADOS");
+		}
+		
+		if(mensaje.equalsIgnoreCase("CEDULA_INVALIDA"))
+		{
+			JOptionPane.showMessageDialog(null,"INGRESE UN NÚMERO DE CÉDULA VÁLIDO");
+		}
 		return null;
 		
 	}

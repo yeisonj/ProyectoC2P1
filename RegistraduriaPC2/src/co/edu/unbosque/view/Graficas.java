@@ -17,10 +17,9 @@ public class Graficas extends JFrame{
 
 	private ImageIcon imagenes;
 	private JLabel fondo;
-	private int femenino;
-	private int masculino;
-	private int r1,r2,r3,r4,r5,r6;
-	
+	private ChartPanel genero1;
+	private ChartPanel rango1;
+	private DefaultPieDataset p;
 	
 	
 	public Graficas()
@@ -31,10 +30,8 @@ public class Graficas extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(false);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		inicializarComponentes();
-		graficasTorta(femenino,masculino,r1,r2,r3,r4,r5,r6);
-		graficasBarras(femenino,masculino,r1,r2,r3,r4,r5,r6);
 	}
 	
 	public void inicializarComponentes()
@@ -45,19 +42,25 @@ public class Graficas extends JFrame{
 		fondo.setIcon(imagenes);
 		fondo.setLayout(null);
 		getContentPane().add(fondo);
+		
+		
+		
 	}
 	
 	
-	public void graficasTorta(int femenino, int masculino, int r1, int r2, int r3, int r4, int r5, int r6)
-	{
+	public void graficasTorta(double femenino, double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
+	{	
 		
-		DefaultPieDataset p = new DefaultPieDataset();
+		p = new DefaultPieDataset();
+		p.addChangeListener(null);
 		p.setValue("Hombres", masculino);
 		p.setValue("Mujeres", femenino);
+	
 		
 		JFreeChart j = ChartFactory.createPieChart("",p);
-		ChartPanel genero1 = new ChartPanel(j);
+		genero1 = new ChartPanel(j);
 		genero1.setBounds(58,162,270,180);
+		
 		
 		DefaultPieDataset q = new DefaultPieDataset();
 		q.setValue("Rango 1", r1);
@@ -68,11 +71,11 @@ public class Graficas extends JFrame{
 		q.setValue("Rango 6", r6);
 		
 		JFreeChart k = ChartFactory.createPieChart("",q);
-		ChartPanel rango1 = new ChartPanel(k);
+		rango1 = new ChartPanel(k);
 		rango1.setBounds(420,162,270,180);
 		
 	
-		
+	
 		
 		fondo.add(genero1);
 		fondo.add(rango1);
@@ -81,12 +84,18 @@ public class Graficas extends JFrame{
 		
 	}
 	
-	public void graficasBarras(int femenino, int masculino, int r1, int r2, int r3, int r4, int r5, int r6)
+	public void graficasBarras(double femenino,double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
 	{
+		int total = r1+r2+r3+r4+r5+r6;
+		
+		int masc = (int) (masculino*total/100);
+		int fem = (int) (femenino*total/100);
+		
 	
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(masculino, "HOMBRES", "hombres");
-		dataset.addValue(femenino, "MUJERES", "mujeres");
+	
+		dataset.addValue(masc, "HOMBRES", "hombres");
+		dataset.addValue(fem, "MUJERES", "mujeres");
 		
 		
 		 JFreeChart chart=ChartFactory.createBarChart("",
@@ -122,6 +131,7 @@ public class Graficas extends JFrame{
 			    fondo.add(barras);
 			    fondo.add(barras2);
 	}
+	
 	
 	
 }
