@@ -71,6 +71,10 @@ public class View extends JFrame {
 		{
 			JOptionPane.showMessageDialog(null, "SE AGREGÓ AL CIUDADANO CORRECTAMENTE");
 		}
+		if(mensaje.equalsIgnoreCase("MODIFICAR_TRUE"))
+		{
+			JOptionPane.showMessageDialog(null, "SE MODIFICADO CORRECTAMENTE");
+		}
 		if(mensaje.equalsIgnoreCase("CREAR_FALSE"))
 		{
 			JOptionPane.showMessageDialog(null, "EL CIUDADANO YA EXISTE EN LA BASE DE DATOS");

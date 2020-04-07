@@ -120,7 +120,66 @@ public class Controller implements ActionListener {
 			view.getpAgregarModificar().getModificarCiudadano().setVisible(false);
 			view.getpAgregarModificar().reestablecerValores();
 		}
+		if (evento.getSource() == view.getpAgregarModificar().getModificarCiudadano()) {
+			Ciudadano ciudadanoamodificar;
+			String numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero,
+					lugarexpedicioncedula, puestovotacionasignado,fechanacimiento, fechaexpedicion,
+					departamento,municipios,pvotacion;
+					
+			
+			numcedula = view.getpAgregarModificar().getCedula().getText();
+			ciudadanoamodificar = ciudadanodao.buscarCiudadano(numcedula, cedulasInscritas);
+			
+			nombre1 = view.getpAgregarModificar().getNombre1().getText();
+			nombre2 = view.getpAgregarModificar().getNombre2().getText();
+			apellido1 = view.getpAgregarModificar().getApellido1().getText();
+			apellido2 = view.getpAgregarModificar().getApellido2().getText();
+			lugardenacimiento = view.getpAgregarModificar().getlNacimiento().getText();
+			genero = (String) view.getpAgregarModificar().getSexo().getSelectedItem();
+			lugarexpedicioncedula = view.getpAgregarModificar().getLexpedicion().getText();
+			fechanacimiento = view.getpAgregarModificar().getfNacimiento().getText();
+			fechaexpedicion = view.getpAgregarModificar().getFexpedicion().getText();
+			pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
+			departamento = (String) view.getpAgregarModificar().getDepartamentos().getSelectedItem();
+			municipios = (String) view.getpAgregarModificar().getMunicipios().getSelectedItem();
+			pvotacion = (String) view.getpAgregarModificar().getPuestoVotacion().getSelectedItem();
+			puestovotacionasignado = departamento + ";" + municipios + ";" + pvotacion;
+			
+			 if ( nombre1.isEmpty() || apellido1.isEmpty()
+						|| apellido2.isEmpty() || lugardenacimiento.isEmpty() || genero.isEmpty()
+						|| lugarexpedicioncedula.isEmpty() || fechaexpedicion.isEmpty() || fechanacimiento.isEmpty()
+						|| puestovotacionasignado.isEmpty())
+				{
+					view.mostrarMensajes("DEBE_LLENAR_CAMPOS");
+				} else {
+					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					Date fechaNac = null;
+					Date fechaExp = null;
+					try {
+						fechaNac = formato.parse(fechanacimiento);
+					} catch (ParseException e) {
 
+						e.printStackTrace();
+					}
+					try {
+						fechaExp = formato.parse(fechaexpedicion);
+					} catch (ParseException e) {
+
+						e.printStackTrace();
+					}
+					cedulasInscritas.remove(ciudadanoamodificar);
+					ciudadanoamodificar = new Ciudadano(numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero,
+							lugarexpedicioncedula, fechaNac, fechaExp, puestovotacionasignado);
+
+					ciudadanodao.agregarCiudadano(numcedula, ciudadanoamodificar, cedulasInscritas);
+					view.mostrarMensajes("MODIFICAR_TRUE");
+					view.getpAgregarModificar().setVisible(false);
+					
+				} 
+		}
+		
+		
+		
 		// ACCIÓN BOTÓN MODIFICAR CIUDADANO
 		if (evento.getSource() == view.getpCiudadano().getModificarCiudadano()) {
 			try {
@@ -151,7 +210,7 @@ public class Controller implements ActionListener {
 				String municipios = comboboxes[1];
 				String pdevotacion1 = comboboxes[2];
 				String pdevotacion2 = comboboxes[3];
-				System.out.println(departamentos+municipios+pdevotacion1+pdevotacion2);
+				
 
 				String fechanac = String.valueOf(fechanacimiento);
 				String fechaexp = String.valueOf(fechaexpedicion);
