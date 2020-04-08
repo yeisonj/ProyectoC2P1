@@ -32,10 +32,6 @@ public class Registraduria  {
 	* @param cedula Es la c�dula del nuevo cidadano. cedula != null,
 	cedula != " "
 	*/
-
-	
-	
-	
 	
 	public String mostrarInformacionPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
@@ -161,7 +157,7 @@ public class Registraduria  {
 				String [] aux=cedulasInscritas.get(i).getPuestovotacionasignado().split(";");
 				if(localizacion.equalsIgnoreCase("PAIS") & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Departamentos") & cedulasInscritas.get(i).transformarDate() >= 67) {
+				}else if(localizacion.equalsIgnoreCase("Departamentos") &  aux[0].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;

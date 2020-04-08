@@ -190,7 +190,7 @@ public class Controller implements ActionListener {
 
 				String modificar = view.mostrarMensajes("MODIFICAR");
 				
-				view.getpAgregarModificar().getDepartamentos().setSelectedIndex(0);
+				//view.getpAgregarModificar().getDepartamentos().setSelectedIndex(0);
 				ciudadanoamodificar = ciudadanodao.buscarCiudadano(modificar, cedulasInscritas);
 
 				numcedula = ciudadanoamodificar.getNumerocedula();
@@ -816,6 +816,7 @@ public class Controller implements ActionListener {
 			if(localizacion.equalsIgnoreCase("DEPARTAMENTOS"))
 			{
 				String departamento = (String) view.getpEstadisticas().getDepartamentos().getSelectedItem();
+				System.out.println(departamento);
 				int r1 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"1",cedulasInscritas);
 				int r2 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"2",cedulasInscritas);
 				int r3 = registraduria.calcularEstadisticasDeEdad(localizacion,departamento,"3",cedulasInscritas);
