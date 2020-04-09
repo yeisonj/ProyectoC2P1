@@ -17,6 +17,15 @@ import co.edu.unbosque.model.persistence.Archivo;
 import co.edu.unbosque.model.persistence.CiudadanoDAO;
 import co.edu.unbosque.view.View;
 
+/**
+ * La clase controlador es la encargada de manejar todas las acciones realizadas por el programa
+ * de acuerdo a las acciones elegidas por el mismo. También se encarga de cargar las instancias necesarias para
+ * el correcto funcionamiento del programa.
+ * @author Diego Torres, Jeison Jossa, Sebastian Moncaleano, Moisés Salcedo.
+ *
+ */
+
+
 public class Controller implements ActionListener {
 
 	private View view;
@@ -26,6 +35,11 @@ public class Controller implements ActionListener {
 	private Archivo archivo;
 	private CiudadanoDAO ciudadanodao;
 
+	/**
+	 * Este es el constructor de la clase controlador, donde se incicial las instancias de
+	 * las clases necesarias para ejecutar el proyecto. 
+	 */
+	
 	public Controller() {
 		super();
 		view = new View();
@@ -40,6 +54,10 @@ public class Controller implements ActionListener {
 
 	}
 
+	/**
+	 * Este método es el encargado de inplementar los actionListeners a la vista del proyecto
+	 */
+	
 	// MÉTODO QUE SE ENCARGA DE AGREGAR LISTENERS A LA VISTA
 	public void setActionListener() {
 
@@ -87,11 +105,21 @@ public class Controller implements ActionListener {
 		
 	}
 
+	/**
+	 * Este método implementa todas las acciones a realizar de acuerdo a los eventos
+	 * realizados en la interfaz gráfica del proyecto. 
+	 */
+	
 	public void actionPerformed(ActionEvent evento) {
 
 		// ACCIÓN BOTÓN CIUDADANOS
 		if (evento.getSource() == view.getpPrincipal().getbCiudadanos()) {
 			view.getpCiudadano().setVisible(true);
+			if(!view.getpAgregarModificar().getDepartamentos().getSize().equals(0))
+			{
+				view.getpAgregarModificar().getDepartamentos().removeAllItems();
+				
+			}
 			
 		}
 
@@ -119,6 +147,7 @@ public class Controller implements ActionListener {
 			view.getpAgregarModificar().getAgregarCiudadano().setVisible(true);
 			view.getpAgregarModificar().getModificarCiudadano().setVisible(false);
 			view.getpAgregarModificar().reestablecerValores();
+			
 		}
 		if (evento.getSource() == view.getpAgregarModificar().getModificarCiudadano()) {
 			Ciudadano ciudadanoamodificar;
@@ -182,7 +211,15 @@ public class Controller implements ActionListener {
 		
 		// ACCIÓN BOTÓN MODIFICAR CIUDADANO
 		if (evento.getSource() == view.getpCiudadano().getModificarCiudadano()) {
+			if(!view.getpAgregarModificar().getDepartamentos().getSize().equals(0))
+			{
+				view.getpAgregarModificar().getDepartamentos().removeAllItems();
+				
+			}
 			try {
+				
+				
+				
 				Ciudadano ciudadanoamodificar;
 				String numcedula, nombre1, nombre2, apellido1, apellido2, lugardenacimiento, genero,
 						lugarexpedicioncedula, puestovotacionasignado;
@@ -190,7 +227,11 @@ public class Controller implements ActionListener {
 
 				String modificar = view.mostrarMensajes("MODIFICAR");
 				
-				//view.getpAgregarModificar().getDepartamentos().setSelectedIndex(0);
+				view.getpAgregarModificar().setVisible(true);
+				view.getpAgregarModificar().getAgregarCiudadano().setVisible(false);
+				view.getpAgregarModificar().getModificarCiudadano().setVisible(true);
+				
+				
 				ciudadanoamodificar = ciudadanodao.buscarCiudadano(modificar, cedulasInscritas);
 
 				numcedula = ciudadanoamodificar.getNumerocedula();
@@ -228,14 +269,14 @@ public class Controller implements ActionListener {
 				view.getpAgregarModificar().getLexpedicion().setText(lugarexpedicioncedula);
 				view.getpAgregarModificar().getfNacimiento().setText(fechanac);
 				view.getpAgregarModificar().getFexpedicion().setText(fechaexp);
+				view.getpAgregarModificar().getDepartamentos().getIgnoreRepaint();
 				view.getpAgregarModificar().getDepartamentos().setSelectedItem(departamentos);
 				view.getpAgregarModificar().getMunicipios().setSelectedItem(municipios);
 				view.getpAgregarModificar().getPuestoVotacion().setSelectedItem(pdevotacion1+";"+pdevotacion2);
-				view.getpAgregarModificar().setVisible(true);
-				view.getpAgregarModificar().getAgregarCiudadano().setVisible(false);
-				view.getpAgregarModificar().getModificarCiudadano().setVisible(true);
+				
 
 			} catch (NullPointerException e) {
+				view.getpAgregarModificar().setVisible(false);
 				view.mostrarMensajes("NO_EXISTE");
 			}
 
@@ -274,6 +315,7 @@ public class Controller implements ActionListener {
 		// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME ESTADÍSTICAS
 		if (evento.getSource() == view.getpEstadisticas().getDepartamentos()) {
 			String validaciondepartamentos = "1";
+			int df = view.getpEstadisticas().getDepartamentos().getItemCount();
 			if(!view.getpEstadisticas().getMunicipios().getSize().equals(0))
 			{
 				view.getpEstadisticas().getMunicipios().removeAllItems();
@@ -284,9 +326,16 @@ public class Controller implements ActionListener {
 			for (int i = 0; i < puestosDeVotacion.size(); i++) {
 				String[] divisiones = puestosDeVotacion.get(i).split(";");
 				String departamentos = divisiones[0];
-				if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
-					view.getpEstadisticas().getDepartamentos().addItem(departamentos);
+				if(df<=33)
+				{
+					if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
+						view.getpEstadisticas().getDepartamentos().addItem(departamentos);
 				}
+				}
+				else {
+				
+				}
+				
 				validaciondepartamentos = departamentos;
 				
 				if(i<35)
@@ -343,23 +392,33 @@ public class Controller implements ActionListener {
 				}
 			}
 		}
-		
+
 		// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME AGREGARCIUDADANO
 				if (evento.getSource() == view.getpAgregarModificar().getDepartamentos()) {
 					String validaciondepartamentos = "1";
+					int df= view.getpAgregarModificar().getDepartamentos().getItemCount();
+					
 					if(!view.getpAgregarModificar().getMunicipios().getSize().equals(0))
 					{
 						view.getpAgregarModificar().getMunicipios().removeAllItems();
 						
 					}
 					
-					
 					for (int i = 0; i < puestosDeVotacion.size(); i++) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String departamentos = divisiones[0];
-						if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
-							view.getpAgregarModificar().getDepartamentos().addItem(departamentos);
+						
+						if(df<=33)
+						{
+							if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
+								view.getpAgregarModificar().getDepartamentos().addItem(departamentos);
 						}
+						}
+						else {
+						
+						}
+						
+						
 						validaciondepartamentos = departamentos;
 						
 						if(i<35)
@@ -383,6 +442,7 @@ public class Controller implements ActionListener {
 							}
 						}
 					}
+					
 				}
 				
 				if(evento.getSource() == view.getpAgregarModificar().getMunicipios())
@@ -419,6 +479,7 @@ public class Controller implements ActionListener {
 				// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME LISTARCIUDADANOS
 				if (evento.getSource() == view.getlCiudadano().getDepartamentos()) {
 					String validaciondepartamentos = "1";
+					int df = view.getlCiudadano().getDepartamentos().getItemCount();
 					if(!view.getlCiudadano().getMunicipios().getSize().equals(0))
 					{
 						view.getlCiudadano().getMunicipios().removeAllItems();
@@ -429,9 +490,16 @@ public class Controller implements ActionListener {
 					for (int i = 0; i < puestosDeVotacion.size(); i++) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String departamentos = divisiones[0];
-						if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
-							view.getlCiudadano().getDepartamentos().addItem(departamentos);
+						if(df<=33)
+						{
+							if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
+								view.getlCiudadano().getDepartamentos().addItem(departamentos);
 						}
+						}
+						else {
+						
+						}
+						
 						validaciondepartamentos = departamentos;
 						
 						if(i<35)
@@ -459,6 +527,7 @@ public class Controller implements ActionListener {
 				
 				if(evento.getSource() == view.getlCiudadano().getMunicipios())
 				{
+					
 					view.getlCiudadano().getPuestoVotacion().removeAllItems();
 					for(int i=0;i<muni.size();i++)
 					{
@@ -491,6 +560,7 @@ public class Controller implements ActionListener {
 				// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME PUESTO DE VOTACIÓN ADD
 				if (evento.getSource() == view.getpPuestoVotacion().getDepartamentosadd()) {
 					String validaciondepartamentos = "1";
+					int df = view.getpPuestoVotacion().getDepartamentosadd().getItemCount();
 					if(!view.getpPuestoVotacion().getMunicipiosadd().getSize().equals(0))
 					{
 						view.getpPuestoVotacion().getMunicipiosadd().removeAllItems();
@@ -501,9 +571,16 @@ public class Controller implements ActionListener {
 					for (int i = 0; i < puestosDeVotacion.size(); i++) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String departamentos = divisiones[0];
-						if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
-							view.getpPuestoVotacion().getDepartamentosadd().addItem(departamentos);
+						if(df<=33)
+						{
+							if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
+								view.getpPuestoVotacion().getDepartamentosadd().addItem(departamentos);
 						}
+						}
+						else {
+						
+						}
+						
 						validaciondepartamentos = departamentos;
 						
 						if(i<35)
@@ -532,6 +609,7 @@ public class Controller implements ActionListener {
 				// ACCIÓN COMBOBOX DEPARTAMENTOS FRAME PUESTO DE VOTACIÓN DELETE
 				if (evento.getSource() == view.getpPuestoVotacion().getDepartamentosdelete()) {
 					String validaciondepartamentos = "1";
+					int df = view.getpPuestoVotacion().getDepartamentosdelete().getItemCount();
 					if(!view.getpPuestoVotacion().getMunicipiosdelete().getSize().equals(0))
 					{
 						view.getpPuestoVotacion().getMunicipiosdelete().removeAllItems();
@@ -542,9 +620,16 @@ public class Controller implements ActionListener {
 					for (int i = 0; i < puestosDeVotacion.size(); i++) {
 						String[] divisiones = puestosDeVotacion.get(i).split(";");
 						String departamentos = divisiones[0];
-						if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
-							view.getpPuestoVotacion().getDepartamentosdelete().addItem(departamentos);
+						if(df<=33)
+						{
+							if (!validaciondepartamentos.equalsIgnoreCase(departamentos)) {
+								view.getpPuestoVotacion().getDepartamentosdelete().addItem(departamentos);
 						}
+						}
+						else {
+						
+						}
+						
 						validaciondepartamentos = departamentos;
 						
 						if(i<35)
@@ -572,6 +657,7 @@ public class Controller implements ActionListener {
 				
 				if(evento.getSource() == view.getpPuestoVotacion().getMunicipiosdelete())
 				{
+					
 					view.getpPuestoVotacion().getPuestovotaciondelete().removeAllItems();
 					for(int i=0;i<muni.size();i++)
 					{
@@ -588,9 +674,12 @@ public class Controller implements ActionListener {
 									
 									if(mun2.contains(muni.get(i)))
 									{
+	
 										view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 +";"+ puesto2);
+									
+										
 									}
-
+									
 								}
 							}
 							}

@@ -8,8 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
-
+/**
+ * <h1>Modela una clase extendida de JFrame Estadísticas </h1>
+* Esta clase se encarga de mostrar estadísticas generales del sistema, rangos de edades, porcentaje de género y 
+* cantidad de inscritos
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
 
 public class Estadisticas extends JFrame {
 
@@ -36,7 +45,10 @@ public class Estadisticas extends JFrame {
 	private JButton mostrar;
 	private JButton graficas;
 	
-	
+	/**Constructor de la Clse Estadísticas, se encarga de inicializar atributos principales como el tamaño, 
+	 * si es o no redimensionable, ubicación y layout
+	 * 
+	 */
 	
 	public Estadisticas()
 	{
@@ -52,6 +64,9 @@ public class Estadisticas extends JFrame {
 		inicializarComponentes();
 	}
 	
+	/**método que se encarga de instancias los componentes de la Clase Estadísticas
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();
@@ -91,6 +106,16 @@ public class Estadisticas extends JFrame {
 		puestovotacion = new JComboBox<String>();
 		puestovotacion.setBounds(340,165,230,35);
 		puestovotacion.addItem("SELECCIONE PUESTO");
+		puestovotacion.setMaximumRowCount(20);
+		 if (puestovotacion.getItemCount() == 0) return;
+	        Object comp = puestovotacion.getUI().getAccessibleChild(puestovotacion, 0);
+	        if (!(comp instanceof JPopupMenu)) {
+	            return;
+	        }
+	        JPopupMenu popup = (JPopupMenu) comp;
+	        JScrollPane scrollPane = (JScrollPane) popup.getComponent(0);
+	        scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+	        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		porcHombres = new JLabel("0");
 		porcHombres.setBounds(255,264,70,20);
@@ -158,6 +183,9 @@ public class Estadisticas extends JFrame {
 		fondo.add(localizacion);
 	}
 	
+	/**este Método reestablece los valores predeterminados de la Clase estadísticas
+	 * 
+	 */
 	public void reestablecerValores()
 	{
 		porcHombres.setText("0");

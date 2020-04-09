@@ -16,6 +16,14 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * la clase ciudadano contiene la información de los votantes, esta clase implementa 
+ * la interfaz transformar date la cual arroja la edad con respecto a la fecha de 
+ * nacimiento del votante. Los objetos de esta clase son guardados en forma serializada para
+ * la protección de los datos de los votantes.
+ * @author Sebastian Moncaleano, Moisés Salcedo, Diego Torres, Jeison Jossa
+ */
+
 public class Ciudadano implements Serializable, TransformarDate {
 	
 	private String numerocedula;
@@ -29,6 +37,22 @@ public class Ciudadano implements Serializable, TransformarDate {
 	private Date fechanacimiento;
 	private Date fechaexpedicion;
 	private String puestovotacionasignado;
+	
+	/**
+	 * Este es el constructor de la clase ciudadano
+	 * @param numerocedula es el String del número de identificación del ciudadano.
+	 * @param nombre1 es el String del Primer nombre del ciudadano
+	 * @param nombre2 es el String del Segundo nombre del ciudadano
+	 * @param apellido1 es el String Primer Apellido del ciudadano
+	 * @param apellido2 es el String del Segundo Apellido del ciudadano
+	 * @param lugardenacimiento es el String la ciudad o municipio donde nació el ciudadano
+	 * @param genero es el string que indica el sexo del ciudadano
+	 * @param lugarexpedicioncedula es el String con la ciudad o municipio donde fue expedido el documento del ciudadano
+	 * @param fechanacimiento Es el date con la fecha de nacimiento del ciudadano
+	 * @param fechaexpedicion Es el date con la fecha de expedicion del documento del ciudadano
+	 * @param puestovotacionasignado Es el String con el puesto de votación del ciudadano, este incluye departamento, municipio,
+	 * nombre y direccion del puesto.
+	 */
 	
 	public Ciudadano(String numerocedula, String nombre1, String nombre2, String apellido1, String apellido2,
 			String lugardenacimiento, String genero, String lugarexpedicioncedula, Date fechanacimiento,
@@ -135,6 +159,9 @@ public class Ciudadano implements Serializable, TransformarDate {
 		this.puestovotacionasignado = puestovotacionasignado;
 	}
 	
+	/**
+	 * El método toString  devuelva la información de un objeto de la clase ciudadano
+	 */
 	
 	@Override
 	public String toString() {
@@ -145,6 +172,14 @@ public class Ciudadano implements Serializable, TransformarDate {
 				+ puestovotacionasignado;
 	}
 
+	/**
+	 * El método transformarDate se encarga de tomar la fecha de nacimiento del ciudadano
+	 * y calcular la edad del mismo
+	 * <b>pre</b> El ciudadano debe tener una fecha de nacimiento en el formato dd/MM/AAAA <br>
+	 * <b>post</b> Se ha calculado y retornado la edad del ciudadano <br>
+	 * @return retorna la edad del ciudadano en un entero.
+	 */
+	
 	@Override
 	public int transformarDate() {
 		LocalDate 			fechaNac 	= this.fechanacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

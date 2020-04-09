@@ -1,3 +1,12 @@
+/**
+ * <h1>Modela una clase extendida de JFrame Ciudadano </h1>
+* Este frame se encarga de mostrar las opciones para agregar, modificar, eliminar o ver información del ciudadano
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
+
+
+
 package co.edu.unbosque.view;
 
 import javax.swing.ImageIcon;
@@ -15,6 +24,9 @@ public class Ciudadano extends JFrame{
 	private JButton eliminarCiudadano;
 	private JButton mostrarInformacionCiudadano;
 
+	/**Constructor de la clase Ciudadano, se encarga de inicializar componentes principales como tamaño, ubicación,
+	 * si es o no redimensionable y layout
+	 */
 	public Ciudadano()
 	{
 		setSize(800, 640);
@@ -28,6 +40,9 @@ public class Ciudadano extends JFrame{
 		
 	}
 	
+	/**Método que se encarga de instanciar los componentes de la Clase ciudadano
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();

@@ -7,6 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * <h1>Modela una clase extendida de JFrame Principal </h1>
+* Este frame se encarga de mostrar el primer frame que se muestra en el programa
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
+
 public class Principal extends JFrame {
 
 	private ImageIcon imagenes;
@@ -15,13 +22,17 @@ public class Principal extends JFrame {
 	private JButton bCiudadanos;
 	private JButton bEstadisticas;
 	
-	
+	/**Constructor de la clase Principal
+	 */
 	
 	public Principal()
 	{
 		inicializarComponentes();
 	}
 	
+	/**Este método se encarga de instanciar los componentes principales de la clase Principal
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();

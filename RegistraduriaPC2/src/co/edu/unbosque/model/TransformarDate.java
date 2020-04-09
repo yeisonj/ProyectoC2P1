@@ -5,19 +5,22 @@
  * <h1>Representa un comportamiento</h1>
 * Se encarga de representar el comportamiento de transformar un Date a un entero
 * @version 1.0
-* @author Jeisson Jossa, Sebastián Moncaleano, Moisés Salcedo, Diego Torres | Universidad El Bosque
+* @author Jeisson Jossa, Sebastiï¿½n Moncaleano, Moisï¿½s Salcedo, Diego Torres | Universidad El Bosque
  */
 
+/**
+ * Esta interfaz contiene los mÃ©todos encargados de calcular tiempo en aÃ±os desde una fecha especÃ­fica.
+ * @author Sebastian Moncaleano
+ */
 package co.edu.unbosque.model;
 
 import java.util.Date;
 
 public interface TransformarDate {
-	
 	/***
-	 * Este método convierte un dato Date en un entero
+	 * Este mï¿½todo convierte un dato Date en un entero en aÃ±os
 	 * <b>post</b> Se ha convertido el dato de tipo Date en un entero <br>
-	 * @return un numero entero 
+	 * @return un numero entero de la cantidad de aÃ±os
 	 */
 	int transformarDate();
 

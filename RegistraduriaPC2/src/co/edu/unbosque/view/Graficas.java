@@ -16,6 +16,14 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+
+/**
+ * <h1>Modela una clase extendida de JFrame Graficas </h1>
+*Esta Clase se encarga de mostrar gráficas de las estadisticas del programa
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
+
 public class Graficas extends JFrame{
 
 	private ImageIcon imagenes;
@@ -23,6 +31,9 @@ public class Graficas extends JFrame{
 	private ChartPanel genero1;
 	private ChartPanel rango1;
 	
+	/**Constructor de la clase Graficas, se encarga de inicializar componentes principales como tamaño, ubicación,
+	 * si es o no redimensionable y layout
+	 */
 	
 	public Graficas()
 	{
@@ -36,6 +47,9 @@ public class Graficas extends JFrame{
 		inicializarComponentes();
 	}
 	
+	/**esta clase se encarga de inicializar los componentes principales de la clase Graficas
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();
@@ -48,7 +62,17 @@ public class Graficas extends JFrame{
 		
 		
 	}
-	
+	/**Método que se encarga de construir graficas tipo torta
+	 * 
+	 * @param femenino tipo double, recibe el porcentaje femeníno de las estadísticas
+	 * @param masculino tipo double, recibe el porcentaje masculino de las estadísticas
+	 * @param r1 tipo int, recibe la cantidad de ciudadanos en el rango 1
+	 * @param r2 tipo int, recibe la cantidad de ciudadanos en el rango 2
+	 * @param r3 tipo int, recibe la cantidad de ciudadanos en el rango 3
+	 * @param r4 tipo int, recibe la cantidad de ciudadanos en el rango 4
+	 * @param r5 tipo int, recibe la cantidad de ciudadanos en el rango 5
+	 * @param r6 tipo int, recibe la cantidad de ciudadanos en el rango 6
+	 */
 	
 	public void graficasTorta( double femenino, double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
 	{	
@@ -83,6 +107,17 @@ public class Graficas extends JFrame{
 		
 	}
 	
+	/**Método que se encarga de construir graficas tipo Barras
+	 * 
+	 * @param femenino tipo double, recibe el porcentaje femeníno de las estadísticas
+	 * @param masculino tipo double, recibe el porcentaje masculino de las estadísticas
+	 * @param r1 tipo int, recibe la cantidad de ciudadanos en el rango 1
+	 * @param r2 tipo int, recibe la cantidad de ciudadanos en el rango 2
+	 * @param r3 tipo int, recibe la cantidad de ciudadanos en el rango 3
+	 * @param r4 tipo int, recibe la cantidad de ciudadanos en el rango 4
+	 * @param r5 tipo int, recibe la cantidad de ciudadanos en el rango 5
+	 * @param r6 tipo int, recibe la cantidad de ciudadanos en el rango 6
+	 */
 	public void graficasBarras(double femenino,double masculino, int r1, int r2, int r3, int r4, int r5, int r6)
 	{
 		int total = r1+r2+r3+r4+r5+r6;
