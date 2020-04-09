@@ -102,6 +102,11 @@ public class Controller implements ActionListener {
 		view.getlCiudadano().getLocalizacion().addActionListener(this);
 		
 		//listener gráficas
+		for(int i = 0; i<8;i++)
+		{
+			view.getpGraficas().getBotones().get(i).addActionListener(this);
+		}
+		
 		
 	}
 
@@ -658,6 +663,7 @@ public class Controller implements ActionListener {
 				if(evento.getSource() == view.getpPuestoVotacion().getMunicipiosdelete())
 				{
 					
+					
 					view.getpPuestoVotacion().getPuestovotaciondelete().removeAllItems();
 					for(int i=0;i<muni.size();i++)
 					{
@@ -674,13 +680,14 @@ public class Controller implements ActionListener {
 									
 									if(mun2.contains(muni.get(i)))
 									{
-	
-										view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 +";"+ puesto2);
-									
+								
+											view.getpPuestoVotacion().getPuestovotaciondelete().addItem(puesto1 +";"+ puesto2);
+											
 										
 									}
-									
+								
 								}
+							
 							}
 							}
 						catch(Exception ex)
@@ -864,8 +871,11 @@ public class Controller implements ActionListener {
 				if(t==0)
 				{
 					view.mostrarMensajes("SIN_ESTADISTICAS");
+					view.getpEstadisticas().reestablecerValores();
 				}
 				else {
+					
+					view.mostrarMensajes("ESTADISTICAS_SI");
 				String total = String.valueOf(t);
 				String rango1 = String.valueOf(r1);
 				String rango2 = String.valueOf(r2);
@@ -895,8 +905,9 @@ public class Controller implements ActionListener {
 				view.getpEstadisticas().getPorcHombres().setText(masc);
 				view.getpEstadisticas().getPorcMujeres().setText(fem);
 				
-				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
-				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficas(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().getLocalizacion().setText("TODO EL PAÍS");
+				
 				
 				
 				}
@@ -917,8 +928,10 @@ public class Controller implements ActionListener {
 				if(t==0)
 				{
 					view.mostrarMensajes("SIN_ESTADISTICAS");
+					view.getpEstadisticas().reestablecerValores();
 				}
 				else {
+					view.mostrarMensajes("ESTADISTICAS_SI");
 				String total = String.valueOf(t);
 				String rango1 = String.valueOf(r1);
 				String rango2 = String.valueOf(r2);
@@ -945,8 +958,9 @@ public class Controller implements ActionListener {
 				view.getpEstadisticas().getPorcHombres().setText(masc);
 				view.getpEstadisticas().getPorcMujeres().setText(fem);
 				
-				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
-				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficas(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().getLocalizacion().setText(departamento);
+				
 				}
 			}
 		
@@ -965,9 +979,11 @@ public class Controller implements ActionListener {
 				if(t==0)
 				{
 					view.mostrarMensajes("SIN_ESTADISTICAS");
+					view.getpEstadisticas().reestablecerValores();
 				}
 				else
 				{
+					view.mostrarMensajes("ESTADISTICAS_SI");
 				String total = String.valueOf(t);
 				String rango1 = String.valueOf(r1);
 				String rango2 = String.valueOf(r2);
@@ -994,8 +1010,9 @@ public class Controller implements ActionListener {
 				view.getpEstadisticas().getPorcHombres().setText(masc);
 				view.getpEstadisticas().getPorcMujeres().setText(fem);
 				
-				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
-				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficas(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().getLocalizacion().setText(municipios);
+				
 				}
 			}
 			if(localizacion.equalsIgnoreCase("PUESTOS DE VOTACIÓN"))
@@ -1013,9 +1030,11 @@ public class Controller implements ActionListener {
 				if(t==0)
 				{
 					view.mostrarMensajes("SIN_ESTADISTICAS");
+					view.getpEstadisticas().reestablecerValores();
 				}
 				else
 				{
+					view.mostrarMensajes("ESTADISTICAS_SI");
 				String total = String.valueOf(t);
 				String rango1 = String.valueOf(r1);
 				String rango2 = String.valueOf(r2);
@@ -1046,8 +1065,9 @@ public class Controller implements ActionListener {
 				view.getpEstadisticas().getPorcHombres().setText(masc);
 				view.getpEstadisticas().getPorcMujeres().setText(fem);
 				
-				view.getpGraficas().graficasTorta(femenino, masculino, r1, r2, r3, r4, r5, r6);
-				view.getpGraficas().graficasBarras(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().graficas(femenino, masculino, r1, r2, r3, r4, r5, r6);
+				view.getpGraficas().getLocalizacion().setText(pVotacion);
+				
 				}
 			}
 		}
@@ -1265,9 +1285,66 @@ public class Controller implements ActionListener {
 					}
 				}
 			}
-			
-			
+				
 		}
+		
+		if(evento.getSource()==view.getpGraficas().getBotones().get(0))
+		{
+			view.getpGraficas().getPanelgenerotorta().setVisible(true);
+			view.getpGraficas().getPanelgenerobarras().setVisible(false);
+			view.getpGraficas().getPanelgenerotorta3d().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(1))
+		{
+			view.getpGraficas().getPanelgenerotorta().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras().setVisible(false);
+			view.getpGraficas().getPanelgenerotorta3d().setVisible(true);
+			view.getpGraficas().getPanelgenerobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(2))
+		{
+			view.getpGraficas().getPanelgenerotorta().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras().setVisible(true);
+			view.getpGraficas().getPanelgenerotorta3d().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(3))
+		{
+			view.getpGraficas().getPanelgenerotorta().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras().setVisible(false);
+			view.getpGraficas().getPanelgenerotorta3d().setVisible(false);
+			view.getpGraficas().getPanelgenerobarras3d().setVisible(true);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(4))
+		{
+			view.getpGraficas().getPanelrangotorta().setVisible(true);
+			view.getpGraficas().getPanelrangotorta3d().setVisible(false);
+			view.getpGraficas().getPanelrangobarras().setVisible(false);
+			view.getpGraficas().getPanelrangobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(5))
+		{
+			view.getpGraficas().getPanelrangotorta().setVisible(false);
+			view.getpGraficas().getPanelrangotorta3d().setVisible(true);
+			view.getpGraficas().getPanelrangobarras().setVisible(false);
+			view.getpGraficas().getPanelrangobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(6))
+		{
+			view.getpGraficas().getPanelrangotorta().setVisible(false);
+			view.getpGraficas().getPanelrangotorta3d().setVisible(false);
+			view.getpGraficas().getPanelrangobarras().setVisible(true);
+			view.getpGraficas().getPanelrangobarras3d().setVisible(false);
+		}
+		if(evento.getSource()==view.getpGraficas().getBotones().get(7))
+		{
+			view.getpGraficas().getPanelrangotorta().setVisible(false);
+			view.getpGraficas().getPanelrangotorta3d().setVisible(false);
+			view.getpGraficas().getPanelrangobarras().setVisible(false);
+			view.getpGraficas().getPanelrangobarras3d().setVisible(true);
+		}
+		
 		
 
 	}

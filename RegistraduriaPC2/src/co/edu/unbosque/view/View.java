@@ -151,6 +151,10 @@ public class View extends JFrame {
 		{
 			JOptionPane.showMessageDialog(null,"INGRESE UN NÚMERO DE CÉDULA VÁLIDO");
 		}
+		if(mensaje.equalsIgnoreCase("ESTADISTICAS_SI"))
+		{
+			JOptionPane.showMessageDialog(null,"SE HAN CARGADO LAS ESTADÍSTICAS EXITOSAMENTE");
+		}
 		return null;
 		
 	}
