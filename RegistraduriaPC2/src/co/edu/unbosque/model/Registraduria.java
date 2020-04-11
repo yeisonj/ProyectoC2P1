@@ -13,26 +13,28 @@ package co.edu.unbosque.model;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+/**
+ * Esta clase registraduria alberga métodos relacionados con la administración de ciudadanos y puestos de votación. 
+ * @author Sebastian Moncaleano, Moisés Salcedo, Diego Torres
+ *
+ */
 public class Registraduria  {
 
-	
+	/**
+	 * Constructor de clase Registraduria
+	 */
 	public Registraduria() {
 		
 	}
 	
-	
-	
 	/**
-	* Este m�todo agrega un ciudadano a un puesto de votaci�n
-	* <b>pre</b> La lista de ciudadanos est� inicializada (no es
-	null). <br>
-	* <b>post</b> Se ha registrado un nuevo ciudadano con los
-	datos dados <br>
-	* @param cedula Es la c�dula del nuevo cidadano. cedula != null,
-	cedula != " "
-	*/
-	
+	 * Este método muestra la cantidad de personas inscritas en un puesto específico
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un monicipio <br>
+	 * @param puesto es el nombre del puesto para el que se quiere averiguar la cantidad de personas inscritas.
+	 * @param cedulasInscritas es un arraylist donde se encuentran todos los ciudadanos inscritos.
+	 * @return este método retorna un string con el número de peronas inscritas en un puesto.
+	 */
 	public String mostrarInformacionPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -45,7 +47,15 @@ public class Registraduria  {
 		
 		return Integer.toString(p);
 	}
-		
+	
+	/**
+	 * Este método muestra la cantidad de personas inscritas en un municipio específico.
+	 * 	<b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un monicipio <br>
+	 * @param municipio es el nombre del muncipio por el que se quiere averiguar la cantidad de personas inscritas.
+	 * @param cedulasInscritas es un arraylist donde se encuentran todos los ciudadanos inscritos.
+	 * @return este método retorna un string con el número de peronas inscritas en un municipio.
+	 */
 	public String mostrarInformacionMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -59,6 +69,14 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
+	/**
+	 * Este método muestra la cantidad de personas inscritas en un departamento en específico.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un departamento <br>
+	 * @param departamento es el nombre del departamento al que se le va a encontrar la cantidad de personas inscritas.
+	 * @param cedulasInscritas es un arraylist donde se encuentran todos los ciudadanos inscritos.
+	 * @return este método retorna un string con el número de peronas inscritas en un departamento.
+	 */
 	public String mostrarInformacionDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		for (int i = 0; i < cedulasInscritas.size(); i++) {
@@ -72,6 +90,16 @@ public class Registraduria  {
 		return Integer.toString(p);
 	}
 	
+	/**
+	 * Este metodo retorna las estadísticas de edad de un país, departamento, municipio y edad.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un rango <br>
+	 * @param localizacion
+	 * @param vLocalizacion
+	 * @param rango es el rango de edad a calcular.
+	 * @param cedulasInscritas es el ArrayList con todos los ciudadanos inscritos.
+	 * @return Este método retorna la cantidad de personas inscritas que se encuentran en un rango de edad.
+	 */
 	public int calcularEstadisticasDeEdad(String localizacion, String vLocalizacion, String rango, ArrayList <Ciudadano> cedulasInscritas) {
 		int cant =0;
 		switch(rango) {
@@ -86,7 +114,7 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 18 & cedulasInscritas.get(i).transformarDate() <=25) {
 					cant++;
 				}
 			}
@@ -101,7 +129,7 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion)& cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion)& cedulasInscritas.get(i).transformarDate() >= 26 & cedulasInscritas.get(i).transformarDate() <=29) {
 					cant++;
 				}
 			}
@@ -116,7 +144,7 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) &  cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 30 & cedulasInscritas.get(i).transformarDate() <=37) {
 					cant++;
 				}
 			}
@@ -131,7 +159,7 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 38 & cedulasInscritas.get(i).transformarDate() <=49) {
 					cant++;
 				}
 			}
@@ -146,7 +174,7 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66	) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 50 & cedulasInscritas.get(i).transformarDate() <=66) {
 					cant++;
 				}
 			}
@@ -161,14 +189,14 @@ public class Registraduria  {
 					cant++;
 				}else if(localizacion.equalsIgnoreCase("Municipios") & aux[1].equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
-				}else if(localizacion.equalsIgnoreCase("Puestos de votaci�n") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
+				}else if(localizacion.equalsIgnoreCase("Puestos de votación") & aux[2].concat(";"+aux[3]).equalsIgnoreCase(vLocalizacion) & cedulasInscritas.get(i).transformarDate() >= 67) {
 					cant++;
 				}
 			}
 			break;
 			
 		default:
-			JOptionPane.showMessageDialog(null, "Este rango de edad no se encentra entre las estad�sticas");
+			JOptionPane.showMessageDialog(null, "Este rango de edad no se encentra entre las estadï¿½sticas");
 			break;
 		
 		
@@ -178,6 +206,14 @@ public class Registraduria  {
 
 	}
 	
+	/**
+	 * Este método calcula la cantidad de ciudadanos inscritos en un puesto.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un puesto <br>
+	 * @param puesto es el puesto de vtació al que se le van a calcular la cantidad de ciudadanos inscritos.
+	 * @param cedulasInscritas es el Arraylist con todos los ciudadanos inscritos.
+	 * @return Este metodo devuelve un string con la cantidad de personas inscritas en un puesto.
+	 */
 	public String[] mostrarCiudadanosInscritosPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionPuesto(puesto, cedulasInscritas))];
@@ -195,6 +231,14 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
+	/**
+	 * Este método calcula la cantidad de personas inscritas en un departamento.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un municipio <br>
+	 * @param municipio es el nomdre del municipio al que se le desea hallar el número de personas inscritas
+	 * @param cedulasInscritas es el Arraylist con todos los ciudadanos inscritos.
+	 * @return se retorna un String con la cantidad de personas inscritas
+	 */
 	public String[] mostrarCiudadanosInscritosMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionMunicipio(municipio, cedulasInscritas))];
@@ -211,7 +255,15 @@ public class Registraduria  {
 			
 			return ciudinscritos;
 	}
-		
+	
+	/**
+	 * Este método calcula la cantidad de personas inscritas en un departamento.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado la cantidad de personas inscritas en un departamento <br>
+	 * @param departamento es el nomdre del departamento al que se le desea hallar el número de personas inscritas
+	 * @param cedulasInscritas es el Arraylist con todos los ciudadanos inscritos.
+	 * @return se retorna un String con la cantidad de personas inscritas.
+	 */
 	public String[] mostrarCiudadanosInscritosDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int p=0;
 		String[] ciudinscritos= new String[Integer.parseInt(mostrarInformacionDepartamento(departamento, cedulasInscritas))];
@@ -229,6 +281,13 @@ public class Registraduria  {
 			return ciudinscritos;
 	}
 	
+	/**
+	 * Este método se encarga de retonar los departamentos dentro del país
+	 * <b>pre</b> La lista de puestos de votación est� cargada (no es null). <br>
+	 * <b>post</b> Se han incluido los departamentos en el array de Strings y se ha retornado el array.<br>
+	 * @param puestosDeVotacion es el ArrayList de todos los puestos de votación.
+	 * @return Retorna todos los departamentos en un Array de String
+	 */
 	public String[] mostrardepartamentos(ArrayList <String> puestosDeVotacion)
 	{
 		String[] prueba = new String[35];
@@ -254,6 +313,14 @@ public class Registraduria  {
 		return prueba;
 	}
 	
+	/**
+	 * Este método se encarga de retonar los Municipios dentro del país
+	 * <b>pre</b> La lista de puestos de votación est� cargada (no es null). <br>
+	 * <b>post</b> Se han incluido los municipios en el ArrayList de Strings y se ha retornado el arrayList.<br>
+	 * @param puestosDeVotacion es el ArrayList de todos los puestos de votación.
+	 * @return Retorna todos los municipios en un ArrayList de Strings.
+	 */
+	
 	public ArrayList<String> mostrarmunicipios(ArrayList <String> puestosDeVotacion)
 	{
 		ArrayList<String> prueba = new ArrayList<String>();
@@ -273,6 +340,15 @@ public class Registraduria  {
 		}
 		return prueba;
 	}
+	
+	/**
+	 * Este método se encarga de encontrar las estadísticas de genero para el país.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado las estadísticas de género de un país <br>
+	 * @param cedulasInscritas es el Arraylist con los ciudadanos inscritos.
+	 * @return Este metodo devuelve un arreglo de double con dos posiciones cada uno con el
+	 * porcentaje de hombres y mujeres inscritos en el país.
+	 */
 	
 	public double[] estadisticasGeneroPais(ArrayList <Ciudadano> cedulasInscritas) {
 		
@@ -300,7 +376,17 @@ public class Registraduria  {
 		
 	return porcentajes;
 	}
-		
+	
+	/**
+	 * Este método se encarga de encontrar las estadísticas de genero para un departamento.
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado las estadísticas de género de un departamento <br>
+	 * @param departamento es el nombre del departamento del que se quiere conocer las estadísticas de género.
+	 * @param cedulasInscritas es el Arraylist con los ciudadanos inscritos
+	 * @return Este metodo devuelve un arreglo de double con dos posiciones cada uno con el
+	 * porcentaje de hombres y mujeres inscritos en un departamento
+	 */
+	
 	public double [] estadisticasGeneroDepartamento(String departamento, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -338,7 +424,16 @@ public class Registraduria  {
 	}
 	
 	}
-		
+	/**
+	 * Este método se encarga de encontrar las estadísticas de genero para un municipio
+	 * <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado las estadísticas de género de un municipio <br>
+	 * @param municipio es el nombre del municipio del que se quiere conocer las estadísticas de género.
+	 * @param cedulasInscritas es el Arraylist con los ciudadanos inscritos
+	 * @return Este metodo devuelve un arreglo de double con dos posiciones cada uno con el
+	 * porcentaje de hombres y mujeres inscritos en un municipio
+	 */
+	
 	public double [] estadisticasGeneroMunicipio(String municipio, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;
 		double porcentajem, porcentajef;
@@ -373,6 +468,16 @@ public class Registraduria  {
 			return null;
 		}
 	}
+	
+	/**
+	 * Este método se encarga de encontrar las estadísticas de genero para un puesto
+	 *  <b>pre</b> La lista de ciudadanos est� inicializada (no es null). <br>
+	 * <b>post</b> Se ha calculado y retornado las estadísticas de género de un puesto <br>
+	 * @param puesto es el nombre del puesto de votación del que se quiere conocer las estadísticas de género
+	 * @param cedulasInscritas es el arrayList con los ciudadanos inscritos
+	 * @return Este metodo devuelve un arreglo de double con dos posiciones cada uno con el
+	 * porcentaje de hombres y mujeres inscritos en un puesto de votación
+	 */
 	
 	public double [] estadisticasGeneroPuesto(String puesto, ArrayList <Ciudadano> cedulasInscritas) {
 		int m=0, f=0;

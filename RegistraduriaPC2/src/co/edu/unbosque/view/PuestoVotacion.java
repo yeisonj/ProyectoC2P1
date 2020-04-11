@@ -9,7 +9,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+/**
+ * <h1>Modela una clase extendida de JFrame PuestoVotacion </h1>
+* Este frame se encarga de crear o eliminar puestos de Votación
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
 
 public class PuestoVotacion extends JFrame {
 
@@ -25,7 +35,9 @@ public class PuestoVotacion extends JFrame {
 	private JButton agregarpuesto;
 	private JButton eliminarpuesto;
 	
-	
+	/**Constructor de la clase PuestoVotacion, se encarga de inicializar componentes principales como tamaño, ubicación,
+	 * si es o no redimensionable y layout
+	 */
 	public PuestoVotacion() 
 	{
 		setSize(800, 640);
@@ -38,6 +50,9 @@ public class PuestoVotacion extends JFrame {
 		inicializarComponentes();
 	}
 	
+	/**Método que se encarga de instanciar los componentes principales de la Clase Puesto Votacion
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		
@@ -93,7 +108,16 @@ public class PuestoVotacion extends JFrame {
 		puestovotaciondelete = new JComboBox<String>();
 		puestovotaciondelete.setBounds(340,408,230,35);
 		puestovotaciondelete.addItem("SELECCIONE PUESTO");
-		
+		puestovotaciondelete.setMaximumRowCount(20);
+		 if (puestovotaciondelete.getItemCount() == 0) return;
+	        Object comp = puestovotaciondelete.getUI().getAccessibleChild(puestovotaciondelete, 0);
+	        if (!(comp instanceof JPopupMenu)) {
+	            return;
+	        }
+	        JPopupMenu popup = (JPopupMenu) comp;
+	        JScrollPane scrollPane = (JScrollPane) popup.getComponent(0);
+	        scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+	        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		getContentPane().add(fondoPanel);
 		fondoPanel.add(agregarpuesto);
@@ -108,6 +132,9 @@ public class PuestoVotacion extends JFrame {
 		
 	}
 
+	/**
+	 * método que se encarga de reestablecer los valores predeterminados de la clase PuestoVotacion
+	 */
 	public void reestablecerValores()
 		{
 			nombrePuesto.setText("");

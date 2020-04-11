@@ -1,6 +1,15 @@
+/**
+ * <h1>Modela una clase extendida de JFrame AgregarModificarCiudadano </h1>
+* Este frame se encarga de agregar y modificar el ciudadano
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
+
+
 package co.edu.unbosque.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.text.ParseException;
 
@@ -10,7 +19,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 public class AgregarModificarCiudadano extends JFrame {
 
@@ -35,6 +48,10 @@ public class AgregarModificarCiudadano extends JFrame {
 	private JButton agregarCiudadano;
 	private JButton modificarCiudadano;
 	
+	/**Constructor de la clase AgregarModificarCiudadano
+	 * 
+	 * 
+	 */
 	
 	public AgregarModificarCiudadano()
 	{
@@ -50,6 +67,9 @@ public class AgregarModificarCiudadano extends JFrame {
 		reestablecerValores();
 	}
 	
+	/**este método se encarga de inicializar todos los componentes de la clase AgregarModificarCiudadano
+	 *  
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();
@@ -147,8 +167,21 @@ public class AgregarModificarCiudadano extends JFrame {
 		municipios.addItem("SELECCIONE");
 		
 		puestoVotacion = new JComboBox<String>();
-		puestoVotacion.setBounds(500,440,230,35);
+		puestoVotacion.setBounds(470,440,270,35);
 		puestoVotacion.addItem("SELECCIONE PUESTO");
+		puestoVotacion.setMaximumRowCount(20);
+		 if (puestoVotacion.getItemCount() == 0) return;
+	        Object comp = puestoVotacion.getUI().getAccessibleChild(puestoVotacion, 0);
+	        if (!(comp instanceof JPopupMenu)) {
+	            return;
+	        }
+	        JPopupMenu popup = (JPopupMenu) comp;
+	        JScrollPane scrollPane = (JScrollPane) popup.getComponent(0);
+	        scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+	        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		
+		
 		
 		
 		agregarCiudadano = new JButton();
@@ -181,7 +214,9 @@ public class AgregarModificarCiudadano extends JFrame {
 		fondo.add(agregarCiudadano);
 		fondo.add(modificarCiudadano);
 	}
-	
+	/** este método reestablece los valores de los componentes
+	 * a su valor original
+	 */
 	public void reestablecerValores()
 	{
 		cedula.setText("");
@@ -199,28 +234,6 @@ public class AgregarModificarCiudadano extends JFrame {
 		puestoVotacion.setSelectedItem("SELECCIONE PUESTO");
 	}
 	
-	
-	public void ingresarValoresModificarCiudadano(String ced, String fex, String lexp, String ap1, String ap2,
-			String nom1, String nom2, String fnac, String lnac, String gen, String depar, String mun, String puesto)
-	{
-		cedula.setText(ced);
-		cedula.setEnabled(false);
-		fexpedicion.setText(fex);
-		lexpedicion.setText(lexp);
-		apellido1.setText(ap1);
-		apellido2.setText(ap2);
-		nombre1.setText(nom1);
-		nombre2.setText(nom2);
-		fNacimiento.setText(fnac);
-		lNacimiento.setText(lnac);
-		departamentos.setSelectedItem(depar);
-		municipios.setSelectedItem(mun);
-		puestoVotacion.setSelectedItem(puesto);
-		
-		
-		
-	}
-
 	
 
 	public JTextField getCedula() {

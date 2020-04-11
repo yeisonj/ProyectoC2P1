@@ -1,12 +1,18 @@
 package co.edu.unbosque.model.persistence;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.crypto.AEADBadTagException;
 import javax.swing.JOptionPane;
 
 import co.edu.unbosque.model.Ciudadano;
+
+/**
+ * Esta clase contiene todos los métodos relacionados con el manejo de ciudadanos inscritos.
+ * @author Sebastián Moncaleano
+ */
 
 public class CiudadanoDAO {
 
@@ -16,18 +22,17 @@ public class CiudadanoDAO {
 		this.archivo = archivo;
 	}
 
+	
+	/**
+	 * Este método retorna un ciudadano que coincida con un número de cédula en específico. 
+	 * <b>pre</b> el ArrayList de ciudadanos est� inicializado (no es null). <br>
+	 * <b>post</b> Se ha retornado el objeto ciudadano con el número de cedula especificado <br>
+	 * @param cedula es el número de indentificación del ciudadano inscrito.
+	 * @param cedulasInscritas es el ArrayList de ciudadanos inscritos.
+	 * @return se retorna un objeto del tipo ciudadano.
+	 */
+	
 	// CRUD
-	public String mostrarInformacionCiudadano(String numeroCedula,ArrayList <Ciudadano> cedulasInscritas) {
-		String showCiu="";
-		for(int j= 0;j < cedulasInscritas.size(); j++)  {
-			String cc = cedulasInscritas.get(j).getNumerocedula();
-			if(numeroCedula.equalsIgnoreCase(cc)) {
-				showCiu = cedulasInscritas.get(j).toString();
-			}
-		}
-		return showCiu;
-	}
-
 	public Ciudadano buscarCiudadano(String cedula, ArrayList <Ciudadano> cedulasInscritas) {
 		Ciudadano encontrado = null;
 		if (!cedulasInscritas.isEmpty()) {
@@ -40,6 +45,14 @@ public class CiudadanoDAO {
 
 		return encontrado;
 	}
+	
+	/**
+	 * Este método se encarga de eliminar un ciudadano del archivo de persistencia de ciudadanos.
+	 * <b>pre</b> el ArrayList de ciudadanos est� inicializado (no es null). <br>
+	 * <b>post</b> Se ha eliminado el ciudadano del archivo de ciudadanos<br>
+	 * @param cedula es el número de indentificación del ciudadano inscrito.
+	 * @param cedulasInscritas es el ArrayList de ciudadanos inscritos.
+	 */
 	
 	public void eliminarCiudadano(String cedula, ArrayList <Ciudadano> cedulasInscritas) {
 		try {
@@ -56,6 +69,14 @@ public class CiudadanoDAO {
 		}
 	}
 
+	/**
+	 * 
+	 * @param numeroCedula es el número de indentificación del ciudadano inscrito.
+	 * @param ciudadanoAInscribir es el objeto del ciudadano que se va a inscribir.
+	 * @param cedulasInscritas es el ArrayList de ciudadanos inscritos.
+	 * @return un boolean true si el ciudadano fue inscrito y false sino lo fue.
+	 */
+	
 	public boolean agregarCiudadano(String numeroCedula, Ciudadano ciudadanoAInscribir, ArrayList <Ciudadano> cedulasInscritas) {
 		
 		if (buscarCiudadano(numeroCedula, cedulasInscritas) == null) {

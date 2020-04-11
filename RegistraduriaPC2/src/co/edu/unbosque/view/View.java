@@ -10,6 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * <h1>Modela una clase extendida de JFrame View </h1>
+* Este frame se encarga de instanciar todas las clases JFrame e interactuar directamente con el controlador
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
+
 public class View extends JFrame {
 	
 	private PuestoVotacion pPuestoVotacion;
@@ -20,6 +27,10 @@ public class View extends JFrame {
 	private Ciudadano pCiudadano;
 	private ListarCiudadano lCiudadano;
 	
+	/**Constructor de la Clase View
+	 * Se encarga de inicializar componentes principales tales como tamaño, si es redimensionable o no, título y 
+	 * el cierre del programa, a su vez instancia todas las clases JFrame
+	 */
 	public View()
 	{
 		pPrincipal = new Principal();
@@ -50,7 +61,9 @@ public class View extends JFrame {
 		
 	}
 	
-	
+	/**Este método se encarga de cambiar el ícono de todos los JFrame
+	 * 
+	 */
 	public void cambiarIcono()
 	{
 		ImageIcon icono = new ImageIcon("Resources/icono.png");
@@ -65,6 +78,11 @@ public class View extends JFrame {
 		lCiudadano.setIconImage(image);
 	}
 	
+	/**Método que se encarga de mostrar mensajes tipo JOptionPane
+	 * 
+	 * @param mensaje, recibe un dato tipo String el cual compara para mostrar el respectivo JOptionPane
+	 * @return dato tipo String.
+	 */
 	public String mostrarMensajes(String mensaje)
 	{
 		if(mensaje.equalsIgnoreCase("CREAR_TRUE"))
@@ -132,6 +150,10 @@ public class View extends JFrame {
 		if(mensaje.equalsIgnoreCase("CEDULA_INVALIDA"))
 		{
 			JOptionPane.showMessageDialog(null,"INGRESE UN NÚMERO DE CÉDULA VÁLIDO");
+		}
+		if(mensaje.equalsIgnoreCase("ESTADISTICAS_SI"))
+		{
+			JOptionPane.showMessageDialog(null,"SE HAN CARGADO LAS ESTADÍSTICAS EXITOSAMENTE");
 		}
 		return null;
 		

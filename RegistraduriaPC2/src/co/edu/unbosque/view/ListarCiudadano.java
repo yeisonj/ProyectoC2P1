@@ -9,10 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+/**
+ * <h1>Modela una clase extendida de JFrame ListarCiudadano </h1>
+* Este frame se encarga de mostrar la cantidad de ciudadanos inscritos tanto individual como por ubicación
+* @version 1.0
+* @author Diego Torres | Universidad El Bosque
+ */
 
 public class ListarCiudadano extends JFrame {
 
@@ -34,6 +43,11 @@ public class ListarCiudadano extends JFrame {
 	private JTable infoCiudadano;
 	private JTable infoGeneral;
 	
+
+	/**Constructor de la clase ListarCiudadano, se encarga de inicializar componentes principales como tamaño, ubicación,
+	 * si es o no redimensionable y layout
+	 */
+	
 	public ListarCiudadano()
 	{
 		setSize(800, 640);
@@ -48,7 +62,9 @@ public class ListarCiudadano extends JFrame {
 		
 		
 	}
-	
+	/**método que se encarga de instanciar los componentes principales de la clase ListarCiudadano
+	 * 
+	 */
 	public void inicializarComponentes()
 	{
 		fondo = new JLabel();
@@ -120,6 +136,16 @@ public class ListarCiudadano extends JFrame {
 		puestoVotacion = new JComboBox<String>();
 		puestoVotacion.setBounds(360,320,200,35);
 		puestoVotacion.addItem("SELECCIONE PUESTO");
+		puestoVotacion.setMaximumRowCount(20);
+		 if (puestoVotacion.getItemCount() == 0) return;
+	        Object comp = puestoVotacion.getUI().getAccessibleChild(puestoVotacion, 0);
+	        if (!(comp instanceof JPopupMenu)) {
+	            return;
+	        }
+	        JPopupMenu popup = (JPopupMenu) comp;
+	        JScrollPane scrollPane = (JScrollPane) popup.getComponent(0);
+	        scrollPane.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+	        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		validarinfogeneral = new JButton();
 		validarinfogeneral.setBounds(573,318,160,35);
@@ -173,6 +199,10 @@ public class ListarCiudadano extends JFrame {
 		
 		
 	}
+	/**Método que reestablece los valores predeterminados
+	 * 
+	 * @param a tipo String, se encarga de validar si reestablece los valores de forma parcial o total
+	 */
 	public void reestablecerValores(String a)
 	{
 		if(a.equalsIgnoreCase("TODO"))
